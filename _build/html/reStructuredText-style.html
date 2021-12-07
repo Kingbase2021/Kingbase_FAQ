@@ -1,0 +1,1175 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>restructuredText样式（一级标题） &mdash; KingbaseES Frequently Asked Questions   documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/js/custom.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> KingbaseES Frequently Asked Questions
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                 
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">前言</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="legalnotice.html">版权声明</a></li>
+</ul>
+<p class="caption"><span class="caption-text">常见问题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">1. SQL类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id1">1.1. 空值问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#null">1.1.1. ‘’ 与 null 兼容性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#is-null">1.1.2. 判断值是否为空，要用 is null</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#pg">1.1.3. PG模式下，‘’ 值问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#ora-input-emptystr-isnull">1.1.4. Ora_input_emptystr_isnull对于字符类型空值的影响</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#id2">1.1.5. Ora_input_emptystr_isnull对于数值类型空值的影响</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#core">1.2. Core分析</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#id3">1.2.1. 多线程core分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#id4">1.2.2. 如何生成core文件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id5">1.3. 关键字问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#id6">1.3.1. 如何确认是否系统关键字</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id7">1.4. 乱码或无效字符编码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#windows">1.5. Windows版本安装未注册服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id8">1.6. 如何创建一个间隔分区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#kesv8r2-3">1.7. [KESV8R2/3] 客服端服务器编码原理说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#mysqlsql-mode">1.8. 兼容MySQL参数sql_mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#mysql-date-format">1.9. MySQL date_format改写</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id9">1.10. 共有同义词和私有同义词有什么区别</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id10">1.11. 同义词查找规则</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id11">1.12. 如何查询版本的提交号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id12">1.13. 遇到关键字无法使用作为表名或列名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#nextval">1.14. Nextval在同一条语句中的值</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id13">1.15. 能为模式指定表空间吗？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id14">1.16. 丢失了数据库密码，如何恢复？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#cache">1.17. 序列的cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#oid">1.18. 什么是OID？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#ctid">1.19. 什么是CTID？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id15">1.20. 数据库大小限制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#kes">1.21. KES数据页结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#copy">1.22. 如何将数据从客户端通过copy命令导入数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id16">1.23. Windows 如何配置免密登录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id17">1.24. 命令报参数错误问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#to-date">1.25. To_date 函数问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id18">1.26. 视图源定义信息为啥和创建的语句不一样</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id19">1.27. 字符串类型长度怎么获取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#sys-guid">1.28. 如何改变sys_guid() 返回值类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#openssl">1.29. OPENSSL问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#pg-relation-size">1.30. Pg_relation_size 问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id20">1.31. 全角字符支持</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id21">1.32. 时间函数问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#ddl">1.33. 如何取得对象的DDL信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#update">1.34. 全表update非常慢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#failed-to-find-conversion-function-from-unknown-to-text">1.35. Failed to find conversion function from UNKNOWN to TEXT</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plsql.html">2. PLSQL类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#kes-pl-sql-block-not-end-correctly">2.1. KES创建过程，报错：PL/SQL block not end correctly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#out">2.2. 如何调用含out参数的存储过程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#savepoint">2.3. Savepoint 使用问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#create-operator-bool">2.4. Create operator（bool与整型比较）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#for">2.5. For循环变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#id1">2.6. 函数变量不能超过512</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameter.html">3. 参数相关</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#kingbase-conf-kingbase-auto-conf">3.1. Kingbase.conf 与 kingbase.auto.conf 参数文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#id2">3.2. 不同参数如何生效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#error-user-connect-times-and-max-error-user-connect-times">3.3. error_user_connect_times and max_error_user_connect_times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#exclude-reserved-words">3.4. Exclude_reserved_words 排除关键字</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#max-locks-per-transaction">3.5. max_locks_per_transaction设置过大引发数据库启动问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#max-identifier-length">3.6. max_identifier_length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#id3">3.7. 数据库启动失败，报“内存段超过可用内存”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">4. License 相关</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id1">4.1. 如何查询license有效时间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id2">4.2. 如何查询license完整信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id3">4.3. 如何查询license单项信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id4">4.4. 替换license步骤</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id5">4.5. 替换license是否要重启数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id6">4.6. 如何判断license有效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id7">4.7. License与网卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#bondlicense">4.8. Bond网卡切换license支持问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extended-plug-in.html">5. 扩展组件</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#id2">5.1. 如何查看系统是否支持某组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#oracle-fdw">5.2. oracle_fdw支持平台</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#create-extension-oracle-fdw-so">5.3. create extension oracle_fdw报.so找不到加载失败</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#id3">5.4. oracle_fdw支持功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#sys-pathman">5.5. Sys_pathman</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#separate-power">5.6. Separate_power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#sysaudit">5.7. Sysaudit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended-plug-in.html#id4">5.7.1. 如何删除语句审计日志？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gis.html">6. 空间组件</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gis.html#create-extension-postgris-glibc-2-18-not-defined-in-file-libc-so-6">6.1. Create extension postgris 报错“GLIBC_2.18 not defined in file libc.so.6”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gis.html#acgis">6.2. acgis版本备份还原</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gis.html#r6">6.3. R6 是否支持超图</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="system-management.html">7. 系统管理类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="system-management.html#kesv8r2-r3">7.1. [KESV8R2/R3]表在指定表空间，为何显示为默认表空间？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-management.html#sys-class-reltablespace-0">7.2. 为什么sys_class里显示的很多表的 RELTABLESPACE值为 0？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-management.html#kes-sys-catalog">7.3. KES有什么办法，默认不读取sys_catalog下的系统视图？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-management.html#ip">7.4. 网线拔插后，IP丢失问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">8. 工具类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#s-pgsql-5432">8.1. 客户端连接找 .s.PGSQL.5432</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#er">8.2. 客户端管理工具无法加载ER图问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#client-encoding">8.3. 如何修改管理工具client_encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#id2">8.4. 迁移工具对于同名对象处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#invalid-byte-sequence-for-encoding-utf8-0x00">8.5. 数据迁移报“invalid byte sequence for encoding &quot;UTF8&quot;: 0x00 &quot;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#id3">8.6. 开始菜单没有数据库快捷工具图标</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#gui">8.7. 缺少操作系统GUI组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#r3scram-sha-256">8.8. R3客户端无法使用scram-sha-256认证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#undefined-symbol-pqgssencinuse">8.9. undefined symbol: PqgssEncInUse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#bulkload">8.10. Bulkload并行加载报错</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data-security.html">9. 数据安全</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data-security.html#sys-rmancurrent-time-may-be-rewound">9.1. Sys_rman备份报“current time may be rewound”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-security.html#id2">9.2. 如何导出一致时间点的数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-security.html#id3">9.3. 索引问题导致数据访问问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TPCC-test.html">10. TPCC测试类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TPCC-test.html#tpccautovacuum">10.1. tpcc测试中是否需要开启autovacuum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TPCC-test.html#index-cursor-id">10.2. index_cursor_id参数的数值是固定的么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TPCC-test.html#tpccunixdomain">10.3. 在tpcc测试中unixdomain作用是？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TPCC-test.html#id1">10.4. 集群环境下测试tpcc连接参数怎样配置？</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="interface.html">11. 接口</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="interface/jdbc.html">11.1. JDBC接口</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id1">11.1.1. JDBC打开日志方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#vip-jdbc">11.1.2. 没有VIP情况下，JDBC连接如何配置？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#v8r6-jdbcvip">11.1.3. V8R6 JDBC能否使用VIP？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#lobupdate">11.1.4. LOB对象update机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#kbblob-oracle">11.1.5. KBBlob 迁移至Oracle</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">12. Docker环境相关问题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#exit-code-137">12.1. 【exit code 137】错误信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-license">12.2. Docker 环境下license机制</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="high-availability.html">13. 读写分离</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#id2">13.1. 读写分离分发机制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#id3">13.2. 如何测试一下现场的备机失败，转发主机的场景？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#id4">13.3. 失败重发机制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#ssh">13.4. ssh 引发的相关问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#id5">13.5. 读写分离备机备份报错</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#hash">13.6. 读写分离集群Hash索引老是出问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cluster_faq.html">14. 高可用集群</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#libssl">14.1. libssl 问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#if-up-cmd-faild">14.2. if_up_cmd faild</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#arping">14.3. arping问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#arping-path">14.4. arping_path版本不正确</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#eshamodel-sh">14.5. esHAmodel.sh脚本错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#cluster">14.6. 集群名称不能使用cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#id2">14.7. 网络问题导致备机无法加入集群</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbasecluster">14.8. kingbasecluster服务启动失败</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#sys-md5">14.9. 集群sys_md5生成错误密码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#node">14.10. 两节点读写分离集群，集群无法创建主备，两个node都是主</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#max-connections">14.11. 集群无法修改max_connections参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#id3">14.12. 软连接配置错误，导致集群启动报缺少磁盘空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#rootssh-auth-fail">14.13. 未配置root用户ssh互信，部署集群时，添加节点“auth fail”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#show-pool-nodes">14.14. 防火墙导致集群show pool_nodes信息错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#v8r3auth-fail">14.15.  V8R3集群部署工具“auth fail”错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbase-monitor-shthere-are-no-1-standbys-in-sys-stat-replication">14.16. 集群通过kingbase_monitor.sh启动后“There are no 1 standbys in sys_stat_replication......&quot;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kes-v8r2kingbasecluster9999">14.17. KES V8R2集群kingbasecluster服务9999端口无法连接</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#r3-sys-md5">14.18. R3集群部署工具部署时，出现sys_md5的错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#r3bmjeshamodel-sh">14.19. R3集群BMJ启动esHAmodel.sh失败问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#bmj-r3es-clientes-server">14.20. BMJ R3集群切换后es_client无法和es_server通讯问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbasees-r3standby">14.21. kingbaseES R3集群启动后“无standby”问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbasees-r3kingbasecluster">14.22. kingbaseES R3集群kingbasecluster无法正确识别备库状态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbasees-r3-db-vip-cluster-vip">14.23. kingbaseES R3 集群无法加载db VIP 和cluster VIP案例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#down">14.24. 网关无法连通，导致集群down，手工启动数据库服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbaseclusterkingbase-monitor-sh-kingbasecluster">14.25. 备库kingbasecluster服务通过kingbase_monitor.sh启动失败，手工启动kingbasecluster服务解决</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kes-v8r3kingbase-monitor-sh-pam-nologin-8">14.26. KES V8R3集群通过kingbase_monitor.sh启动失败，提示“pam_nologin(8)&quot;错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#conflict-with-recovery">14.27. conflict with recovery问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#sys-dump">14.28. sys_dump备份问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#sys-restore">14.29. sys_restore 恢复数据错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbasees-r6open-files">14.30. kingbaseES R6集群部署“open files”问题</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KingbaseES Frequently Asked Questions</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>restructuredText样式（一级标题）</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="restructuredtext">
+<span id="id1"></span><h1>restructuredText样式（一级标题）<a class="headerlink" href="#restructuredtext" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>章节标题（二级标题）<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>三级标题<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h4>四级标题<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id5">
+<h5>五级标题<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id6">
+<h6>六级标题<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h6>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>段落<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>段落由空白行分割，左侧必须对齐（没有空格，或者有相同多的空格）。缩进的段落意味着引用。
+例如</p>
+<p>这是第一段</p>
+<p>这是第二段
+这还是第二段</p>
+</div>
+<div class="section" id="id8">
+<h2>行内标记<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p><em>斜体</em></p>
+<p><strong>加粗</strong></p>
+<p><cite>强调解释</cite></p>
+<p><code class="docutils literal notranslate"><span class="pre">行内代码</span></code></p>
+<p>A下标xxx    A <sub>xxx</sub>
+A上标xxx    A <sup>xxx</sup></p>
+<dl class="simple">
+<dt>注意：</dt><dd><p>对于行内标记, 标记前后要留有至少一个空格. 如 你好*我没变斜*你好 –&gt; 你好*我没变斜*你好, 正确为: 你好 <em>我变斜了</em> 你好 –&gt; 你好 我变斜了 你好, 或 你好<em>我变斜了</em>你好 –&gt; 你好我变斜了你好.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id9">
+<h2>列表<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>无序列表使用 <code class="docutils literal notranslate"><span class="pre">-</span></code> , <code class="docutils literal notranslate"><span class="pre">*</span></code> , <code class="docutils literal notranslate"><span class="pre">+</span></code> 来标记:</p>
+<ul class="simple">
+<li><p>无序列表第一项</p></li>
+<li><p>无序列表第二项</p></li>
+</ul>
+<p>有序列表使用 <code class="docutils literal notranslate"><span class="pre">num.</span></code> 来标记:</p>
+<ol class="arabic simple">
+<li><p>有序列表第一项</p></li>
+<li><p>有序列表第二项</p></li>
+</ol>
+<p>自动编号列表必须使用 <code class="docutils literal notranslate"><span class="pre">#.</span></code> 来标记:</p>
+<ol class="arabic simple">
+<li><p>自动编号的列表第一项</p></li>
+<li><p>自动编号的列表第二项</p></li>
+</ol>
+<p>这是一个定义列表:</p>
+<dl>
+<dt>term</dt><dd><p>术语定义必须缩进</p>
+<p>可以包含多个段落</p>
+</dd>
+<dt>next term</dt><dd><p>术语描述</p>
+</dd>
+</dl>
+<p>下面是一个嵌套列表, 每一级别向右缩进一次, 同级别缩进应相同:</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>有序列表第一项</dt><dd><ul class="simple">
+<li><p>无序列表第一项</p></li>
+<li><p>无序列表第二项</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>有序列表第二项</dt><dd><ul class="simple">
+<li><p>无序列表第一项</p></li>
+<li><p>无序列表第二项</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+<div class="section" id="id10">
+<h2>表格<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id11">
+<h3>网格表（带表标题和编号）<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>网格表中使用的符号有：-、=、<a href="#id32"><span class="problematic" id="id33">|、+。
+- 用来分隔行， = 用来分隔表头和表体行，|</span></a> 用来分隔列，+ 用来表示行和列相交的节点。</p>
+<p>以下代码段指定四列的相对宽度，更改每列的文本对齐方式，禁用第三、四列的文本换行：</p>
+<table class="colwidths-given table docutils align-default" id="table-gridtable">
+<caption><span class="caption-text">Grid Table Demo</span><a class="headerlink" href="#table-gridtable" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="text-left whitespace-no-wrap head"><p>Header row, column 1
+(header rows optional)</p></th>
+<th class="text-left head"><p>Header 2</p></th>
+<th class="text-left head"><p>Header 3</p></th>
+<th class="text-left whitespace-no-wrap head"><p>Header 4</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left whitespace-no-wrap"><p>body row 1, column 1</p></td>
+<td class="text-center"><p>column 2</p></td>
+<td class="text-right"><p>column 3</p></td>
+<td class="text-right whitespace-no-wrap"><p>column 4</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left whitespace-no-wrap"><p>body row 2</p></td>
+<td class="text-center"><p>...</p></td>
+<td class="text-right"><p>...</p></td>
+<td class="text-right whitespace-no-wrap"></td>
+</tr>
+</tbody>
+</table>
+<p>可以使用 <a class="reference internal" href="#table-gridtable"><span class="std std-ref">Grid Table Demo</span></a> 引用, 在Sphinx中还可以使用 <code class="xref std std-numref docutils literal notranslate"><span class="pre">table-gridtable</span></code> 来引用.</p>
+</div>
+<div class="section" id="id12">
+<h3>简单表格（无表标题和编号）<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<p>书写简单, 但有一些限制: 需要有多行, 且第一列元素不能分行显示, 如下</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 29%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>A</p></th>
+<th class="head"><p>B</p></th>
+<th class="head"><p>A and B</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>False</p></td>
+<td><p>False</p></td>
+<td><p>False</p></td>
+</tr>
+<tr class="row-odd"><td><p>True</p></td>
+<td><p>False</p></td>
+<td><p>False</p></td>
+</tr>
+<tr class="row-even"><td><p>False</p></td>
+<td><p>True</p></td>
+<td><p>False</p></td>
+</tr>
+<tr class="row-odd"><td><p>True</p></td>
+<td><p>True</p></td>
+<td><p>True</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="csv">
+<h3>CSV表格（带表标题和编号）<a class="headerlink" href="#csv" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-given docutils align-default" id="id29">
+<caption><span class="caption-text">Frozen Delights!</span><a class="headerlink" href="#id29" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 18%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Treat</p></th>
+<th class="head"><p>Quantity</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Albatross</p></td>
+<td><p>2.99</p></td>
+<td><p>On a stick!</p></td>
+</tr>
+<tr class="row-odd"><td><p>Crunchy Frog</p></td>
+<td><p>1.49</p></td>
+<td><p>If we took the bones out, it wouldn't be
+crunchy, now would it?</p></td>
+</tr>
+<tr class="row-even"><td><p>Gannet Ripple</p></td>
+<td><p>1.99</p></td>
+<td><p>On a stick!</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="list-table">
+<h3>list table（带表标题和编号）<a class="headerlink" href="#list-table" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-given docutils align-default" id="id30">
+<caption><span class="caption-text">List tables can have captions like this one.</span><a class="headerlink" href="#id30" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 7%" />
+<col style="width: 13%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head stub"><p>List table</p></th>
+<th class="head"><p>Header 1</p></th>
+<th class="head"><p>Header 2</p></th>
+<th class="head"><p>Header 3 long. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet mauris arcu.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><th class="stub"><p>Stub Row 1</p></th>
+<td><p>Row 1</p></td>
+<td><p>Column 2</p></td>
+<td><p>Column 3 long. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet mauris arcu.</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Stub Row 2</p></th>
+<td><p>Row 2</p></td>
+<td><p>Column 2</p></td>
+<td><p>Column 3 long. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet mauris arcu.</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>Stub Row 3</p></th>
+<td><p>Row 3</p></td>
+<td><p>Column 2</p></td>
+<td><p>Column 3 long. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet mauris arcu.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="sublime-text">
+<h3>sublime text<a class="headerlink" href="#sublime-text" title="Permalink to this headline">¶</a></h3>
+<p>使用”Restructured Text (RST) Snippets”, 即 sublime-rst-completion , 表格的制作将变得极为简单。详见sublime.txt</p>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>注释<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>你可以看到我, 我不是注释.</p>
+</div>
+<div class="section" id="id14">
+<h2>图片<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="image">
+<h3>image指令图片<a class="headerlink" href="#image" title="Permalink to this headline">¶</a></h3>
+<p>无发自动生成编号，不建议使用，后续会将手册中所有image指令图片替换为figure指令图片</p>
+<a class="reference internal image-reference" href="images/logo.png"><img alt="对于不能显示图片的时候, 显示这些文字" class="align-right" src="images/logo.png" style="width: 100.0px; height: 50.0px;" /></a>
+</div>
+<div class="section" id="figure">
+<h3>figure指令图片（包含图片标题、编号和图例）<a class="headerlink" href="#figure" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-default" id="id31">
+<span id="figure-logo"></span><a class="reference internal image-reference" href="images/logo.png"><img alt="map to buried treasure" src="images/logo.png" /></a>
+<p class="caption"><span class="caption-text">This is the caption of the figure (a simple paragraph).</span><a class="headerlink" href="#id31" title="Permalink to this image">¶</a></p>
+<div class="legend">
+<p>The legend consists of all elements after the caption.  In this
+case, the legend consists of this paragraph</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id15">
+<h2>代码块<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">some</span> <span class="n">codes1</span>
+<span class="n">some</span> <span class="n">codes1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id16">
+<h2>指令<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This is a tip</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a note</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>This is a hint</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>This is a danger</p>
+</div>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>This is an error</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is a warning</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>This is a caution</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>This is an attention</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This is an important</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>This is seealso</p>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Simple snippets work as tab-triggered shortcuts: type the shortcut and press <code class="docutils literal notranslate"><span class="pre">&lt;TAB&gt;</span></code> to
+replace it with the snippet. If the snippet has placeholders, you can jump between them
+using tab.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 41%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>shortcut</p></th>
+<th class="head"><p>result</p></th>
+<th class="head"><p>key binding</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">h1</span></code></p></td>
+<td><p>Header level 1</p></td>
+<td><p>see <a class="reference internal" href="#headers">Headers</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">h2</span></code></p></td>
+<td><p>Header level 2</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">h3</span></code></p></td>
+<td><p>Header level 3</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">e</span></code></p></td>
+<td><p>emphasis</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ctrl+alt+i</span></code>
+(<code class="docutils literal notranslate"><span class="pre">super+shift+i</span></code> on Mac)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">se</span></code></p></td>
+<td><p>strong emphasis (bold)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ctrl+alt+b</span></code>
+(<code class="docutils literal notranslate"><span class="pre">super+shift+b</span></code> on Mac)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lit</span></code> or <code class="docutils literal notranslate"><span class="pre">literal</span></code></p></td>
+<td><p>literal text (inline code)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ctrl+alt+k</span></code>
+(<code class="docutils literal notranslate"><span class="pre">super+shift+k</span></code> on Mac)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">list</span></code></p></td>
+<td><p>unordered list</p></td>
+<td><p>see <a class="reference internal" href="#smart-lists">Smart Lists</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">listn</span></code></p></td>
+<td><p>ordered list</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">listan</span></code></p></td>
+<td><p>auto ordered list</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">def</span></code></p></td>
+<td><p>term definition</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">code</span></code></p></td>
+<td><p>code-block directive (sphinx)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></td>
+<td><p>preformatted (<code class="docutils literal notranslate"><span class="pre">::</span></code> block)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">img</span></code></p></td>
+<td><p>image</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig</span></code></p></td>
+<td><p>figure</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">table</span></code></p></td>
+<td><p>simple table</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ctrl+t</span></code> see <a class="reference internal" href="#magic-tables">Magic
+Tables</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">link</span></code></p></td>
+<td><p>refered hyperlink</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">linki</span></code></p></td>
+<td><p>embeded hyperlink</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fn</span></code> or <code class="docutils literal notranslate"><span class="pre">cite</span></code></p></td>
+<td><p>autonumbered footnote or cite</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">alt+shift+f</span></code> see
+<a class="reference internal" href="#magic-footnotes">Magic Footnotes</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">quote</span></code></p></td>
+<td><p>Quotation (<code class="docutils literal notranslate"><span class="pre">epigraph</span></code> directive)</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Also standard admonitions are expanded:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>shortcut</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">attention</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">caution</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">danger</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">error</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hint</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">important</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">note</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tip</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">warning</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="render-preview">
+<h2>Render preview<a class="headerlink" href="#render-preview" title="Permalink to this headline">¶</a></h2>
+<p>You can preview your document in different formats converted with different tools
+pressing <code class="docutils literal notranslate"><span class="pre">ctrl+shift+r</span></code>.</p>
+<p>The <em>Quick Window</em> will offer the format and tool and the result will be automatically open
+after the conversion.</p>
+<p>By the moment, it can use <a href="#id34"><span class="problematic" id="id35">Pandoc_</span></a>, <a href="#id36"><span class="problematic" id="id37">rst2pdf_</span></a>, or <code class="docutils literal notranslate"><span class="pre">rst2*.py</span></code> tools (included with
+<a href="#id38"><span class="problematic" id="id39">docutils_</span></a>) to produce <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">pdf</span></code>, <code class="docutils literal notranslate"><span class="pre">odt</span></code> or <code class="docutils literal notranslate"><span class="pre">docx</span></code> output formats.</p>
+<p>Each time you select a <code class="docutils literal notranslate"><span class="pre">format</span> <span class="pre">+</span> <span class="pre">tool</span></code> option, it turns the default the following times.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The original code is from the <a class="reference external" href="https://github.com/jclement/SublimePandoc">SublimePandoc</a>
+project.</p>
+</div>
+</div>
+<div class="section" id="magic-tables">
+<h2>Magic Tables<a class="headerlink" href="#magic-tables" title="Permalink to this headline">¶</a></h2>
+<p>There is a particular <em>magic</em> expansion for tables. Here is how it works:</p>
+<div class="section" id="id17">
+<h3>网格表<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>创建表格提纲, 用一个或多个空格分割列:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="n">paragraph</span> <span class="n">text</span> <span class="o">*</span><span class="n">before</span><span class="o">*</span> <span class="n">the</span> <span class="n">table</span><span class="o">.</span>
+
+<span class="n">Column</span> <span class="mi">1</span>  <span class="n">Column</span> <span class="mi">2</span>
+<span class="n">Foo</span>  <span class="n">Put</span> <span class="n">two</span> <span class="p">(</span><span class="ow">or</span> <span class="n">more</span><span class="p">)</span> <span class="n">spaces</span> <span class="k">as</span> <span class="n">a</span> <span class="n">field</span> <span class="n">separator</span><span class="o">.</span>
+<span class="n">Bar</span>  <span class="n">Even</span> <span class="n">very</span> <span class="n">very</span> <span class="n">long</span> <span class="n">lines</span> <span class="n">like</span> <span class="n">these</span> <span class="n">are</span> <span class="n">fine</span><span class="p">,</span> <span class="k">as</span> <span class="n">long</span> <span class="k">as</span> <span class="n">you</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">put</span> <span class="ow">in</span> <span class="n">line</span> <span class="n">endings</span> <span class="n">here</span><span class="o">.</span>
+
+<span class="n">This</span> <span class="ow">is</span> <span class="n">paragraph</span> <span class="n">text</span> <span class="o">*</span><span class="n">after</span><span class="o">*</span> <span class="n">the</span> <span class="n">table</span><span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p>把鼠标放在要转化成表格的内容里.</p></li>
+<li><p>按下 <code class="docutils literal notranslate"><span class="pre">ctrl+t,</span> <span class="pre">enter</span></code> (Linux or Windows) or <code class="docutils literal notranslate"><span class="pre">super+shift+t,</span> <span class="pre">enter</span></code> (Mac). 将会自动格式化成表格:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="n">paragraph</span> <span class="n">text</span> <span class="o">*</span><span class="n">before</span><span class="o">*</span> <span class="n">the</span> <span class="n">table</span><span class="o">.</span>
+
+<span class="o">+----------+---------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">Column</span> <span class="mi">1</span> <span class="o">|</span> <span class="n">Column</span> <span class="mi">2</span>                                                <span class="o">|</span>
+<span class="o">+==========+=========================================================+</span>
+<span class="o">|</span> <span class="n">Foo</span>      <span class="o">|</span> <span class="n">Put</span> <span class="n">two</span> <span class="p">(</span><span class="ow">or</span> <span class="n">more</span><span class="p">)</span> <span class="n">spaces</span> <span class="k">as</span> <span class="n">a</span> <span class="n">field</span> <span class="n">separator</span><span class="o">.</span>          <span class="o">|</span>
+<span class="o">+----------+---------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">Bar</span>      <span class="o">|</span> <span class="n">Even</span> <span class="n">very</span> <span class="n">very</span> <span class="n">long</span> <span class="n">lines</span> <span class="n">like</span> <span class="n">these</span> <span class="n">are</span> <span class="n">fine</span><span class="p">,</span> <span class="k">as</span> <span class="n">long</span>  <span class="o">|</span>
+<span class="o">|</span>          <span class="o">|</span> <span class="k">as</span> <span class="n">you</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">put</span> <span class="ow">in</span> <span class="n">line</span> <span class="n">endings</span> <span class="n">here</span><span class="o">.</span>                 <span class="o">|</span>
+<span class="o">+----------+---------------------------------------------------------+</span>
+
+<span class="n">This</span> <span class="ow">is</span> <span class="n">paragraph</span> <span class="n">text</span> <span class="o">*</span><span class="n">after</span><span class="o">*</span> <span class="n">the</span> <span class="n">table</span><span class="o">.</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>现在假设你想增加某一单元格内容:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+----------+---------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">Column</span> <span class="mi">1</span> <span class="o">|</span> <span class="n">Column</span> <span class="mi">2</span>                                                <span class="o">|</span>
+<span class="o">+==========+=========================================================+</span>
+<span class="o">|</span> <span class="n">Foo</span> <span class="ow">is</span> <span class="n">longer</span> <span class="n">now</span>     <span class="o">|</span> <span class="n">Put</span> <span class="n">two</span> <span class="p">(</span><span class="ow">or</span> <span class="n">more</span><span class="p">)</span> <span class="n">spaces</span> <span class="k">as</span> <span class="n">a</span> <span class="n">field</span> <span class="n">separator</span><span class="o">.</span>          <span class="o">|</span>
+<span class="o">+----------+---------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">Bar</span>      <span class="o">|</span> <span class="n">Even</span> <span class="n">very</span> <span class="n">very</span> <span class="n">long</span> <span class="n">lines</span> <span class="n">like</span> <span class="n">these</span> <span class="n">are</span> <span class="n">fine</span><span class="p">,</span> <span class="k">as</span> <span class="n">long</span>  <span class="o">|</span>
+<span class="o">|</span>          <span class="o">|</span> <span class="k">as</span> <span class="n">you</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">put</span> <span class="ow">in</span> <span class="n">line</span> <span class="n">endings</span> <span class="n">here</span><span class="o">.</span>                 <span class="o">|</span>
+<span class="o">+----------+---------------------------------------------------------+</span>
+</pre></div>
+</div>
+<p>按下同样的快捷键, 表格结构会自动调整:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+-------------------+--------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">Column</span> <span class="mi">1</span>          <span class="o">|</span> <span class="n">Column</span> <span class="mi">2</span>                                               <span class="o">|</span>
+<span class="o">+===================+========================================================+</span>
+<span class="o">|</span> <span class="n">Foo</span> <span class="ow">is</span> <span class="n">longer</span> <span class="n">now</span> <span class="o">|</span> <span class="n">Put</span> <span class="n">two</span> <span class="p">(</span><span class="ow">or</span> <span class="n">more</span><span class="p">)</span> <span class="n">spaces</span> <span class="k">as</span> <span class="n">a</span> <span class="n">field</span> <span class="n">separator</span><span class="o">.</span>         <span class="o">|</span>
+<span class="o">+-------------------+--------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">Bar</span>               <span class="o">|</span> <span class="n">Even</span> <span class="n">very</span> <span class="n">very</span> <span class="n">long</span> <span class="n">lines</span> <span class="n">like</span> <span class="n">these</span> <span class="n">are</span> <span class="n">fine</span><span class="p">,</span> <span class="k">as</span> <span class="n">long</span> <span class="o">|</span>
+<span class="o">|</span>                   <span class="o">|</span> <span class="k">as</span> <span class="n">you</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">put</span> <span class="ow">in</span> <span class="n">line</span> <span class="n">endings</span> <span class="n">here</span><span class="o">.</span>                <span class="o">|</span>
+<span class="o">+-------------------+--------------------------------------------------------+</span>
+</pre></div>
+</div>
+<p>此外，如果你想保持列宽固定，可以按``ctrl+t, r``  or  <code class="docutils literal notranslate"><span class="pre">super+shift+t,</span> <span class="pre">r</span></code> (Mac):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+----------+---------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">Column</span> <span class="mi">1</span> <span class="o">|</span> <span class="n">Column</span> <span class="mi">2</span>                                                <span class="o">|</span>
+<span class="o">+==========+=========================================================+</span>
+<span class="o">|</span> <span class="n">Foo</span> <span class="ow">is</span>   <span class="o">|</span> <span class="n">Put</span> <span class="n">two</span> <span class="p">(</span><span class="ow">or</span> <span class="n">more</span><span class="p">)</span> <span class="n">spaces</span> <span class="k">as</span> <span class="n">a</span> <span class="n">field</span> <span class="n">separator</span><span class="o">.</span>          <span class="o">|</span>
+<span class="o">|</span> <span class="n">longer</span>   <span class="o">|</span>                                                         <span class="o">|</span>
+<span class="o">|</span> <span class="n">now</span>      <span class="o">|</span>                                                         <span class="o">|</span>
+<span class="o">+----------+---------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">Bar</span>      <span class="o">|</span> <span class="n">Even</span> <span class="n">very</span> <span class="n">very</span> <span class="n">long</span> <span class="n">lines</span> <span class="n">like</span> <span class="n">these</span> <span class="n">are</span> <span class="n">fine</span><span class="p">,</span> <span class="k">as</span> <span class="n">long</span>  <span class="o">|</span>
+<span class="o">|</span>          <span class="o">|</span> <span class="k">as</span> <span class="n">you</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">put</span> <span class="ow">in</span> <span class="n">line</span> <span class="n">endings</span> <span class="n">here</span><span class="o">.</span>                 <span class="o">|</span>
+<span class="o">+----------+---------------------------------------------------------+</span>
+</pre></div>
+</div>
+<p>还可以使用鼠标合并单元格:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+----+----+</span>
+<span class="o">|</span> <span class="n">h1</span> <span class="o">|</span> <span class="n">h2</span> <span class="o">|</span>
+<span class="o">+====+====+</span>
+<span class="o">|</span> <span class="mi">11</span> <span class="o">|</span> <span class="mi">12</span> <span class="o">|</span>
+<span class="o">+----+----+</span>
+<span class="o">|</span> <span class="mi">21</span> <span class="o">|</span> <span class="mi">22</span> <span class="o">|</span>
+<span class="o">+----+----+</span>
+</pre></div>
+</div>
+<p>移动鼠标到单元格 <code class="docutils literal notranslate"><span class="pre">12</span></code> ，按 <code class="docutils literal notranslate"><span class="pre">ctrl+t,</span> <span class="pre">down</span></code>。 将得到:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+----+----+</span>
+<span class="o">|</span> <span class="n">h1</span> <span class="o">|</span> <span class="n">h2</span> <span class="o">|</span>
+<span class="o">+====+====+</span>
+<span class="o">|</span> <span class="mi">11</span> <span class="o">|</span> <span class="mi">12</span> <span class="o">|</span>
+<span class="o">+----+</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="mi">21</span> <span class="o">|</span> <span class="mi">22</span> <span class="o">|</span>
+<span class="o">+----+----+</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The original code of this feature was taken from
+<a class="reference external" href="https://github.com/nvie/vim-rst-tables">Vincent Driessen's vim-rst-tables</a> :</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The original code of <a class="reference external" href="https://github.com/jquast/wcwidth">wcwidth</a> was taken to solve alignment issue with CJK characters.</p>
+</div>
+</div>
+<div class="section" id="id18">
+<h3>简单表格<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>创建表格提纲, 用一个或多个空格分割列:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="n">paragraph</span> <span class="n">text</span> <span class="o">*</span><span class="n">before</span><span class="o">*</span> <span class="n">the</span> <span class="n">table</span><span class="o">.</span>
+
+<span class="n">Column</span> <span class="mi">1</span>  <span class="n">Column</span> <span class="mi">2</span>
+<span class="n">Foo</span> <span class="n">Put</span> <span class="n">two</span> <span class="p">(</span><span class="ow">or</span> <span class="n">more</span><span class="p">)</span> <span class="n">spaces</span> <span class="k">as</span> <span class="n">a</span> <span class="n">field</span> <span class="n">separator</span><span class="o">.</span>
+<span class="n">Bar</span>  <span class="n">Even</span> <span class="n">very</span> <span class="n">very</span> <span class="n">long</span> <span class="n">lines</span> <span class="n">like</span> <span class="n">these</span> <span class="n">are</span> <span class="n">fine</span><span class="p">,</span> <span class="k">as</span> <span class="n">long</span> <span class="k">as</span> <span class="n">you</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">put</span> <span class="ow">in</span> <span class="n">line</span> <span class="n">endings</span> <span class="n">here</span><span class="o">.</span>
+
+<span class="n">This</span> <span class="ow">is</span> <span class="n">paragraph</span> <span class="n">text</span> <span class="o">*</span><span class="n">after</span><span class="o">*</span> <span class="n">the</span> <span class="n">table</span><span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p>把光标放在要转化成表格的内容里.</p></li>
+<li><p>按下 <code class="docutils literal notranslate"><span class="pre">ctrl+t,</span> <span class="pre">s</span></code> (Linux or Windows) or <code class="docutils literal notranslate"><span class="pre">super+shift+t,</span> <span class="pre">s</span></code> (Mac). 将会自动格式化成表格:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="n">paragraph</span> <span class="n">text</span> <span class="o">*</span><span class="n">before</span><span class="o">*</span> <span class="n">the</span> <span class="n">table</span><span class="o">.</span>
+
+<span class="o">==========</span>  <span class="o">================================================================================================</span>
+<span class="n">Column</span> <span class="mi">1</span>    <span class="n">Column</span> <span class="mi">2</span>
+<span class="o">==========</span>  <span class="o">================================================================================================</span>
+<span class="n">Foo</span>         <span class="n">Put</span> <span class="n">two</span> <span class="p">(</span><span class="ow">or</span> <span class="n">more</span><span class="p">)</span> <span class="n">spaces</span> <span class="k">as</span> <span class="n">a</span> <span class="n">field</span> <span class="n">separator</span><span class="o">.</span>
+<span class="n">Bar</span>         <span class="n">Even</span> <span class="n">very</span> <span class="n">very</span> <span class="n">long</span> <span class="n">lines</span> <span class="n">like</span> <span class="n">these</span> <span class="n">are</span> <span class="n">fine</span><span class="p">,</span> <span class="k">as</span> <span class="n">long</span> <span class="k">as</span> <span class="n">you</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">put</span> <span class="ow">in</span> <span class="n">line</span> <span class="n">endings</span> <span class="n">here</span><span class="o">.</span>
+<span class="o">==========</span>  <span class="o">================================================================================================</span>
+
+<span class="n">This</span> <span class="ow">is</span> <span class="n">paragraph</span> <span class="n">text</span> <span class="o">*</span><span class="n">after</span><span class="o">*</span> <span class="n">the</span> <span class="n">table</span><span class="o">.</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>现在假设你想增加某一单元格内容:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">==========</span>  <span class="o">================================================================================================</span>
+<span class="n">Column</span> <span class="mi">1</span>    <span class="n">Column</span> <span class="mi">2</span>
+<span class="o">==========</span>  <span class="o">================================================================================================</span>
+<span class="n">Foo</span> <span class="ow">is</span> <span class="n">longer</span> <span class="n">now</span>         <span class="n">Put</span> <span class="n">two</span> <span class="p">(</span><span class="ow">or</span> <span class="n">more</span><span class="p">)</span> <span class="n">spaces</span> <span class="k">as</span> <span class="n">a</span> <span class="n">field</span> <span class="n">separator</span><span class="o">.</span>
+<span class="n">Bar</span>         <span class="n">Even</span> <span class="n">very</span> <span class="n">very</span> <span class="n">long</span> <span class="n">lines</span> <span class="n">like</span> <span class="n">these</span> <span class="n">are</span> <span class="n">fine</span><span class="p">,</span> <span class="k">as</span> <span class="n">long</span> <span class="k">as</span> <span class="n">you</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">put</span> <span class="ow">in</span> <span class="n">line</span> <span class="n">endings</span> <span class="n">here</span><span class="o">.</span>
+<span class="o">==========</span>  <span class="o">================================================================================================</span>
+</pre></div>
+</div>
+<p>按下同样的快捷键, 表格结构会自动调整:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">===================</span>  <span class="o">================================================================================================</span>
+<span class="n">Column</span> <span class="mi">1</span>             <span class="n">Column</span> <span class="mi">2</span>
+<span class="o">===================</span>  <span class="o">================================================================================================</span>
+<span class="n">Foo</span> <span class="ow">is</span> <span class="n">longer</span> <span class="n">now</span>    <span class="n">Put</span> <span class="n">two</span> <span class="p">(</span><span class="ow">or</span> <span class="n">more</span><span class="p">)</span> <span class="n">spaces</span> <span class="k">as</span> <span class="n">a</span> <span class="n">field</span> <span class="n">separator</span><span class="o">.</span>
+<span class="n">Bar</span>                  <span class="n">Even</span> <span class="n">very</span> <span class="n">very</span> <span class="n">long</span> <span class="n">lines</span> <span class="n">like</span> <span class="n">these</span> <span class="n">are</span> <span class="n">fine</span><span class="p">,</span> <span class="k">as</span> <span class="n">long</span> <span class="k">as</span> <span class="n">you</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">put</span> <span class="ow">in</span> <span class="n">line</span> <span class="n">endings</span> <span class="n">here</span><span class="o">.</span>
+<span class="o">===================</span>  <span class="o">================================================================================================</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The original code of this feature was taken from
+<a class="reference external" href="https://github.com/nvie/vim-rst-tables">Vincent Driessen's vim-rst-tables</a> :</p>
+</div>
+</div>
+</div>
+<div class="section" id="smart-lists">
+<h2>Smart lists<a class="headerlink" href="#smart-lists" title="Permalink to this headline">¶</a></h2>
+<p>Ordered or unordered lists patterns are automatically detected. When you type something
+like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">Some</span> <span class="n">item</span>
+<span class="mf">2.</span> <span class="n">Another</span><span class="o">|</span>
+</pre></div>
+</div>
+<p>When press <code class="docutils literal notranslate"><span class="pre">enter</span></code> the newline will prepended with a logical next item:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="mf">2.</span> <span class="n">Another</span>
+<span class="mf">3.</span> <span class="o">|</span>
+</pre></div>
+</div>
+<p>If you press <code class="docutils literal notranslate"><span class="pre">enter</span></code> when the item is empty, the markup is erased keeping
+the same indent as the previous line, in order to allow multilines items.
+Also note that orderer list works with an alphabetic pattern or roman numbers pattern
+suffixed with a period
+(<code class="docutils literal notranslate"><span class="pre">a.</span> <span class="pre">b.</span> <span class="pre">c.</span> <span class="pre">...</span></code>, <code class="docutils literal notranslate"><span class="pre">A.</span> <span class="pre">B.</span> <span class="pre">C.</span> <span class="pre">...</span></code>, <code class="docutils literal notranslate"><span class="pre">i.</span> <span class="pre">ii.</span> <span class="pre">iii.</span> <span class="pre">iv.</span> <span class="pre">...</span></code>, <code class="docutils literal notranslate"><span class="pre">X.</span> <span class="pre">XI.</span> <span class="pre">XII.</span> <span class="pre">...</span></code>, <code class="docutils literal notranslate"><span class="pre">#.</span></code>);
+surrounded by parentheses
+(<code class="docutils literal notranslate"><span class="pre">(a)</span> <span class="pre">(b)</span> <span class="pre">(c)</span> <span class="pre">...</span></code>, <code class="docutils literal notranslate"><span class="pre">(A)</span> <span class="pre">(B)</span> <span class="pre">(C)</span> <span class="pre">...</span></code>, <code class="docutils literal notranslate"><span class="pre">(i)</span> <span class="pre">(ii)</span> <span class="pre">(iii)</span> <span class="pre">(iv)</span> <span class="pre">...</span></code>, <code class="docutils literal notranslate"><span class="pre">(X)</span> <span class="pre">(XI)</span> <span class="pre">(XII)</span> <span class="pre">...</span></code>, <code class="docutils literal notranslate"><span class="pre">(#)</span></code>);
+or suffixed with a right-parenthesis.
+(<code class="docutils literal notranslate"><span class="pre">a)</span> <span class="pre">b)</span> <span class="pre">c)</span> <span class="pre">...</span></code>, <code class="docutils literal notranslate"><span class="pre">A)</span> <span class="pre">B)</span> <span class="pre">C)</span> <span class="pre">...</span></code>, <code class="docutils literal notranslate"><span class="pre">i)</span> <span class="pre">ii)</span> <span class="pre">iii)</span> <span class="pre">iv)</span> <span class="pre">...</span></code>, <code class="docutils literal notranslate"><span class="pre">X)</span> <span class="pre">XI)</span> <span class="pre">XII)</span> <span class="pre">...</span></code>, <code class="docutils literal notranslate"><span class="pre">#)</span></code>);</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The very same feature works for  <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#line-blocks">line blocks</a> starting a line with <code class="docutils literal notranslate"><span class="pre">|</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This feature was proudly stolen from <a class="reference external" href="https://github.com/demon386/SmartMarkdown">Muchenxuan Tongh's SmartMarkdown</a></p>
+</div>
+</div>
+<div class="section" id="headers">
+<h2>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="autocompletion">
+<span id="header-completion"></span><h3>Autocompletion<a class="headerlink" href="#autocompletion" title="Permalink to this headline">¶</a></h3>
+<p>You can autocomplete standard headers (over/)underlines with <code class="docutils literal notranslate"><span class="pre">TAB</span></code>.</p>
+<p>For example try this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">**********&lt;</span><span class="n">TAB</span><span class="o">&gt;</span>
+<span class="n">A</span> <span class="n">longer</span> <span class="n">main</span> <span class="n">title</span>
+<span class="o">*******</span>
+</pre></div>
+</div>
+<p>Or this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="n">subtitle</span>
+<span class="o">---&lt;</span><span class="n">TAB</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>You'll get:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*******************</span>
+<span class="n">A</span> <span class="n">longer</span> <span class="n">main</span> <span class="n">title</span>
+<span class="o">*******************</span>
+
+<span class="n">A</span> <span class="n">subtitle</span>
+<span class="o">----------</span>
+</pre></div>
+</div>
+<p>respectively.</p>
+</div>
+<div class="section" id="folding-unfolding">
+<h3>Folding/unfolding<a class="headerlink" href="#folding-unfolding" title="Permalink to this headline">¶</a></h3>
+<p>If you put the cursor in a completed header and press <code class="docutils literal notranslate"><span class="pre">shift</span> <span class="pre">+</span> <span class="pre">TAB</span></code> (<code class="docutils literal notranslate"><span class="pre">alt</span> <span class="pre">+</span> <span class="pre">TAB</span></code> in Mac),
+the section under it will be folded/unfolded.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Folding/unfolding
++++++++++++++++++&lt;TAB&gt;
+
+If you put the cursor in a completed header and press ``shift + TAB``,
+(``alt + TAB`` in Mac) the section under it will be folded/unfolded.
+
+Navigation
+++++++++++
+
+...
+</pre></div>
+</div>
+<p>Result in:</p>
+<blockquote>
+<div><img alt="https://raw.github.com/dbousamra/sublime-rst-completion/11_foldable_headers/img/folding.png" src="https://raw.github.com/dbousamra/sublime-rst-completion/11_foldable_headers/img/folding.png" />
+</div></blockquote>
+<p>Nested sections under a header are included.</p>
+</div>
+<div class="section" id="navigation">
+<h3>Navigation<a class="headerlink" href="#navigation" title="Permalink to this headline">¶</a></h3>
+<p>Also, it's possible to jump between headers.
+<code class="docutils literal notranslate"><span class="pre">alt+down</span></code> and <code class="docutils literal notranslate"><span class="pre">alt+up</span></code> move the cursor position to the closer next or
+previous header respectively.</p>
+<p><code class="docutils literal notranslate"><span class="pre">alt+shift+down</span></code> and <code class="docutils literal notranslate"><span class="pre">alt+shift+up</span></code> to the same, but only between headers
+with the same or higher level (i.e. ignore childrens)</p>
+<p>The header level is detected automatically.</p>
+</div>
+<div class="section" id="adjust-header-level">
+<h3>Adjust header level<a class="headerlink" href="#adjust-header-level" title="Permalink to this headline">¶</a></h3>
+<p>With the cursor in a header, press <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">+</span></code> (plus key) and <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">-</span></code>
+(minus key) (<code class="docutils literal notranslate"><span class="pre">alt</span> <span class="pre">+</span> <span class="pre">+</span></code> and <code class="docutils literal notranslate"><span class="pre">alt</span> <span class="pre">+</span> <span class="pre">-</span></code>, in Mac) will increase and decrease the
+header level respectively. The adornment decoration (underline / overline) are
+autodetected from the document and uses Sphinx's conventions as default.</p>
+<p>For example, you have the cursor in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Magic</span> <span class="n">Footnotes</span><span class="o">|</span>
+<span class="o">---------------</span>
+</pre></div>
+</div>
+<p>Which is a header level 2 and want to convert to a level 3, press <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">-</span></code> to get:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Magic</span> <span class="n">Footnotes</span>
+<span class="o">+++++++++++++++</span>
+<span class="o">|</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="magic-footnotes">
+<h2>Magic Footnotes<a class="headerlink" href="#magic-footnotes" title="Permalink to this headline">¶</a></h2>
+<p>This is the smarter way to add footnotes, grouping them (and keepping count)
+in a common region at the bottom of the document.</p>
+<p>When you want to add a new note, press <code class="docutils literal notranslate"><span class="pre">alt+shift+f</span></code>.
+This will happen:</p>
+<ul class="simple">
+<li><p>A new <code class="docutils literal notranslate"><span class="pre">n+1</span></code> (where <code class="docutils literal notranslate"><span class="pre">n</span></code> is the current footnotes count) note reference
+will be added in the current cursor position</p></li>
+<li><p>The corresponding reference definition will be added
+at the bottom of the <em>footnotes region</em></p></li>
+<li><p>The cursor will be moved to write the note</p></li>
+</ul>
+<p>After write the note you can go back to the reference with <code class="docutils literal notranslate"><span class="pre">shift+up</span></code>. Also, if
+the cursor is just after a reference (i.e: the caret is next to the underscore like this <code class="docutils literal notranslate"><span class="pre">[XX]_|</span></code> ) you can jump to its definition with <code class="docutils literal notranslate"><span class="pre">shift+down</span></code> .</p>
+<p>This feature is based on the code by <a class="reference external" href="https://github.com/jngeist">J. Nicholas Geist</a>
+for <a class="reference external" href="https://github.com/ttscoff/MarkdownEditing">MarkdownEditing</a></p>
+</div>
+<div class="section" id="id20">
+<h2>链接<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<dl>
+<dt>外部链接（外部网页，或不同的rst文件） <a class="footnote-reference brackets" href="#id27" id="id21">1</a></dt><dd><ol class="arabic simple">
+<li><p>更多信息参考`引用文档 &lt;<a class="reference external" href="http://example.com/">http://example.com/</a>&gt;`_</p></li>
+<li><p>更多信息参考 <a class="reference external" href="http://example.com/">引用文档</a>.</p></li>
+</ol>
+<ol class="arabic" start="3">
+<li><p>如果链接文本是Web地址，reStructuredText会自动将网址生成超链接。<a class="reference external" href="https://github.com/SeayXu/">https://github.com/SeayXu/</a></p>
+<p>sublime更多信息参考 <a class="reference internal" href="sublime.html#sublime"><span class="std std-ref">sublime text</span></a></p>
+</li>
+</ol>
+</dd>
+</dl>
+<p>内部链接</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>首先需要在标题, 图像, 表等对象前放置一个标签 <cite>.. _label:</cite>，比如在上方 <a class="reference internal" href="#id14">图片</a> 处放置了一个标签 <cite>figure-logo</cite> , 注意空白行:</p></li>
+</ol>
+<p>2. 引用
+通过 <a class="reference internal" href="#figure-logo"><span class="std std-ref">This is the caption of the figure (a simple paragraph).</span></a> 引用, 点击会跳到图像位置</p>
+</div></blockquote>
+<p>在同一个rst中，小节标题会自动生成超链接地址，使用小节标题作为超链接名称就可以生成隐式链接。例如: 行内标记信息参考 <a class="reference internal" href="#id8">行内标记</a></p>
+</div>
+<div class="section" id="id23">
+<h2>脚注<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h2>
+<p>包含两步:
+1.  在文档底部放置脚注主体, 以 rubric 指令标示:</p>
+<p>2.  在需要插入脚注的地方插入脚注名 [#name]
+其中, 使用 <a class="footnote-reference brackets" href="#name" id="id24">2</a> 可以实现自动编号, 当然也可以使用数字来指示确定的脚注编号 <a class="footnote-reference brackets" href="#id28" id="id25">3</a> .</p>
+</div>
+<div class="section" id="id26">
+<h2>替换引用<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
+<p>替换引用就是用定义的指令替换对应的文字或图片
+这是 <img alt="logo" src="images/logo.png" /> kingbase的Logo，我的kingbase用户名是:xxx。</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="id27"><span class="brackets"><a class="fn-backref" href="#id21">1</a></span></dt>
+<dd><p>第1条脚注的文本.</p>
+</dd>
+<dt class="label" id="name"><span class="brackets"><a class="fn-backref" href="#id24">2</a></span></dt>
+<dd><p>第2条脚注的文本.</p>
+</dd>
+<dt class="label" id="id28"><span class="brackets"><a class="fn-backref" href="#id25">3</a></span></dt>
+<dd><p>第3条脚注的文本.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 1999-2021, 北京人大金仓信息技术股份有限公司
+
+    </p>
+  </div>
+    
+    
+     使用 <a href="http://sphinx-doc.org/">Sphinx</a> 创建 。
+     最后更新于 Dec 07, 2021。 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

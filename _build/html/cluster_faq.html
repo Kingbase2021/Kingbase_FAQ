@@ -1,0 +1,953 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>14. 高可用集群 &mdash; KingbaseES Frequently Asked Questions   documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/js/custom.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="13. 读写分离" href="high-availability.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> KingbaseES Frequently Asked Questions
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                 
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">前言</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="legalnotice.html">版权声明</a></li>
+</ul>
+<p class="caption"><span class="caption-text">常见问题</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="sql.html">1. SQL类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id1">1.1. 空值问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#null">1.1.1. ‘’ 与 null 兼容性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#is-null">1.1.2. 判断值是否为空，要用 is null</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#pg">1.1.3. PG模式下，‘’ 值问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#ora-input-emptystr-isnull">1.1.4. Ora_input_emptystr_isnull对于字符类型空值的影响</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#id2">1.1.5. Ora_input_emptystr_isnull对于数值类型空值的影响</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#core">1.2. Core分析</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#id3">1.2.1. 多线程core分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#id4">1.2.2. 如何生成core文件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id5">1.3. 关键字问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#id6">1.3.1. 如何确认是否系统关键字</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id7">1.4. 乱码或无效字符编码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#windows">1.5. Windows版本安装未注册服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id8">1.6. 如何创建一个间隔分区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#kesv8r2-3">1.7. [KESV8R2/3] 客服端服务器编码原理说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#mysqlsql-mode">1.8. 兼容MySQL参数sql_mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#mysql-date-format">1.9. MySQL date_format改写</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id9">1.10. 共有同义词和私有同义词有什么区别</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id10">1.11. 同义词查找规则</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id11">1.12. 如何查询版本的提交号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id12">1.13. 遇到关键字无法使用作为表名或列名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#nextval">1.14. Nextval在同一条语句中的值</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id13">1.15. 能为模式指定表空间吗？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id14">1.16. 丢失了数据库密码，如何恢复？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#cache">1.17. 序列的cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#oid">1.18. 什么是OID？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#ctid">1.19. 什么是CTID？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id15">1.20. 数据库大小限制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#kes">1.21. KES数据页结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#copy">1.22. 如何将数据从客户端通过copy命令导入数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id16">1.23. Windows 如何配置免密登录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id17">1.24. 命令报参数错误问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#to-date">1.25. To_date 函数问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id18">1.26. 视图源定义信息为啥和创建的语句不一样</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id19">1.27. 字符串类型长度怎么获取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#sys-guid">1.28. 如何改变sys_guid() 返回值类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#openssl">1.29. OPENSSL问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#pg-relation-size">1.30. Pg_relation_size 问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id20">1.31. 全角字符支持</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id21">1.32. 时间函数问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#ddl">1.33. 如何取得对象的DDL信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#update">1.34. 全表update非常慢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#failed-to-find-conversion-function-from-unknown-to-text">1.35. Failed to find conversion function from UNKNOWN to TEXT</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plsql.html">2. PLSQL类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#kes-pl-sql-block-not-end-correctly">2.1. KES创建过程，报错：PL/SQL block not end correctly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#out">2.2. 如何调用含out参数的存储过程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#savepoint">2.3. Savepoint 使用问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#create-operator-bool">2.4. Create operator（bool与整型比较）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#for">2.5. For循环变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#id1">2.6. 函数变量不能超过512</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameter.html">3. 参数相关</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#kingbase-conf-kingbase-auto-conf">3.1. Kingbase.conf 与 kingbase.auto.conf 参数文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#id2">3.2. 不同参数如何生效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#error-user-connect-times-and-max-error-user-connect-times">3.3. error_user_connect_times and max_error_user_connect_times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#exclude-reserved-words">3.4. Exclude_reserved_words 排除关键字</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#max-locks-per-transaction">3.5. max_locks_per_transaction设置过大引发数据库启动问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#max-identifier-length">3.6. max_identifier_length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#id3">3.7. 数据库启动失败，报“内存段超过可用内存”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">4. License 相关</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id1">4.1. 如何查询license有效时间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id2">4.2. 如何查询license完整信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id3">4.3. 如何查询license单项信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id4">4.4. 替换license步骤</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id5">4.5. 替换license是否要重启数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id6">4.6. 如何判断license有效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id7">4.7. License与网卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#bondlicense">4.8. Bond网卡切换license支持问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extended-plug-in.html">5. 扩展组件</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#id2">5.1. 如何查看系统是否支持某组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#oracle-fdw">5.2. oracle_fdw支持平台</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#create-extension-oracle-fdw-so">5.3. create extension oracle_fdw报.so找不到加载失败</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#id3">5.4. oracle_fdw支持功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#sys-pathman">5.5. Sys_pathman</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#separate-power">5.6. Separate_power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#sysaudit">5.7. Sysaudit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended-plug-in.html#id4">5.7.1. 如何删除语句审计日志？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gis.html">6. 空间组件</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gis.html#create-extension-postgris-glibc-2-18-not-defined-in-file-libc-so-6">6.1. Create extension postgris 报错“GLIBC_2.18 not defined in file libc.so.6”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gis.html#acgis">6.2. acgis版本备份还原</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gis.html#r6">6.3. R6 是否支持超图</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="system-management.html">7. 系统管理类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="system-management.html#kesv8r2-r3">7.1. [KESV8R2/R3]表在指定表空间，为何显示为默认表空间？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-management.html#sys-class-reltablespace-0">7.2. 为什么sys_class里显示的很多表的 RELTABLESPACE值为 0？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-management.html#kes-sys-catalog">7.3. KES有什么办法，默认不读取sys_catalog下的系统视图？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-management.html#ip">7.4. 网线拔插后，IP丢失问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">8. 工具类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#s-pgsql-5432">8.1. 客户端连接找 .s.PGSQL.5432</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#er">8.2. 客户端管理工具无法加载ER图问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#client-encoding">8.3. 如何修改管理工具client_encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#id2">8.4. 迁移工具对于同名对象处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#invalid-byte-sequence-for-encoding-utf8-0x00">8.5. 数据迁移报“invalid byte sequence for encoding &quot;UTF8&quot;: 0x00 &quot;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#id3">8.6. 开始菜单没有数据库快捷工具图标</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#gui">8.7. 缺少操作系统GUI组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#r3scram-sha-256">8.8. R3客户端无法使用scram-sha-256认证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#undefined-symbol-pqgssencinuse">8.9. undefined symbol: PqgssEncInUse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#bulkload">8.10. Bulkload并行加载报错</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data-security.html">9. 数据安全</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data-security.html#sys-rmancurrent-time-may-be-rewound">9.1. Sys_rman备份报“current time may be rewound”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-security.html#id2">9.2. 如何导出一致时间点的数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-security.html#id3">9.3. 索引问题导致数据访问问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TPCC-test.html">10. TPCC测试类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TPCC-test.html#tpccautovacuum">10.1. tpcc测试中是否需要开启autovacuum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TPCC-test.html#index-cursor-id">10.2. index_cursor_id参数的数值是固定的么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TPCC-test.html#tpccunixdomain">10.3. 在tpcc测试中unixdomain作用是？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TPCC-test.html#id1">10.4. 集群环境下测试tpcc连接参数怎样配置？</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="interface.html">11. 接口</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="interface/jdbc.html">11.1. JDBC接口</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id1">11.1.1. JDBC打开日志方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#vip-jdbc">11.1.2. 没有VIP情况下，JDBC连接如何配置？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#v8r6-jdbcvip">11.1.3. V8R6 JDBC能否使用VIP？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#lobupdate">11.1.4. LOB对象update机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#kbblob-oracle">11.1.5. KBBlob 迁移至Oracle</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">12. Docker环境相关问题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#exit-code-137">12.1. 【exit code 137】错误信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-license">12.2. Docker 环境下license机制</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="high-availability.html">13. 读写分离</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#id2">13.1. 读写分离分发机制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#id3">13.2. 如何测试一下现场的备机失败，转发主机的场景？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#id4">13.3. 失败重发机制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#ssh">13.4. ssh 引发的相关问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#id5">13.5. 读写分离备机备份报错</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#hash">13.6. 读写分离集群Hash索引老是出问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">14. 高可用集群</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#libssl">14.1. libssl 问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#if-up-cmd-faild">14.2. if_up_cmd faild</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#arping">14.3. arping问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#arping-path">14.4. arping_path版本不正确</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#eshamodel-sh">14.5. esHAmodel.sh脚本错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cluster">14.6. 集群名称不能使用cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">14.7. 网络问题导致备机无法加入集群</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kingbasecluster">14.8. kingbasecluster服务启动失败</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sys-md5">14.9. 集群sys_md5生成错误密码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#node">14.10. 两节点读写分离集群，集群无法创建主备，两个node都是主</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#max-connections">14.11. 集群无法修改max_connections参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">14.12. 软连接配置错误，导致集群启动报缺少磁盘空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rootssh-auth-fail">14.13. 未配置root用户ssh互信，部署集群时，添加节点“auth fail”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#show-pool-nodes">14.14. 防火墙导致集群show pool_nodes信息错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v8r3auth-fail">14.15.  V8R3集群部署工具“auth fail”错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kingbase-monitor-shthere-are-no-1-standbys-in-sys-stat-replication">14.16. 集群通过kingbase_monitor.sh启动后“There are no 1 standbys in sys_stat_replication......&quot;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kes-v8r2kingbasecluster9999">14.17. KES V8R2集群kingbasecluster服务9999端口无法连接</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#r3-sys-md5">14.18. R3集群部署工具部署时，出现sys_md5的错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#r3bmjeshamodel-sh">14.19. R3集群BMJ启动esHAmodel.sh失败问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bmj-r3es-clientes-server">14.20. BMJ R3集群切换后es_client无法和es_server通讯问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kingbasees-r3standby">14.21. kingbaseES R3集群启动后“无standby”问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kingbasees-r3kingbasecluster">14.22. kingbaseES R3集群kingbasecluster无法正确识别备库状态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kingbasees-r3-db-vip-cluster-vip">14.23. kingbaseES R3 集群无法加载db VIP 和cluster VIP案例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#down">14.24. 网关无法连通，导致集群down，手工启动数据库服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kingbaseclusterkingbase-monitor-sh-kingbasecluster">14.25. 备库kingbasecluster服务通过kingbase_monitor.sh启动失败，手工启动kingbasecluster服务解决</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kes-v8r3kingbase-monitor-sh-pam-nologin-8">14.26. KES V8R3集群通过kingbase_monitor.sh启动失败，提示“pam_nologin(8)&quot;错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conflict-with-recovery">14.27. conflict with recovery问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sys-dump">14.28. sys_dump备份问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sys-restore">14.29. sys_restore 恢复数据错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kingbasees-r6open-files">14.30. kingbaseES R6集群部署“open files”问题</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KingbaseES Frequently Asked Questions</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">14. </span>高可用集群</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">14. </span>高可用集群<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="libssl">
+<h2><span class="section-number">14.1. </span>libssl 问题<a class="headerlink" href="#libssl" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>系统环境：飞腾+银河</p>
+<p>数据库版本：kingbaseES V8</p>
+<p>问题现象：通过部署工具部署HA成功后，通过命令启动集群服务失败；通过ssh ip访问node失败。</p>
+<p>解决方案：修改 V8/lib库下ssl和crypto两个文件，改名即可：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#mv     libssl.so.1.0.0        libssl.so.1.0.0.bak</span>
+<span class="c1">#mv    libcrypto.so.1.0.0  libcrypto.so.1.0.0.bak</span>
+</pre></div>
+</div>
+<p>附件：</p>
+<p>1、查看ssh库函数信息</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ266.png"><img alt="_images/cluster_FAQ266.png" src="_images/cluster_FAQ266.png" style="width: 400px; height: 184px;" /></a>
+</div>
+<div class="section" id="if-up-cmd-faild">
+<h2><span class="section-number">14.2. </span>if_up_cmd faild<a class="headerlink" href="#if-up-cmd-faild" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>系统环境：鲲鹏+中标麒麟V7</p>
+<p>数据库版本：kingbaseES V008R003C002B0100</p>
+<p>问题现象：集群通过部署工具部署成功，kingbasecluster启动失败，故障提示“if_up_cmd faild”</p>
+<p>故障日志：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2020</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">01</span> <span class="mi">19</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span> <span class="n">pid</span> <span class="mi">910408</span><span class="p">:</span> <span class="n">LOG</span><span class="p">:</span>  <span class="n">createing</span> <span class="n">watchdog</span> <span class="n">heartbeat</span> <span class="n">receive</span> <span class="n">socket</span><span class="o">.</span>
+
+<span class="mi">2020</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">01</span> <span class="mi">19</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span> <span class="n">pid</span> <span class="mi">910408</span><span class="p">:</span> <span class="n">DETAIL</span><span class="p">:</span>  <span class="n">bind</span> <span class="n">receive</span> <span class="n">socket</span> <span class="n">to</span> <span class="n">device</span><span class="p">:</span> <span class="s2">&quot;enp4s0f1&quot;</span>
+
+<span class="mi">2020</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">01</span> <span class="mi">19</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span> <span class="n">pid</span> <span class="mi">910408</span><span class="p">:</span> <span class="n">LOG</span><span class="p">:</span>  <span class="nb">set</span> <span class="n">SO_REUSEPORT</span> <span class="n">option</span> <span class="n">to</span> <span class="n">the</span> <span class="n">socket</span>
+
+<span class="mi">2020</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">01</span> <span class="mi">19</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span> <span class="n">pid</span> <span class="mi">910408</span><span class="p">:</span> <span class="n">LOG</span><span class="p">:</span>  <span class="n">creating</span> <span class="n">watchdog</span> <span class="n">heartbeat</span> <span class="n">receive</span> <span class="n">socket</span><span class="o">.</span>
+
+<span class="mi">2020</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">01</span> <span class="mi">19</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span> <span class="n">pid</span> <span class="mi">910408</span><span class="p">:</span> <span class="n">DETAIL</span><span class="p">:</span>  <span class="nb">set</span> <span class="n">SO_REUSEPORT</span>
+
+<span class="mi">2020</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">01</span> <span class="mi">19</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span> <span class="n">pid</span> <span class="mi">910405</span><span class="p">:</span> <span class="n">LOG</span><span class="p">:</span>  <span class="n">failed</span> <span class="n">to</span> <span class="n">acquire</span> <span class="n">the</span> <span class="n">delegate</span> <span class="n">IP</span> <span class="n">address</span>
+
+<span class="mi">2020</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">01</span> <span class="mi">19</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span> <span class="n">pid</span> <span class="mi">910405</span><span class="p">:</span> <span class="n">DETAIL</span><span class="p">:</span>  <span class="s1">&#39;if_cmd&#39;</span> <span class="n">failed</span>
+
+<span class="mi">2020</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">01</span> <span class="mi">19</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span> <span class="n">pid</span> <span class="mi">910405</span><span class="p">:</span> <span class="n">WARNING</span><span class="p">:</span>  <span class="n">watchdog</span> <span class="n">escalation</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">acquire</span> <span class="n">delegate</span> <span class="n">IP</span>
+
+<span class="mi">2020</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">01</span> <span class="mi">19</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span> <span class="n">pid</span> <span class="mi">910405</span><span class="p">:</span> <span class="n">LOG</span><span class="p">:</span>  <span class="n">send</span> <span class="n">the</span> <span class="n">node</span> <span class="n">status</span> <span class="n">change</span> <span class="n">to</span> <span class="n">watchdog</span>
+
+<span class="mi">2020</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">01</span> <span class="mi">19</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span> <span class="n">pid</span> <span class="mi">910405</span><span class="p">:</span> <span class="n">DETAIL</span><span class="p">:</span>  <span class="n">node</span> <span class="nb">id</span> <span class="p">:</span><span class="mi">0</span> <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;NODE DEAD&quot;</span> <span class="n">message</span><span class="p">:</span><span class="s2">&quot;failed to acuqire delegate IP, set node down&quot;</span>
+
+<span class="mi">2020</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">01</span> <span class="mi">19</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span> <span class="n">pid</span> <span class="mi">909801</span><span class="p">:</span> <span class="n">LOG</span><span class="p">:</span>  <span class="n">new</span> <span class="n">IPC</span> <span class="n">connection</span> <span class="n">received</span>
+
+<span class="mi">2020</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">01</span> <span class="mi">19</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span> <span class="n">pid</span> <span class="mi">909801</span><span class="p">:</span> <span class="n">LOG</span><span class="p">:</span>  <span class="n">received</span> <span class="n">node</span> <span class="n">status</span> <span class="n">change</span> <span class="n">ipc</span> <span class="n">message</span>
+
+<span class="mi">2020</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">01</span> <span class="mi">19</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span> <span class="n">pid</span> <span class="mi">909801</span><span class="p">:</span> <span class="n">DETAIL</span><span class="p">:</span>  <span class="n">failed</span> <span class="n">to</span> <span class="n">acuqire</span> <span class="n">delegate</span> <span class="n">IP</span><span class="p">,</span> <span class="nb">set</span> <span class="n">node</span> <span class="n">down</span>
+</pre></div>
+</div>
+<p>问题现象：哈尔滨市委BMJ三期，BMJ 部署集群cluster VIP一直做切换，集群异常</p>
+<p>问题发生时间：2020-10-21</p>
+<p>产品版本：KingbaseES V8 R7 0070</p>
+<p>运行平台：飞腾2000+ 麒麟</p>
+<p>问题分析人: 胡全、赵显平</p>
+<p>ims号：2020-10-2100640</p>
+<p>解决方案：</p>
+<blockquote>
+<div><p>1、查看arping版本：s20190709</p>
+<p>2、利用公司提供的arping替换现有的arping</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[kingbase@master kingbasecluster]$ arping -V
+arping utility, iputils-s20160308
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="arping">
+<h2><span class="section-number">14.3. </span>arping问题<a class="headerlink" href="#arping" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>系统环境：鲲鹏920+统信V20（服务器版）</p>
+<p>数据库版本：kingbaseES V008R003</p>
+<p>问题现象：部署工具部署三节点集群，在启动数据库时启动超时，启动失败。</p>
+<p>故障日志：</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ1846.png"><img alt="_images/cluster_FAQ1846.png" src="_images/cluster_FAQ1846.png" style="width: 400px; height: 184px;" /></a>
+<p>解决方案：</p>
+<p>   1、查看arping版本信息：arping -v</p>
+<p>   2、在arping的版本信息中包含：“iputils”字样</p>
+<p>   3、需要从公司获取专用的arping版本</p>
+</div>
+<div class="section" id="arping-path">
+<h2><span class="section-number">14.4. </span>arping_path版本不正确<a class="headerlink" href="#arping-path" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>系统环境：飞腾2000+麒麟v10（服务器版）</p>
+<p>数据库版本：kingbaseES V008R003</p>
+<p>问题现象：部署工具部署集群，在启动集群后，集群两个node宕机</p>
+<p>故障日志：</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ2048.png"><img alt="_images/cluster_FAQ2048.png" src="_images/cluster_FAQ2048.png" style="width: 400px; height: 300px;" /></a>
+<a class="reference internal image-reference" href="_images/cluster_FAQ2050.png"><img alt="_images/cluster_FAQ2050.png" src="_images/cluster_FAQ2050.png" style="width: 400px; height: 200px;" /></a>
+<p>解决方案：</p>
+<p>   1、查看arping版本信息：arping -v</p>
+<p>   2、在arping的版本信息中包含：“iputils”字样</p>
+<p>   3、需要从公司获取专用的arping版本</p>
+</div>
+<div class="section" id="eshamodel-sh">
+<h2><span class="section-number">14.5. </span>esHAmodel.sh脚本错误<a class="headerlink" href="#eshamodel-sh" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ2163.png"><img alt="_images/cluster_FAQ2163.png" src="_images/cluster_FAQ2163.png" style="width: 400px; height: 33px;" /></a>
+<a class="reference internal image-reference" href="_images/cluster_FAQ2164.png"><img alt="_images/cluster_FAQ2164.png" src="_images/cluster_FAQ2164.png" style="width: 400px; height: 33px;" /></a>
+<a class="reference internal image-reference" href="_images/cluster_FAQ2165.png"><img alt="_images/cluster_FAQ2165.png" src="_images/cluster_FAQ2165.png" style="width: 400px; height: 31px;" /></a>
+<p>系统环境：海光+中科方德SVS2.16.2</p>
+<p>数据库版本：V008R007C003B0070</p>
+<p>问题现象：BMJ部署集群时，执行esHAmodel.sh脚本报错</p>
+<p>故障现象：</p>
+<p>查找crond可执行文件：（crond文件存在，但是which无法查找到）</p>
+<p>查看crontab service：</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ2313.png"><img alt="_images/cluster_FAQ2313.png" src="_images/cluster_FAQ2313.png" style="width: 400px; height: 203px;" /></a>
+<p>解决方案：</p>
+<blockquote>
+<div><p>1、首先查看crontab service服务是否正常启动。</p>
+<p>2、查看crontab service对应的可执行文件crond是否正常（which crond）</p>
+<p>3、如果crond文件存在（如/usr/sbin/crond）但是which无法查看，PATH路径设置正常。</p>
+<p>4、将/usr/sbin/crond文件拷贝到/usr/bin下，which crond可以查看到。</p>
+<p>5、启动esHAmodule.sh start正常，问题解决。</p>
+<p>6、发现中科方德保密机系统也存在这个问题，可以用相同的方法解决。</p>
+</div></blockquote>
+</div>
+<div class="section" id="cluster">
+<h2><span class="section-number">14.6. </span>集群名称不能使用cluster<a class="headerlink" href="#cluster" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>系统环境：统信服务器操作系统uos 20 SP1,鲲鹏cpu</p>
+<p>数据库版本：V008R003C002B0160_Aarch64</p>
+<p>问题现象：部署集群时报错，重新部署成功。</p>
+<p>故障现象：</p>
+<p>解决方案：</p>
+<p> 1、在此集群部署中，集群名称使用了“cluster”，导致文件访问错误。</p>
+<p> 2、在集群部署中，不要使用“cluster”作为集群名称。</p>
+</div>
+<div class="section" id="id2">
+<h2><span class="section-number">14.7. </span>网络问题导致备机无法加入集群<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>项目描述：中组部</p>
+<p>问题时间： 2020/10/29</p>
+<p>问题分析及结果：集群故障处理，备机db节点持续重启，无法加入集群。</p>
+<p>数据库版本：专用机V8R7C003B0070</p>
+<p>问题现象描述：主机故障后，恢复成备机节点，此后每分钟该节点数据库不断启动，停止，一直无法加入集群</p>
+<p>问题分析：备节点不断重启，通过日志观察，是因为在备库节点判断自己并没有按照期望连接到主数据。没有连接的主数据库的原因，是因为期望的备数据库IP地址并没有出现在主数据库列表内，通过现场人员一些操作命令结果来看，主数据库的列表显示的备库IP为Cluster组件的VIP。操作系统的默认路由会根据不同子网的metric优先级来排序（各OS不一致），来决定归属多个IP连接服务器端时，服务器端获得的source IP，获取IP异常，导致的这一问题。那么接下来查询网络IP问题，通过执行ip addr命令查看到，集群VIP和主备数据库的网络地址均不一致，VIP为/24，主数据库为/16，备数据库为/15。</p>
+<p>得出根本原因：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>主备数据库IP问题，/15和/16不在一个网络地址内</p></li>
+<li><p>现场配置问题，VIP的子网掩码必须和数据库一致例如/16</p></li>
+</ol>
+</div></blockquote>
+<p>解决方案：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>测试和实际生产环境子网IP必须一致，例如均在/16的子网掩码内。</p></li>
+<li><p>现场配置的子网掩码保持和上述主备数据库相同，例如/16。</p></li>
+</ol>
+<p>按照上述步骤重新部署即可解决</p>
+</div></blockquote>
+</div>
+<div class="section" id="kingbasecluster">
+<h2><span class="section-number">14.8. </span>kingbasecluster服务启动失败<a class="headerlink" href="#kingbasecluster" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>项目信息：GAW</p>
+<p>问题现象：修复集群，cluster起不来，两端数据库进程正常</p>
+<p>问题现象：</p>
+<blockquote>
+<div><p>1.主节执行kingbase_monitor. sh start</p>
+<p>主机cluster. log里面报错提示：detected while reading pid file &quot;/opt/Kingbase/ES/V8/log/kingbase/kingbasecluster.pid&quot;</p>
+<p>主机对应路径下有.pid文件。</p>
+<p>备机kingbasecluster下面没有pid文件</p>
+<p>2、主、备两端lsof:9999端口没有相关程序的进程；</p>
+<p>3、注释备机定时任务里network_rewind.sh ，手工执行，没有报错</p>
+</div></blockquote>
+<p>问题发生时间：2020/12/08</p>
+<p>平台环境：中科方德</p>
+<p>数据库版本： V008R007C003B0070</p>
+<p>故障现象：</p>
+<p>问题分析：</p>
+<p>原因就是可能是某次启动出问题了，创建了一个有问题的pid文件，然后之后每次定时任务启动的时候会去读取一下pid文件防止启动多个kingbaseclsuter，但是读取pid文件的时候错误了，文件结尾有问题报EOF，所以后面定时任务的每分钟的启动就全部失败了，把那个pid文件删了之后就好了。</p>
+<p>解决方案：</p>
+<p>删除kingbasecluster.pid文件后，重启kingbasecluster服务，服务正常启动。</p>
+</div>
+<div class="section" id="sys-md5">
+<h2><span class="section-number">14.9. </span>集群sys_md5生成错误密码<a class="headerlink" href="#sys-md5" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>问题现象：</p>
+<p>项目描述：福州57S项目</p>
+<p>问题现象：集群密码设置为Huawei12#$进行部署的时候，54321数据库可以通过ksql登录，9999cluster无法通过ksql登录。</p>
+<p>问题时间： 2020/12/09</p>
+<p>数据库版本：V008R003C001B0160</p>
+<p>问题分析：</p>
+<p>这个问题是 工具使用sys_md5将数据库用户密码以md5加密方式存放到kingbasecluster/etc/cluster_passwd的命令不对，之前是 ./sys_md5 密码用户 例如 ./sys_md5 123456SYSTEM。当密码有特殊字符，会出现特殊情况 例如 ./sys_md5 HuaWei#$SYSTEM。此时$和后面的用户结合起来变成了一个变量，而不是实际的字符，导致真正sys_md5生成的加密密码等于是./sys_md5 HuaWei#</p>
+<p>问题解决：</p>
+<p>只需要用单引号将密码括起来就可以解决该问题</p>
+<p>./sys_md5 'HuaWei#$'SYSTEM就可以得到正确的md5加密密码</p>
+</div>
+<div class="section" id="node">
+<h2><span class="section-number">14.10. </span>两节点读写分离集群，集群无法创建主备，两个node都是主<a class="headerlink" href="#node" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>问题现象：</p>
+<blockquote>
+<div><p>集群两个cluster都认为自己是主，两台上都有cluster vip，这种情况要怎么处理？</p>
+</div></blockquote>
+<p>问题分析：</p>
+<blockquote>
+<div><p>主备流复制正常，但在两个node上都有cluster vip，查看cluster.log日志，两个node都不能和对方通讯，怀疑是防火墙导致。</p>
+</div></blockquote>
+<p>问题解决：</p>
+<blockquote>
+<div><p>客户启动了防火墙，导致cluster两个节点不能通讯，从而使两个node都认为自己是cluster中的主。</p>
+</div></blockquote>
+</div>
+<div class="section" id="max-connections">
+<h2><span class="section-number">14.11. </span>集群无法修改max_connections参数<a class="headerlink" href="#max-connections" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>问题现象：读写分离集群搭建完成后，发现无法将主节点max_connections调小，调小后，备库无法启动。</p>
+<p>问题分析：集群的max_connection只能增大，不能减小。如果需要减小，只能重做备机</p>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">14.12. </span>软连接配置错误，导致集群启动报缺少磁盘空间<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p><strong>“No Space left on device”</strong></p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ4862.png"><img alt="_images/cluster_FAQ4862.png" src="_images/cluster_FAQ4862.png" style="width: 554px; height: 416px;" /></a>
+</div>
+<div class="section" id="rootssh-auth-fail">
+<h2><span class="section-number">14.13. </span>未配置root用户ssh互信，部署集群时，添加节点“auth fail”<a class="headerlink" href="#rootssh-auth-fail" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ4907.png"><img alt="_images/cluster_FAQ4907.png" src="_images/cluster_FAQ4907.png" style="width: 554px; height: 416px;" /></a>
+<p>在配置root用户的ssh互信时，需要做以下配置：</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ4935.png"><img alt="_images/cluster_FAQ4935.png" src="_images/cluster_FAQ4935.png" style="width: 378px; height: 800px;" /></a>
+</div>
+<div class="section" id="show-pool-nodes">
+<h2><span class="section-number">14.14. </span>防火墙导致集群show pool_nodes信息错误<a class="headerlink" href="#show-pool-nodes" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>系统环境： 鲲鹏920 + kylin V10</p>
+<p>故障现象：</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ5000.png"><img alt="_images/cluster_FAQ5000.png" src="_images/cluster_FAQ5000.png" style="width: 554px; height: 345px;" /></a>
+<p>解决步骤：</p>
+<blockquote>
+<div><p>在show pool_nodes下备库的状态信息显示为“down”，而从sys_stat_replication中，主备流复制状态正常，备库数据库进程启动正常。通过kingbasecluster -C -D处理，仍然不能改变备库状态。</p>
+<p>后经查看集群主机防火墙，因主机系统被重启后，防火墙启动，导致集群通讯故障，从而show pool_nodes查看到的备库状态为“down”，后关闭防火墙后恢复正常。</p>
+</div></blockquote>
+</div>
+<div class="section" id="v8r3auth-fail">
+<h2><span class="section-number">14.15. </span> V8R3集群部署工具“auth fail”错误<a class="headerlink" href="#v8r3auth-fail" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ5256.png"><img alt="_images/cluster_FAQ5256.png" src="_images/cluster_FAQ5256.png" style="width: 554px; height: 416px;" /></a>
+<p>平台：aarch+centos7.4</p>
+<p>故障现象：用集群部署工具部署集群时，添加节点时，出现“auth fail”故障。</p>
+<p>解决方案：</p>
+<p>  在 /etc/ssh/sshd_config修改参数：</p>
+<blockquote>
+<div></div></blockquote>
+<p>    UseDNS no
+    GSSAPIAuthentication no</p>
+</div>
+<div class="section" id="kingbase-monitor-shthere-are-no-1-standbys-in-sys-stat-replication">
+<h2><span class="section-number">14.16. </span>集群通过kingbase_monitor.sh启动后“There are no 1 standbys in sys_stat_replication......&quot;<a class="headerlink" href="#kingbase-monitor-shthere-are-no-1-standbys-in-sys-stat-replication" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>故障现象：</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ5498.png"><img alt="_images/cluster_FAQ5498.png" src="_images/cluster_FAQ5498.png" style="width: 554px; height: 233px;" /></a>
+<a class="reference internal image-reference" href="_images/cluster_FAQ5501.png"><img alt="_images/cluster_FAQ5501.png" src="_images/cluster_FAQ5501.png" style="width: 554px; height: 256px;" /></a>
+<p>系统环境：</p>
+<p>产品版本： V008R003C002B0140</p>
+<p>操作系统：麒麟v10</p>
+<p>cpu:海光</p>
+<p>解决方案：</p>
+<blockquote>
+<div><p>先重做备机 记得之前的data备份一下这个问题之前出现过，但是概率极低，是pg原生的问题，已经在跟进社区的修复代码，你先使用临时方案解决一下。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ5635.png"><img alt="_images/cluster_FAQ5635.png" src="_images/cluster_FAQ5635.png" style="width: 308px; height: 134px;" /></a>
+</div></blockquote>
+</div>
+<div class="section" id="kes-v8r2kingbasecluster9999">
+<h2><span class="section-number">14.17. </span>KES V8R2集群kingbasecluster服务9999端口无法连接<a class="headerlink" href="#kes-v8r2kingbasecluster9999" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>故障现象：</p>
+<p>连接集群9999端口失败，提示“所有数据库服务down”，但是可以连接54321端口，说明数据库服务正常。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ5745.png"><img alt="_images/cluster_FAQ5745.png" src="_images/cluster_FAQ5745.png" style="width: 554px; height: 256px;" /></a>
+<p>查看故障原因：</p>
+<blockquote>
+<div><p>1、查看数据库和集群进程状态</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ5772.png"><img alt="_images/cluster_FAQ5772.png" src="_images/cluster_FAQ5772.png" style="width: 554px; height: 256px;" /></a>
+<a class="reference internal image-reference" href="_images/cluster_FAQ5775.png"><img alt="_images/cluster_FAQ5775.png" src="_images/cluster_FAQ5775.png" style="width: 554px; height: 256px;" /></a>
+<p>2、主库cluster.log日志</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ5797.png"><img alt="_images/cluster_FAQ5797.png" src="_images/cluster_FAQ5797.png" style="width: 554px; height: 196px;" /></a>
+<p>从上可知，数据库服务和cluster进程从系统层面正常，但是从日志看cluster服务拒绝连接。</p>
+</div></blockquote>
+<p>解决方案：</p>
+<p> 1）用pkill -9 kingbasecluster 停止主备库cluster进程</p>
+<p> 2）bin/kingbasecluser -n -d &gt;cluter.log 2&gt;&amp;1 重启主备库cluster服务</p>
+<p>连接测试：</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/cluster_FAQ5974.png"><img alt="_images/cluster_FAQ5974.png" src="_images/cluster_FAQ5974.png" style="width: 554px; height: 138px;" /></a>
+<p># kingbasecluster 9999 端口连接成功。</p>
+</div></blockquote>
+</div>
+<div class="section" id="r3-sys-md5">
+<h2><span class="section-number">14.18. </span>R3集群部署工具部署时，出现sys_md5的错误<a class="headerlink" href="#r3-sys-md5" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>数据库版本：V8R003C002B0270</p>
+<p>故障现象：</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ6067.png"><img alt="_images/cluster_FAQ6067.png" src="_images/cluster_FAQ6067.png" style="width: 554px; height: 416px;" /></a>
+<p>解决问题：</p>
+<blockquote>
+<div><p>手工执行sys_md5命令</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ6096.png"><img alt="_images/cluster_FAQ6096.png" src="_images/cluster_FAQ6096.png" style="width: 554px; height: 29px;" /></a>
+</div></blockquote>
+<p>故障原因：在用部署工具部署时，db.zip和cluster.zip包选择错误，导致。</p>
+</div>
+<div class="section" id="r3bmjeshamodel-sh">
+<h2><span class="section-number">14.19. </span>R3集群BMJ启动esHAmodel.sh失败问题<a class="headerlink" href="#r3bmjeshamodel-sh" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>故障现象：</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/cluster_FAQ6185.png"><img alt="_images/cluster_FAQ6185.png" src="_images/cluster_FAQ6185.png" style="width: 554px; height: 312px;" /></a>
+<p>在BMJ R3集群下启动esHAmodel.sh失败，shell脚本无法找到相应的外部命令。</p>
+</div></blockquote>
+<p>问题查看：</p>
+<blockquote>
+<div><p>查看/etc/profile环境变量PATH的设置</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ6269.png"><img alt="_images/cluster_FAQ6269.png" src="_images/cluster_FAQ6269.png" style="width: 554px; height: 108px;" /></a>
+</div></blockquote>
+<p>问题原因：在配置java环境变量时，修改了PATH变量，缺少了读取系统可执行文件的路径。BMJ的脚本在执行时，shell脚本需要调用profile来设置环境变量。</p>
+<p>解决问题：</p>
+<blockquote>
+<div><p>修改profile环境变量：</p>
+<p>PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin，应用profile</p>
+<p>source /etc/profile后重启esHAmodel.sh问题解决。</p>
+</div></blockquote>
+</div>
+<div class="section" id="bmj-r3es-clientes-server">
+<h2><span class="section-number">14.20. </span>BMJ R3集群切换后es_client无法和es_server通讯问题<a class="headerlink" href="#bmj-r3es-clientes-server" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>故障现象：</p>
+<blockquote>
+<div><p>银河麒麟专用机在起集群的时候，报错找不到备节点的es_server，但是我在主节点执行es_client那条命令是可以返回值的，两边的es_server服务也都起着呢，这种情况得怎么处理？</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ6606.png"><img alt="_images/cluster_FAQ6606.png" src="_images/cluster_FAQ6606.png" style="width: 554px; height: 179px;" /></a>
+</div></blockquote>
+<p>问题诊断：</p>
+<blockquote>
+<div><p>“faild to connect to es_server....怀疑是防火墙故障，但是通过telnet和es_client都能通过8890和es_server通讯。</p>
+</div></blockquote>
+<p>问题原因：</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/cluster_FAQ6710.png"><img alt="_images/cluster_FAQ6710.png" src="_images/cluster_FAQ6710.png" style="width: 430px; height: 931px;" /></a>
+</div></blockquote>
+</div>
+<div class="section" id="kingbasees-r3standby">
+<h2><span class="section-number">14.21. </span>kingbaseES R3集群启动后“无standby”问题<a class="headerlink" href="#kingbasees-r3standby" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>问题现象：</p>
+<blockquote>
+<div><p>一主二备的架构，通过kingbase_monitor.sh启动后，出现以下故障信息。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ6806.png"><img alt="_images/cluster_FAQ6806.png" src="_images/cluster_FAQ6806.png" style="width: 554px; height: 39px;" /></a>
+</div></blockquote>
+<p>集群日志信息：</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/cluster_FAQ6818.png"><img alt="_images/cluster_FAQ6818.png" src="_images/cluster_FAQ6818.png" style="width: 554px; height: 116px;" /></a>
+</div></blockquote>
+<p>问题诊断：</p>
+<blockquote>
+<div><p>根据日志提示“没有到主机的路由”判断，是在系统上有防火墙拦截导致。经过检查，在主库启动了防火墙，并且没有通过规则开放指定的端口。</p>
+</div></blockquote>
+<p>问题解决：</p>
+<blockquote>
+<div><p>在系统配置了防火墙规则，开放指定的端口后，问题解决。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ6935.png"><img alt="_images/cluster_FAQ6935.png" src="_images/cluster_FAQ6935.png" style="width: 554px; height: 200px;" /></a>
+</div></blockquote>
+</div>
+<div class="section" id="kingbasees-r3kingbasecluster">
+<h2><span class="section-number">14.22. </span>kingbaseES R3集群kingbasecluster无法正确识别备库状态<a class="headerlink" href="#kingbasees-r3kingbasecluster" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>故障现象：</p>
+<blockquote>
+<div><p>读写分离集群，测试主备切机后，show pool_nodes备机状态为down。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ7031.png"><img alt="_images/cluster_FAQ7031.png" src="_images/cluster_FAQ7031.png" style="width: 554px; height: 311px;" /></a>
+</div></blockquote>
+<p>解决方案：</p>
+<p>1） 查看主备流复制状态正常，复制槽状态正常。</p>
+<p>2） cluster.log日志提示备库的数据库服务错误。</p>
+<p>复制槽状态：</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ7097.png"><img alt="_images/cluster_FAQ7097.png" src="_images/cluster_FAQ7097.png" style="width: 554px; height: 312px;" /></a>
+<p>cluster.log：</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ7114.png"><img alt="_images/cluster_FAQ7114.png" src="_images/cluster_FAQ7114.png" style="width: 554px; height: 130px;" /></a>
+<p><strong>初步判断kingbasecluster读取后台数据库状态信息错误：</strong></p>
+<p>1）先用kingbase_monitor.sh关闭集群。</p>
+<p>2）手工启动kingbasecluster</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">bin</span><span class="o">/</span><span class="n">kingbasecluster</span> <span class="o">-</span><span class="n">C</span> <span class="o">-</span><span class="n">n</span> <span class="o">&gt;</span><span class="n">cluster</span><span class="o">.</span><span class="n">log</span> <span class="mi">2</span><span class="o">&gt;&amp;</span><span class="mi">1</span> <span class="o">&amp;</span>
+</pre></div>
+</div>
+<p>3）再手工启动数据库服务sys_ctl。</p>
+<p>仍然识别为备库<strong>“down”</strong>状态。</p>
+<p>最后经过检查，发现用户部署集群后修改了数据库的端口号，主库修改为55321，备库忘记在kingbase.conf配置文件中修改，导致备库数据库启动端口号仍为54321；导致kingbasecluster不能访问到备库的数据库服务，判断其状态为“down”，在备库kingbase.conf文件中修改端口为55321后，重启集群，备库状态正常。</p>
+</div>
+<div class="section" id="kingbasees-r3-db-vip-cluster-vip">
+<h2><span class="section-number">14.23. </span>kingbaseES R3 集群无法加载db VIP 和cluster VIP案例<a class="headerlink" href="#kingbasees-r3-db-vip-cluster-vip" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>故障现象：</p>
+<blockquote>
+<div><p>通过kingbase_monitor.sh启动提示“无法加载db VIP”</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ7114.png"><img alt="_images/cluster_FAQ7114.png" src="_images/cluster_FAQ7114.png" style="width: 554px; height: 130px;" /></a>
+</div></blockquote>
+<p>解决方案：</p>
+<blockquote>
+<div><p>1）查看数据库服务正常，并且主备流复制状态正常，集群kingbasecluster服务无法启动。</p>
+<p>2）手工启动kingbasecluster服务，发现提示“不能加载cluster VIP”。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ7560.png"><img alt="_images/cluster_FAQ7560.png" src="_images/cluster_FAQ7560.png" style="width: 554px; height: 173px;" /></a>
+<p>3）检查arping版本正常，kingbasecluster.conf文件发现加载vip语句有错误。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ7669.png"><img alt="_images/cluster_FAQ7669.png" src="_images/cluster_FAQ7669.png" style="width: 554px; height: 164px;" /></a>
+<a class="reference internal image-reference" href="_images/cluster_FAQ7721.png"><img alt="_images/cluster_FAQ7721.png" src="_images/cluster_FAQ7721.png" style="width: 326px; height: 83px;" /></a>
+<p>4）修改kingbasecluster.conf配置后，手工启动kingbasecluster服务正常。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ7723.png"><img alt="_images/cluster_FAQ7723.png" src="_images/cluster_FAQ7723.png" style="width: 488px; height: 149px;" /></a>
+<p>5）通过kingbase_monitor.sh启动仍然报错，提示“无法加载db VIP”。</p>
+<p>6）手工执行sh -x change_vip.sh，发现错误“DEV”变量为空值。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ7776.png"><img alt="_images/cluster_FAQ7776.png" src="_images/cluster_FAQ7776.png" style="width: 540px; height: 168px;" /></a>
+<p>7） 检查HAmodule.conf文件，发现“DEV&quot;变量赋值为空。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ7862.png"><img alt="_images/cluster_FAQ7862.png" src="_images/cluster_FAQ7862.png" style="width: 486px; height: 297px;" /></a>
+<p>8） 在所有的HAmodule.conf文件中，给”DEV“变量指定网卡名称后，重新通过kingbase_monitor.sh启动集群正常。</p>
+<p>9） 以上问题有可能实施人员部署中操作有误，或者是版本bug，需要进一步验证。</p>
+</div></blockquote>
+</div>
+<div class="section" id="down">
+<h2><span class="section-number">14.24. </span>网关无法连通，导致集群down，手工启动数据库服务<a class="headerlink" href="#down" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>故障现象：</p>
+<blockquote>
+<div><p>整个集群在测试网关连通时，无法ping通网关，导致整个集群宕机。在此期间network_rewind尝试recovery，但是不能恢复数据库服务，kingbasecluster服务被计划任务重启。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ7898.png"><img alt="_images/cluster_FAQ7898.png" src="_images/cluster_FAQ7898.png" style="width: 513px; height: 97px;" /></a>
+<a class="reference internal image-reference" href="_images/cluster_FAQ8150.png"><img alt="_images/cluster_FAQ8150.png" src="_images/cluster_FAQ8150.png" style="width: 554px; height: 299px;" /></a>
+<a class="reference internal image-reference" href="_images/cluster_FAQ8153.png"><img alt="_images/cluster_FAQ8153.png" src="_images/cluster_FAQ8153.png" style="width: 554px; height: 146px;" /></a>
+</div></blockquote>
+<p>问题分析：</p>
+<blockquote>
+<div><p>在8:39分后，人工干预下，手工重新启动所有节点的数据库服务后，集群恢复正常。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ8204.png"><img alt="_images/cluster_FAQ8204.png" src="_images/cluster_FAQ8204.png" style="width: 554px; height: 165px;" /></a>
+</div></blockquote>
+<p>问题总结：</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/cluster_FAQ8213.png"><img alt="_images/cluster_FAQ8213.png" src="_images/cluster_FAQ8213.png" style="width: 554px; height: 292px;" /></a>
+</div></blockquote>
+</div>
+<div class="section" id="kingbaseclusterkingbase-monitor-sh-kingbasecluster">
+<h2><span class="section-number">14.25. </span>备库kingbasecluster服务通过kingbase_monitor.sh启动失败，手工启动kingbasecluster服务解决<a class="headerlink" href="#kingbaseclusterkingbase-monitor-sh-kingbasecluster" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>案例应用环境：</p>
+<blockquote>
+<div><p>飞腾+麒麟v10组合  通用机 KES R3 220集群</p>
+</div></blockquote>
+<p>故障现象：</p>
+<blockquote>
+<div><p>备库kingbasecluster服务进程和端口（9999）启动正常，但通过ksql连接9999端口访问失败，telnet访问9999端口正常。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ8414.png"><img alt="_images/cluster_FAQ8414.png" src="_images/cluster_FAQ8414.png" style="width: 554px; height: 84px;" /></a>
+<p>kingbasecluster进程和端口：</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ8439.png"><img alt="_images/cluster_FAQ8439.png" src="_images/cluster_FAQ8439.png" style="width: 554px; height: 377px;" /></a>
+<a class="reference internal image-reference" href="_images/cluster_FAQ8442.png"><img alt="_images/cluster_FAQ8442.png" src="_images/cluster_FAQ8442.png" style="width: 554px; height: 116px;" /></a>
+<p>9999端口socket文件不存在：</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ8464.png"><img alt="_images/cluster_FAQ8464.png" src="_images/cluster_FAQ8464.png" style="width: 554px; height: 212px;" /></a>
+<p>telnet连接9999端口：</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ8483.png"><img alt="_images/cluster_FAQ8483.png" src="_images/cluster_FAQ8483.png" style="width: 554px; height: 169px;" /></a>
+</div></blockquote>
+<p>解决方法：</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/cluster_FAQ8492.png"><img alt="_images/cluster_FAQ8492.png" src="_images/cluster_FAQ8492.png" style="width: 422px; height: 169px;" /></a>
+<p>手工启动备库kingbasecluster服务后，问题解决。</p>
+</div></blockquote>
+</div>
+<div class="section" id="kes-v8r3kingbase-monitor-sh-pam-nologin-8">
+<h2><span class="section-number">14.26. </span>KES V8R3集群通过kingbase_monitor.sh启动失败，提示“pam_nologin(8)&quot;错误<a class="headerlink" href="#kes-v8r3kingbase-monitor-sh-pam-nologin-8" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>案例环境：</p>
+<blockquote>
+<div><p>操作系统： 银河麒麟（通用机）</p>
+<p>数据库版本：KES V8R3C2B120</p>
+</div></blockquote>
+<p>故障现象：</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/cluster_FAQ8643.png"><img alt="_images/cluster_FAQ8643.png" src="_images/cluster_FAQ8643.png" style="width: 554px; height: 163px;" /></a>
+<p>集群通过kingbase_monitor.sh脚本启动后，身份认证失败。</p>
+</div></blockquote>
+<p>解决思路：</p>
+<blockquote>
+<div><p>因为kingbase_monitor.sh启动，会通过ssh远程连接node做集群服务的检测，怀疑和ssh连接的身份认证有关系。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ8760.png"><img alt="_images/cluster_FAQ8760.png" src="_images/cluster_FAQ8760.png" style="width: 554px; height: 136px;" /></a>
+</div></blockquote>
+<p>解决方法：</p>
+<blockquote>
+<div><p>如下图所示，需要将/etc/pam.d/sshd文件中的标识的行注释后，重新启动集群后，问题解决。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ8820.png"><img alt="_images/cluster_FAQ8820.png" src="_images/cluster_FAQ8820.png" style="width: 554px; height: 234px;" /></a>
+</div></blockquote>
+</div>
+<div class="section" id="conflict-with-recovery">
+<h2><span class="section-number">14.27. </span>conflict with recovery问题<a class="headerlink" href="#conflict-with-recovery" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R6</p>
+<p>数据库日志报错：</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FATAL</span><span class="p">:</span> <span class="n">terminating</span> <span class="n">connection</span> <span class="n">due</span> <span class="n">to</span> <span class="n">conflict</span> <span class="k">with</span> <span class="n">recovery</span>
+<span class="n">Detail</span><span class="p">:</span> <span class="n">User</span> <span class="n">was</span> <span class="n">holding</span> <span class="n">shared</span> <span class="n">buffer</span> <span class="n">pin</span> <span class="k">for</span> <span class="n">to</span> <span class="n">long</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>问题分析：</p>
+<blockquote>
+<div><p>这个报错是说备机恢复vacuum时（vaccum操作在备机进行同步），有个页面正在被使用。恢复进程会等待，如果等待超过了max_standby_streaming_delay就会报错。</p>
+</div></blockquote>
+</div>
+<div class="section" id="sys-dump">
+<h2><span class="section-number">14.28. </span>sys_dump备份问题<a class="headerlink" href="#sys-dump" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R6</p>
+<p>故障现象：</p>
+<blockquote>
+<div><p>V8R6 sys_dump备份成dump格式可以正常备份，备份成sql格式报错。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ9139.png"><img alt="_images/cluster_FAQ9139.png" src="_images/cluster_FAQ9139.png" style="width: 554px; height: 301px;" /></a>
+</div></blockquote>
+<p>问题分析：</p>
+<blockquote>
+<div><p>在同一主机安装了不同版本的V8R6的数据库软件，在使用sys_dump备份时，使用了其他版本，导致错误。</p>
+</div></blockquote>
+</div>
+<div class="section" id="sys-restore">
+<h2><span class="section-number">14.29. </span>sys_restore 恢复数据错误<a class="headerlink" href="#sys-restore" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R6</p>
+<p>运行环境：</p>
+<p>产品版本：V008R006M009B0011</p>
+<p>操作系统：红帽8.7</p>
+<p>错误现象：</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/cluster_FAQ9267.png"><img alt="_images/cluster_FAQ9267.png" src="_images/cluster_FAQ9267.png" style="width: 554px; height: 312px;" /></a>
+</div></blockquote>
+<p>故障原因：</p>
+<blockquote>
+<div><p>操作人员在手工输入命令行时，没有区分英文和中文字符，导致命令行执行错误。</p>
+</div></blockquote>
+</div>
+<div class="section" id="kingbasees-r6open-files">
+<h2><span class="section-number">14.30. </span>kingbaseES R6集群部署“open files”问题<a class="headerlink" href="#kingbasees-r6open-files" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R6</p>
+<p>问题现象：</p>
+<blockquote>
+<div><p>BMJ环境，kingbaseES R6集群部署时，es_client连接远程服务器检测环境，“open files”参数配置错误，但是通过查看远程主机（ulimit-n结果为655360），符合部署要求。</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ9467.png"><img alt="_images/cluster_FAQ9467.png" src="_images/cluster_FAQ9467.png" style="width: 554px; height: 358px;" /></a>
+</div></blockquote>
+<p>检查问题原因：</p>
+<blockquote>
+<div><p>1、手工执行出错信息的命令</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ9494.png"><img alt="_images/cluster_FAQ9494.png" src="_images/cluster_FAQ9494.png" style="width: 554px; height: 160px;" /></a>
+<p>2、查看远程机器的open files</p>
+<a class="reference internal image-reference" href="_images/cluster_FAQ9516.png"><img alt="_images/cluster_FAQ9516.png" src="_images/cluster_FAQ9516.png" style="width: 554px; height: 301px;" /></a>
+</div></blockquote>
+<p>解决方案：</p>
+<blockquote>
+<div><p>在126的远程主机上执行：</p>
+<p>1、编辑/etc/profile 增加</p>
+<p>   ulimit -HSn 102400</p>
+<p>2、执行source /etc/profile后，重新部署，问题解决。</p>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="high-availability.html" class="btn btn-neutral float-left" title="13. 读写分离" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 1999-2021, 北京人大金仓信息技术股份有限公司
+
+    </p>
+  </div>
+    
+    
+     使用 <a href="http://sphinx-doc.org/">Sphinx</a> 创建 。
+     最后更新于 Dec 07, 2021。 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

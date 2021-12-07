@@ -1,0 +1,1057 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. SQL类 &mdash; KingbaseES Frequently Asked Questions   documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/js/custom.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. PLSQL类" href="plsql.html" />
+    <link rel="prev" title="版权声明" href="legalnotice.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> KingbaseES Frequently Asked Questions
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                 
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">前言</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="legalnotice.html">版权声明</a></li>
+</ul>
+<p class="caption"><span class="caption-text">常见问题</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. SQL类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1.1. 空值问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#null">1.1.1. ‘’ 与 null 兼容性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#is-null">1.1.2. 判断值是否为空，要用 is null</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pg">1.1.3. PG模式下，‘’ 值问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ora-input-emptystr-isnull">1.1.4. Ora_input_emptystr_isnull对于字符类型空值的影响</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.1.5. Ora_input_emptystr_isnull对于数值类型空值的影响</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#core">1.2. Core分析</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1.2.1. 多线程core分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1.2.2. 如何生成core文件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">1.3. 关键字问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">1.3.1. 如何确认是否系统关键字</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">1.4. 乱码或无效字符编码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows">1.5. Windows版本安装未注册服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">1.6. 如何创建一个间隔分区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kesv8r2-3">1.7. [KESV8R2/3] 客服端服务器编码原理说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mysqlsql-mode">1.8. 兼容MySQL参数sql_mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mysql-date-format">1.9. MySQL date_format改写</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">1.10. 共有同义词和私有同义词有什么区别</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">1.11. 同义词查找规则</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">1.12. 如何查询版本的提交号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">1.13. 遇到关键字无法使用作为表名或列名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nextval">1.14. Nextval在同一条语句中的值</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">1.15. 能为模式指定表空间吗？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">1.16. 丢失了数据库密码，如何恢复？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cache">1.17. 序列的cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#oid">1.18. 什么是OID？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ctid">1.19. 什么是CTID？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id15">1.20. 数据库大小限制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kes">1.21. KES数据页结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copy">1.22. 如何将数据从客户端通过copy命令导入数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">1.23. Windows 如何配置免密登录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id17">1.24. 命令报参数错误问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#to-date">1.25. To_date 函数问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id18">1.26. 视图源定义信息为啥和创建的语句不一样</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id19">1.27. 字符串类型长度怎么获取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sys-guid">1.28. 如何改变sys_guid() 返回值类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#openssl">1.29. OPENSSL问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pg-relation-size">1.30. Pg_relation_size 问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id20">1.31. 全角字符支持</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id21">1.32. 时间函数问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ddl">1.33. 如何取得对象的DDL信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#update">1.34. 全表update非常慢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#failed-to-find-conversion-function-from-unknown-to-text">1.35. Failed to find conversion function from UNKNOWN to TEXT</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plsql.html">2. PLSQL类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#kes-pl-sql-block-not-end-correctly">2.1. KES创建过程，报错：PL/SQL block not end correctly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#out">2.2. 如何调用含out参数的存储过程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#savepoint">2.3. Savepoint 使用问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#create-operator-bool">2.4. Create operator（bool与整型比较）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#for">2.5. For循环变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#id1">2.6. 函数变量不能超过512</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameter.html">3. 参数相关</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#kingbase-conf-kingbase-auto-conf">3.1. Kingbase.conf 与 kingbase.auto.conf 参数文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#id2">3.2. 不同参数如何生效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#error-user-connect-times-and-max-error-user-connect-times">3.3. error_user_connect_times and max_error_user_connect_times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#exclude-reserved-words">3.4. Exclude_reserved_words 排除关键字</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#max-locks-per-transaction">3.5. max_locks_per_transaction设置过大引发数据库启动问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#max-identifier-length">3.6. max_identifier_length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#id3">3.7. 数据库启动失败，报“内存段超过可用内存”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">4. License 相关</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id1">4.1. 如何查询license有效时间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id2">4.2. 如何查询license完整信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id3">4.3. 如何查询license单项信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id4">4.4. 替换license步骤</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id5">4.5. 替换license是否要重启数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id6">4.6. 如何判断license有效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id7">4.7. License与网卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#bondlicense">4.8. Bond网卡切换license支持问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extended-plug-in.html">5. 扩展组件</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#id2">5.1. 如何查看系统是否支持某组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#oracle-fdw">5.2. oracle_fdw支持平台</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#create-extension-oracle-fdw-so">5.3. create extension oracle_fdw报.so找不到加载失败</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#id3">5.4. oracle_fdw支持功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#sys-pathman">5.5. Sys_pathman</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#separate-power">5.6. Separate_power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#sysaudit">5.7. Sysaudit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended-plug-in.html#id4">5.7.1. 如何删除语句审计日志？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gis.html">6. 空间组件</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gis.html#create-extension-postgris-glibc-2-18-not-defined-in-file-libc-so-6">6.1. Create extension postgris 报错“GLIBC_2.18 not defined in file libc.so.6”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gis.html#acgis">6.2. acgis版本备份还原</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gis.html#r6">6.3. R6 是否支持超图</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="system-management.html">7. 系统管理类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="system-management.html#kesv8r2-r3">7.1. [KESV8R2/R3]表在指定表空间，为何显示为默认表空间？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-management.html#sys-class-reltablespace-0">7.2. 为什么sys_class里显示的很多表的 RELTABLESPACE值为 0？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-management.html#kes-sys-catalog">7.3. KES有什么办法，默认不读取sys_catalog下的系统视图？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-management.html#ip">7.4. 网线拔插后，IP丢失问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">8. 工具类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#s-pgsql-5432">8.1. 客户端连接找 .s.PGSQL.5432</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#er">8.2. 客户端管理工具无法加载ER图问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#client-encoding">8.3. 如何修改管理工具client_encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#id2">8.4. 迁移工具对于同名对象处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#invalid-byte-sequence-for-encoding-utf8-0x00">8.5. 数据迁移报“invalid byte sequence for encoding &quot;UTF8&quot;: 0x00 &quot;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#id3">8.6. 开始菜单没有数据库快捷工具图标</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#gui">8.7. 缺少操作系统GUI组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#r3scram-sha-256">8.8. R3客户端无法使用scram-sha-256认证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#undefined-symbol-pqgssencinuse">8.9. undefined symbol: PqgssEncInUse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#bulkload">8.10. Bulkload并行加载报错</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data-security.html">9. 数据安全</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data-security.html#sys-rmancurrent-time-may-be-rewound">9.1. Sys_rman备份报“current time may be rewound”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-security.html#id2">9.2. 如何导出一致时间点的数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-security.html#id3">9.3. 索引问题导致数据访问问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TPCC-test.html">10. TPCC测试类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TPCC-test.html#tpccautovacuum">10.1. tpcc测试中是否需要开启autovacuum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TPCC-test.html#index-cursor-id">10.2. index_cursor_id参数的数值是固定的么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TPCC-test.html#tpccunixdomain">10.3. 在tpcc测试中unixdomain作用是？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TPCC-test.html#id1">10.4. 集群环境下测试tpcc连接参数怎样配置？</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="interface.html">11. 接口</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="interface/jdbc.html">11.1. JDBC接口</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id1">11.1.1. JDBC打开日志方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#vip-jdbc">11.1.2. 没有VIP情况下，JDBC连接如何配置？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#v8r6-jdbcvip">11.1.3. V8R6 JDBC能否使用VIP？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#lobupdate">11.1.4. LOB对象update机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#kbblob-oracle">11.1.5. KBBlob 迁移至Oracle</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">12. Docker环境相关问题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#exit-code-137">12.1. 【exit code 137】错误信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-license">12.2. Docker 环境下license机制</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="high-availability.html">13. 读写分离</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#id2">13.1. 读写分离分发机制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#id3">13.2. 如何测试一下现场的备机失败，转发主机的场景？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#id4">13.3. 失败重发机制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#ssh">13.4. ssh 引发的相关问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#id5">13.5. 读写分离备机备份报错</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#hash">13.6. 读写分离集群Hash索引老是出问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cluster_faq.html">14. 高可用集群</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#libssl">14.1. libssl 问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#if-up-cmd-faild">14.2. if_up_cmd faild</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#arping">14.3. arping问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#arping-path">14.4. arping_path版本不正确</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#eshamodel-sh">14.5. esHAmodel.sh脚本错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#cluster">14.6. 集群名称不能使用cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#id2">14.7. 网络问题导致备机无法加入集群</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbasecluster">14.8. kingbasecluster服务启动失败</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#sys-md5">14.9. 集群sys_md5生成错误密码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#node">14.10. 两节点读写分离集群，集群无法创建主备，两个node都是主</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#max-connections">14.11. 集群无法修改max_connections参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#id3">14.12. 软连接配置错误，导致集群启动报缺少磁盘空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#rootssh-auth-fail">14.13. 未配置root用户ssh互信，部署集群时，添加节点“auth fail”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#show-pool-nodes">14.14. 防火墙导致集群show pool_nodes信息错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#v8r3auth-fail">14.15.  V8R3集群部署工具“auth fail”错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbase-monitor-shthere-are-no-1-standbys-in-sys-stat-replication">14.16. 集群通过kingbase_monitor.sh启动后“There are no 1 standbys in sys_stat_replication......&quot;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kes-v8r2kingbasecluster9999">14.17. KES V8R2集群kingbasecluster服务9999端口无法连接</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#r3-sys-md5">14.18. R3集群部署工具部署时，出现sys_md5的错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#r3bmjeshamodel-sh">14.19. R3集群BMJ启动esHAmodel.sh失败问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#bmj-r3es-clientes-server">14.20. BMJ R3集群切换后es_client无法和es_server通讯问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbasees-r3standby">14.21. kingbaseES R3集群启动后“无standby”问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbasees-r3kingbasecluster">14.22. kingbaseES R3集群kingbasecluster无法正确识别备库状态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbasees-r3-db-vip-cluster-vip">14.23. kingbaseES R3 集群无法加载db VIP 和cluster VIP案例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#down">14.24. 网关无法连通，导致集群down，手工启动数据库服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbaseclusterkingbase-monitor-sh-kingbasecluster">14.25. 备库kingbasecluster服务通过kingbase_monitor.sh启动失败，手工启动kingbasecluster服务解决</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kes-v8r3kingbase-monitor-sh-pam-nologin-8">14.26. KES V8R3集群通过kingbase_monitor.sh启动失败，提示“pam_nologin(8)&quot;错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#conflict-with-recovery">14.27. conflict with recovery问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#sys-dump">14.28. sys_dump备份问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#sys-restore">14.29. sys_restore 恢复数据错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbasees-r6open-files">14.30. kingbaseES R6集群部署“open files”问题</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KingbaseES Frequently Asked Questions</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">1. </span>SQL类</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sql">
+<h1><span class="section-number">1. </span>SQL类<a class="headerlink" href="#sql" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><span class="section-number">1.1. </span>空值问题<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="null">
+<h3><span class="section-number">1.1.1. </span>‘’ 与 null 兼容性<a class="headerlink" href="#null" title="Permalink to this headline">¶</a></h3>
+<p>适用版本：V8R3 , V8R6</p>
+<p>前提条件：数据库必须是oracle 模式</p>
+<p>问题分析：参数ora_input_emptystr_isnull=on是为了兼容oracle 对于‘’作为null处理。</p>
+<p>以下是oracle环境下，’’ 比较结果：</p>
+<a class="reference internal image-reference" href="_images/FAQ157.png"><img alt="_images/FAQ157.png" src="_images/FAQ157.png" style="width: 355px; height: 262px;" /></a>
+<p>同样，开启ora_input_emptystr_isnull参数后，KES结果如下：</p>
+<a class="reference internal image-reference" href="_images/FAQ203.png"><img alt="_images/FAQ203.png" src="_images/FAQ203.png" style="width: 358px; height: 300px;" /></a>
+</div>
+<div class="section" id="is-null">
+<h3><span class="section-number">1.1.2. </span>判断值是否为空，要用 is null<a class="headerlink" href="#is-null" title="Permalink to this headline">¶</a></h3>
+<p>适用版本：V8R3 , V8R6</p>
+<p>问题描述：</p>
+<blockquote>
+<div><p>对于空值使用 =‘’ 返回结果与is null返回结果不同</p>
+<a class="reference internal image-reference" href="_images/FAQ277.png"><img alt="_images/FAQ277.png" src="_images/FAQ277.png" style="width: 359px; height: 303px;" /></a>
+</div></blockquote>
+<p>问题分析：当参数ora_input_emptystr_isnull=on时，’’会转换为null，而null表示不确定的值，因此，NULL值比较只能是IS NULL或IS NOT NULL，不可以是= NULL 或&lt;&gt; NULL的的形式判断，无论= NULL 或&lt;&gt; NULL，都是不成立的。</p>
+</div>
+<div class="section" id="pg">
+<h3><span class="section-number">1.1.3. </span>PG模式下，‘’ 值问题<a class="headerlink" href="#pg" title="Permalink to this headline">¶</a></h3>
+<p>适用版本：V8R6</p>
+<p>问题分析：PG模式下，需要设置ora_input_emptystr_isnull=off，否则会有很多问题（因为这个参数本身就是为兼容oracle设置的，必须在oracle模式下使用）。</p>
+<p>PG模式，‘’ 行为如下：</p>
+<a class="reference internal image-reference" href="_images/FAQ562.png"><img alt="_images/FAQ562.png" src="_images/FAQ562.png" style="width: 284px; height: 372px;" /></a>
+</div>
+<div class="section" id="ora-input-emptystr-isnull">
+<h3><span class="section-number">1.1.4. </span>Ora_input_emptystr_isnull对于字符类型空值的影响<a class="headerlink" href="#ora-input-emptystr-isnull" title="Permalink to this headline">¶</a></h3>
+<p>适用版本：所有版本</p>
+<p>注意事项：本测试基于V8R6。该参数可能会因为bug，在不同版本结果可能不同，但理论上应该是本测试结果。</p>
+<p>问题描述：当insert数据时，对于空值可以是 ‘’（中间没有空格）或 null，不同参数值结果是不同的，会影响后续的select访问结果。</p>
+<p>问题分析：</p>
+<blockquote>
+<div><p>1) ora_input_emptystr_isnull=on 插入的数据，‘’和null都会转为null，之后的select操作不管ora_input_emptystr_isnull为何值，返回结果都相同：</p>
+<a class="reference internal image-reference" href="_images/FAQ846.png"><img alt="_images/FAQ846.png" src="_images/FAQ846.png" style="width: 516px; height: 523px;" /></a>
+<p>2) 在ora_input_emptystr_isnull=off时插入的数据，ora_input_emptystr_isnull值不同，返回的结果也不同：</p>
+<a class="reference internal image-reference" href="_images/FAQ925.png"><img alt="_images/FAQ925.png" src="_images/FAQ925.png" style="width: 624px; height: 531px;" /></a>
+</div></blockquote>
+<p>测试结论：数据内部对于 ‘’ 与 null值的存储是不同的，当ora_input_emptystr_isnull=on 时，不管的insert ‘’， 还是 where col=’’ ，’’ 都会转为 null ，</p>
+</div>
+<div class="section" id="id2">
+<h3><span class="section-number">1.1.5. </span>Ora_input_emptystr_isnull对于数值类型空值的影响<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>适用版本：V8R6</p>
+<p>问题描述：对于integer类型数据，当ora_input_emptystr_isnull=off时，’’对于insert 或 select 都会因为类型转换问题报错。</p>
+<p>问题分析：</p>
+<blockquote>
+<div><p>当ora_input_emptystr_isnull=off时，’’当做字符串，无法转换成整型。当ora_input_emptystr_isnull=on 时，’’被转成null，而null 没有类型约束，所以转换没有问题。</p>
+<p>1) 当ora_input_emptystr_isnull=on ，insert 与 select 对于 ‘’ 都没问题</p>
+<a class="reference internal image-reference" href="_images/FAQ1349.png"><img alt="_images/FAQ1349.png" src="_images/FAQ1349.png" style="width: 380px; height: 297px;" /></a>
+<p>2) 当ora_input_emptystr_isnull=off ，insert 与 select 对于 ‘’都有问题</p>
+<a class="reference internal image-reference" href="_images/FAQ1410.png"><img alt="_images/FAQ1410.png" src="_images/FAQ1410.png" style="width: 457px; height: 304px;" /></a>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="core">
+<h2><span class="section-number">1.2. </span>Core分析<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3><span class="section-number">1.2.1. </span>多线程core分析<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>适用版本：V7</p>
+<p>问题描述：如果现场的数据库core了，利用gdb进行分析时有多个thread，没法确定哪个thread才是真正core的？</p>
+<p>问题分析：</p>
+<blockquote>
+<div><p>kingbase 提供了HandleCrash函数，该函数被注册为一个信号处理函数，用来处理：SIGILL，SIGBUS，SIGSEGV等信号，其子函数：StandardHandlerForSigillSigsegvSigbus_OnMainThread 用来收集堆栈信息，进程信息，并且将他们写入管道中。如果现场中需要gdb重定向，需要以下方法：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">logging</span> <span class="n">file</span> <span class="o">&lt;</span><span class="n">file</span> <span class="n">name</span><span class="o">&gt;</span>
+<span class="nb">set</span> <span class="n">logging</span> <span class="n">on</span>
+<span class="n">info</span> <span class="n">threads</span>
+<span class="n">thread</span> <span class="n">n</span>
+<span class="n">info</span> <span class="n">functions</span>
+<span class="nb">set</span> <span class="n">logging</span> <span class="n">off</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>然后将对应的filename拷贝回来</p>
+</div>
+<div class="section" id="id4">
+<h3><span class="section-number">1.2.2. </span>如何生成core文件<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>适用版本：所有版本</p>
+<p>问题描述：为什么没有生成core文件？core文件创建在什么位置？</p>
+<p>问题解析：</p>
+<blockquote>
+<div><p>没生成core文件，可能是目录权限或limit设置太小。Redhat7采取abrtd服务，core文件在/var/spool/abrt目录。Core文件通常在进程当前工作目录的下创建，或与程序在相同的路径下。但如果程序中调用了chdir函数，则有可能改变了当前工作目录。这时core文件创建在chdir指定的路径下。Redhat7使用abrtd （automatically bug report daemon ）服务，core文件会在/var/spool/abrt/ccpp* 目录下。</p>
+<p>以Centos7 为例：</p>
+<p>1、 确认针对用户的core文件大小没有限制。</p>
+<a class="reference internal image-reference" href="_images/FAQ2141.png"><img alt="_images/FAQ2141.png" src="_images/FAQ2141.png" style="width: 243px; height: 34px;" /></a>
+<p>2、 修改/etc/abrt/abrt-action-save-package-data.conf文件，并重启abrtd服务（如果不行，重启服务器）。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OpenGPGCheck</span> <span class="o">=</span> <span class="n">no</span>
+<span class="n">ProcessUnpackaged</span> <span class="o">=</span> <span class="n">yes</span>
+</pre></div>
+</div>
+<p>3、 确认/var/spool/abrt 目录下有生成ccpp* 之类的文件。</p>
+</div></blockquote>
+<p>如何查看core文件
+^^^^^^^^^^^^^^^^^^^6</p>
+<p>适用版本：所有版本</p>
+<p>问题描述：如何分析core文件</p>
+<p>问题分析：</p>
+<blockquote>
+<div><p>1、 确认core文件是哪个程序生成的</p>
+<a class="reference internal image-reference" href="_images/FAQ2359.png"><img alt="_images/FAQ2359.png" src="_images/FAQ2359.png" style="width: 650px; height: 44px;" /></a>
+<p>2、 使用gdb分析core文件。</p>
+<a class="reference internal image-reference" href="_images/FAQ2376.png"><img alt="_images/FAQ2376.png" src="_images/FAQ2376.png" style="width: 649px; height: 426px;" /></a>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id5">
+<h2><span class="section-number">1.3. </span>关键字问题<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h3><span class="section-number">1.3.1. </span>如何确认是否系统关键字<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>适用版本：V8R6</p>
+<p>问题描述：RT</p>
+<p>问题解答：</p>
+<blockquote>
+<div><p>可以通过函数pg_get_keywords取得系统的所有关键字列表。</p>
+<p>Keyword分类解释：</p>
+<p>1、unreserved，不保留，可以用于任何identity（视图、表、函数、类型、索引、字段、类型等名称）。</p>
+<p>2、reserved，保留，不可用于任何identity。</p>
+<p>3、reserved (can be function or type name)，保留，但是可用于函数、类型名。</p>
+<p>4、unreserved (cannot be function or type name)，不保留，但是不可用于函数、类型名。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>虽然unreserved 的关键字可以用于字段名等，但不能用于列别名。</p>
+</div>
+<a class="reference internal image-reference" href="_images/FAQ2717.png"><img alt="_images/FAQ2717.png" src="_images/FAQ2717.png" style="width: 367px; height: 140px;" /></a>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id7">
+<h2><span class="section-number">1.4. </span>乱码或无效字符编码<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：所有版本</p>
+<p>问题描述：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>问题1：为什么界面有时会显示中文乱码？</p></li>
+<li><p>问题2：终端查询类似“invalid byte sequence for encoding “utf8”: 0xd0 ” 报错</p></li>
+<li><p>问题3：应用报错“com.kingbase8.util.KSQLException: 错误: 无效的 &quot;GBK&quot; 编码字节顺序: 0xe8”</p></li>
+</ul>
+</div></blockquote>
+<p>问题分析：</p>
+<blockquote>
+<div><p>1. client_encoding与server_encoding 之间不一致，在存储或读取数据时，会自动进行转换，不会有乱码问题。</p>
+<p>2. 问题1、2 主要是显示问题，比如客户端的字符集client_encoding与工具的字符集（如SecureCRT）不一致。这种情况影响的只是显示，而不影响数据存储。</p>
+<p>3. 对于问题3， 可以“看下驱动是否支持连接参数bytestype，指定bytestype=bytea”，或者在插入数据时强制类型转换。</p>
+</div></blockquote>
+<p>几种字符编码：</p>
+<blockquote>
+<div><p>1、查看操作系统的编码env | grep LANG</p>
+<p>2、show server_encoding查看数据库编码，一般与环境变量LANG相同，除非手动设置。</p>
+<p>3、show client_encoding 查看客户端编码</p>
+</div></blockquote>
+</div>
+<div class="section" id="windows">
+<h2><span class="section-number">1.5. </span>Windows版本安装未注册服务<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>问题描述：windows版本安装未注册服务</p>
+<p>问题分析：先检查是否安装好了vcredist _2013(vc 2013的最小化运行环境)。vcredist 2013 x64是windows系统中非常重要的运行库文件，这个文件是保证电脑系统正常运行的必备软件，一般用Visual C++开发的Windows应用程序需要这个运行时库的支持才能在没有安装Visual C++的计算机上正常运行</p>
+</div>
+<div class="section" id="id8">
+<h2><span class="section-number">1.6. </span>如何创建一个间隔分区<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>问题描述：如何使用SYS_PATHMAN 创建间隔分区</p>
+<p>尤其特别注意红色部分参数设置</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">range_rel</span> <span class="p">(</span>
+<span class="nb">id</span> <span class="n">SERIAL</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
+<span class="n">dt</span> <span class="n">TIMESTAMP</span><span class="p">,</span>
+<span class="n">txt</span> <span class="n">TEXT</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">range_rel</span> <span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">txt</span><span class="p">)</span>
+<span class="n">SELECT</span> <span class="n">g</span><span class="p">,</span> <span class="n">md5</span><span class="p">(</span><span class="n">g</span><span class="p">::</span><span class="n">TEXT</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">generate_series</span><span class="p">(</span><span class="s1">&#39;2015-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2015-04-30&#39;</span><span class="p">,</span> <span class="s1">&#39;1 day&#39;</span><span class="p">::</span><span class="n">interval</span><span class="p">)</span> <span class="k">as</span> <span class="n">g</span><span class="p">;</span>
+<span class="nb">set</span> <span class="n">ora_func_style</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+<span class="n">SELECT</span> <span class="n">create_range_partitions</span><span class="p">(</span><span class="s1">&#39;RANGE_REL&#39;</span><span class="p">,</span> <span class="s1">&#39;DT&#39;</span><span class="p">,</span> <span class="s1">&#39;2015-01-01&#39;</span><span class="p">::</span><span class="n">DATE</span><span class="p">,</span> <span class="s1">&#39;1 month&#39;</span><span class="p">::</span><span class="n">INTERVAL</span><span class="p">);</span>
+ <span class="n">CREATE_RANGE_PARTITIONS</span>
+<span class="o">-------------------------</span>
+                       <span class="mi">4</span>
+<span class="p">(</span><span class="mi">1</span> <span class="n">row</span><span class="p">)</span>
+<span class="n">TEST</span><span class="o">=</span><span class="c1"># \d+ RANGE_REL;</span>
+                                                       <span class="n">Table</span> <span class="s2">&quot;PUBLIC.RANGE_REL&quot;</span>
+ <span class="n">Column</span> <span class="o">|</span>            <span class="n">Type</span>             <span class="o">|</span>                       <span class="n">Modifiers</span>                        <span class="o">|</span> <span class="n">Storage</span>  <span class="o">|</span> <span class="n">Stats</span> <span class="n">target</span> <span class="o">|</span> <span class="n">Description</span>
+
+<span class="o">--------+-----------------------------+--------------------------------------------------------+----------+--------------+------------</span>
+<span class="o">-</span>
+ <span class="n">ID</span>     <span class="o">|</span> <span class="n">INTEGER</span>                     <span class="o">|</span> <span class="ow">not</span> <span class="n">null</span> <span class="n">default</span> <span class="n">NEXTVAL</span><span class="p">(</span><span class="s1">&#39;RANGE_REL_ID_SEQ&#39;</span><span class="p">::</span><span class="n">REGCLASS</span><span class="p">)</span> <span class="o">|</span> <span class="n">plain</span>    <span class="o">|</span>              <span class="o">|</span>
+ <span class="n">DT</span>     <span class="o">|</span> <span class="n">TIMESTAMP</span> <span class="n">WITHOUT</span> <span class="n">TIME</span> <span class="n">ZONE</span> <span class="o">|</span>                                                        <span class="o">|</span> <span class="n">plain</span>    <span class="o">|</span>              <span class="o">|</span>
+ <span class="n">TXT</span>    <span class="o">|</span> <span class="n">TEXT</span>                        <span class="o">|</span>                                                        <span class="o">|</span> <span class="n">extended</span> <span class="o">|</span>              <span class="o">|</span>
+<span class="n">Indexes</span><span class="p">:</span>
+    <span class="s2">&quot;RANGE_REL_PKEY&quot;</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span> <span class="n">BTREE</span> <span class="p">(</span><span class="n">ID</span><span class="p">)</span>
+<span class="n">Child</span> <span class="n">tables</span><span class="p">:</span> <span class="n">RANGE_REL_1</span><span class="p">,</span>
+              <span class="n">RANGE_REL_2</span><span class="p">,</span>
+              <span class="n">RANGE_REL_3</span><span class="p">,</span>
+              <span class="n">RANGE_REL_4</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="kesv8r2-3">
+<h2><span class="section-number">1.7. </span>[KESV8R2/3] 客服端服务器编码原理说明<a class="headerlink" href="#kesv8r2-3" title="Permalink to this headline">¶</a></h2>
+<p>服务器存储数据：客户端检查输入的字串是否符合client_encoding，若符合则发给服务器，否则抛出错误--&gt;服务器接受到客户端发过来的字符串及client_encoding，字符串通过client_encoding转server_encoding，转换成服务器编码风格--&gt;以服务器编码风格存入字符串。</p>
+<p>客户端取数据数据：数据通过server_encoding转client_encoding，最后发给客户端。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>上面已经说到存是数据通过client_encoding转server_encoding，转换成服务器编码风格并写入系统字典，客户端取数据是通过server_encoding转client_encoding。然而数据库中存在数据库公有数据字典，这可能导致存取的服务器server_encoding编码不一致，从而数据出错。所以建议用户不要创建中文名用户、中文名数据库以及中文名的过程语言(如plsql)。数据库登录时server_encoding并未生效，所以登录时采用的是Unicode编码进行数据库名验证。</p>
+</div>
+</div>
+<div class="section" id="mysqlsql-mode">
+<h2><span class="section-number">1.8. </span>兼容MySQL参数sql_mode<a class="headerlink" href="#mysqlsql-mode" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3 , V8R6</p>
+<p>问题描述：KES数据库group by 操作与mysql 结果不同</p>
+<p>问题分析：</p>
+<blockquote>
+<div><p>MySQL 的group by : MySQL支持selectlist中非聚集列可以不出现在group by中。sql标准是必须出现在group by中， 如：select col1, col2 from tab group by col1; kingbase 为兼容mysql，设置了个参数ql_mode参数，目前只支持ONLY_FULL_GROUP_BY选项。如果sql_mode中不包含ONLY_FULL_GROUP_BY，group by语句可以不符合sql标准。 也就是与mysql结果相同。</p>
+<a class="reference internal image-reference" href="_images/FAQ5663.png"><img alt="_images/FAQ5663.png" src="_images/FAQ5663.png" style="width: 650px; height: 268px;" /></a>
+</div></blockquote>
+</div>
+<div class="section" id="mysql-date-format">
+<h2><span class="section-number">1.9. </span>MySQL date_format改写<a class="headerlink" href="#mysql-date-format" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3 , V8R6</p>
+<p>问题描述：KES 是否有类似MySQL的date_format日期格式函数</p>
+<p>问题解答：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Mysql：select date_format(CURRENT_TIMSTAMP,‘%Y-%m-%d %H:%i:%s’)</p></li>
+<li><p>KES：select to_char (CURRENT_TIMSTAMP,‘yyyy-mm-dd hh24:mi:ss’)</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id9">
+<h2><span class="section-number">1.10. </span>共有同义词和私有同义词有什么区别<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3 , V8R6</p>
+<p>问题描述：创建同义词，报错如下：ERROR:  missing or invalid synonym identifier,the current default schema is public</p>
+<p>问题解析：KES同义词分为两类：公有同义词，在public模式下；私有同义词，在其他模式下。当创建同义词时，如果是建在public模式下，则必须加public关键字，否则报错。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">=</span><span class="c1"># select current_user;</span>
+ <span class="n">current_user</span>
+<span class="o">--------------</span>
+ <span class="n">system</span>
+<span class="p">(</span><span class="mi">1</span> <span class="n">row</span><span class="p">)</span>
+
+<span class="n">test</span><span class="o">=</span><span class="c1"># show search_path;</span>
+   <span class="n">search_path</span>
+<span class="o">-----------------</span>
+ <span class="s2">&quot;$user&quot;</span><span class="p">,</span> <span class="n">public</span>
+<span class="p">(</span><span class="mi">1</span> <span class="n">row</span><span class="p">)</span>
+
+<span class="n">test</span><span class="o">=</span><span class="c1"># create synonym ps_t2 for t2;</span>
+<span class="n">ERROR</span><span class="p">:</span>  <span class="n">missing</span> <span class="ow">or</span> <span class="n">invalid</span> <span class="n">synonym</span> <span class="n">identifier</span><span class="p">,</span><span class="n">the</span> <span class="n">current</span> <span class="n">default</span> <span class="n">schema</span> <span class="ow">is</span> <span class="n">public</span>
+<span class="n">test</span><span class="o">=</span><span class="c1"># create public synonym ps_t2 for t2;</span>
+<span class="n">CREATE</span> <span class="n">SYNONYM</span>
+<span class="n">test</span><span class="o">=</span><span class="c1"># drop synonym ps_t2;</span>
+<span class="n">ERROR</span><span class="p">:</span>  <span class="n">synonym</span> <span class="s2">&quot;ps_t2&quot;</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">exist</span>
+<span class="n">test</span><span class="o">=</span><span class="c1"># drop public synonym ps_t2;</span>
+<span class="n">DROP</span> <span class="n">SYNONYM</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这里是参照oracle模式来的，oracle用户即模式，所以私有同义词在用户名模式下。</p>
+</div>
+</div>
+<div class="section" id="id10">
+<h2><span class="section-number">1.11. </span>同义词查找规则<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3 , V8R6</p>
+<p>问题描述：用户查找同义词的先后规则</p>
+<p>问题分析：</p>
+<blockquote>
+<div><p>KES实际根据Search_path的先后顺序查找用户模式，可以通过设置search_path，影响搜索的先后顺序。</p>
+<p>Oracle：—&gt;私有同义词—&gt;共有同义词</p>
+<p>Kes：—&gt;search_path</p>
+<p>这里为了和oracle查询一致，可以将search_path改成用户模式，PUBLIC(用户模式在前，PUBLIC在后，一般兼容oracle情况，也是采取的先用户模式再public模式)</p>
+</div></blockquote>
+</div>
+<div class="section" id="id11">
+<h2><span class="section-number">1.12. </span>如何查询版本的提交号<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3 , V8R6</p>
+<p>问题描述：RT</p>
+<p>问题解决：Select build_version();</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>build_version 函数实际是kingbase_version插件生成的</p>
+</div>
+</div>
+<div class="section" id="id12">
+<h2><span class="section-number">1.13. </span>遇到关键字无法使用作为表名或列名<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3 大小写敏感版本</p>
+<p>问题描述：RT</p>
+<p>问题解析：一般出现无法使用作为表名或列名的关键字，我们都采取将表或列名用双引号将其引用。使用双引号(标识符)时，表名和列名区分大小写，这意味着被标识符包起来的对象，写到数据库的原信息就是区分大小写的。</p>
+<p>例子如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>不使用标识符“”时候：
+TEST=# create table tb2(create int);
+ERROR:  syntax error at or near &quot;create&quot;
+LINE 1: create table tb2(create int);
+                         ^
+TEST=# create table tb3(col int);
+CREATE TABLE
+TEST=# \d+ tb3;
+                         Table &quot;PUBLIC.TB3&quot;
+ Column |  Type   | Modifiers | Storage | Stats target | Description
+--------+---------+-----------+---------+--------------+-------------
+ COL    | INTEGER |           | plain   |              |
+
+使用标识符时候：
+TEST=# create table &quot;tb4&quot;(&quot;col&quot; int);
+CREATE TABLE
+TEST=# \d+ tb4;
+Did not find any relation named &quot;tb4&quot;.
+TEST=# \d+ &quot;tb4&quot;;
+                         Table &quot;PUBLIC.tb4&quot;
+ Column |  Type   | Modifiers | Storage | Stats target | Description
+--------+---------+-----------+---------+--------------+-------------
+ col    | INTEGER |           | plain   |              |
+
+TEST=# create table tb5(&quot;create&quot; int);
+CREATE TABLE
+TEST=# \d+ tb5;
+                         Table &quot;PUBLIC.TB5&quot;
+ Column |  Type   | Modifiers | Storage | Stats target | Description
+--------+---------+-----------+---------+--------------+-------------
+ create | INTEGER |           | plain   |              |
+</pre></div>
+</div>
+</div>
+<div class="section" id="nextval">
+<h2><span class="section-number">1.14. </span>Nextval在同一条语句中的值<a class="headerlink" href="#nextval" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>问题描述：oracle序列nextval在同一条语句中是一样的值，KES却是增长的值</p>
+<p>问题解析：这个和ora_func_style参数有关，ora_func_style为true的时候兼容oracle序列风格，如下验证：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TEST</span><span class="o">=</span><span class="c1"># show ora_func_style ;</span>
+ <span class="n">ora_func_style</span>
+<span class="o">----------------</span>
+ <span class="n">on</span>
+<span class="p">(</span><span class="mi">1</span> <span class="n">row</span><span class="p">)</span>
+
+<span class="n">TEST</span><span class="o">=</span><span class="c1"># select serial.nextval, serial.nextval;</span>
+ <span class="n">NEXTVAL</span> <span class="o">|</span> <span class="n">NEXTVAL</span>
+<span class="o">---------+---------</span>
+     <span class="mi">116</span> <span class="o">|</span>     <span class="mi">116</span>
+<span class="p">(</span><span class="mi">1</span> <span class="n">row</span><span class="p">)</span>
+
+<span class="n">TEST</span><span class="o">=</span><span class="c1"># set ora_func_style = false;</span>
+<span class="n">SET</span>
+<span class="n">TEST</span><span class="o">=</span><span class="c1"># select serial.nextval, serial.nextval;</span>
+ <span class="n">NEXTVAL</span> <span class="o">|</span> <span class="n">NEXTVAL</span>
+<span class="o">---------+---------</span>
+     <span class="mi">118</span> <span class="o">|</span>     <span class="mi">119</span>
+<span class="p">(</span><span class="mi">1</span> <span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>对于R6版本，没有ora_func_style参数，如果database_mode=oracle，表示兼容oracle模式，在一条SQL内，nextval值也是相同的。</p>
+</div>
+</div>
+<div class="section" id="id13">
+<h2><span class="section-number">1.15. </span>能为模式指定表空间吗？<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3 , V8R6</p>
+<p>问题描述：RT</p>
+<p>问题解答：创建用户或schema时，都不支持指定表空间，一般只有数据库和表能够指定表空间。</p>
+</div>
+<div class="section" id="id14">
+<h2><span class="section-number">1.16. </span>丢失了数据库密码，如何恢复？<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3 , V8R6</p>
+<p>问题描述：RT</p>
+<p>问题解答：</p>
+<blockquote>
+<div><p>无法恢复密码，但是，你可以将其重置为其他密码。为此，你可以用如下方式重置密码</p>
+<p>1. 编辑sys_hba.conf以暂时允许信任授权(trust)</p>
+<p>2. 重新加载配置文件（重新加载sys_ctl）</p>
+<p>3. 连接并通过ALTER ROLE PASSWORD设置新密码</p>
+<p>4. 再次编辑sys_hba.conf并恢复之前的设置</p>
+<p>5. 再次重新加载配置文件</p>
+</div></blockquote>
+</div>
+<div class="section" id="cache">
+<h2><span class="section-number">1.17. </span>序列的cache<a class="headerlink" href="#cache" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3 , V8R6</p>
+<p>问题描述：为什么我的序列SERIAL列的编号存在间隙？为什么在事务异常终止时我的序列号没有被重用？为什么不同会话不同会话间nextval差距很大？</p>
+<p>问题解答：为了提高并发性，每个会话会按照序列的cache参数大小，在用户的私有内存空间缓存一定数量的序列值。在服务器关闭（stop fast）或会话退出时，会丢弃会话缓存的序列值，因此，序列值会出现跳跃。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果要保证序列的取值不出现跳跃，保证不同会话间的取值完全按时间顺序的，可以设置cache 0。但无论如何事务rollback，序列值是不能重用的。</p>
+</div>
+</div>
+<div class="section" id="oid">
+<h2><span class="section-number">1.18. </span>什么是OID？<a class="headerlink" href="#oid" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>问题描述：RT</p>
+<p>问题解析：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>如果使用WITHOIDS创建表，则每一行都包含一个OID伪列，该列将在INSERT期间自动填充。OID被顺序分配4字节整数。最初，它们在整个安装过程中都是唯一的。但是，OID计数器大约为40亿个，此后可能会重复OID。</p></li>
+<li><p>通过在OID列上创建唯一索引，可以防止单个表中的OID重复（但请注意，WITH OIDS子句本身不会创建此类索引）。系统检查索引以查看是否已经存在新生成的OID，如果存在，则生成新的OID。重复该操作，直至满足唯一约束。因此，如果表内的数据已经很多，整个过程是非常低效的。</p></li>
+<li><p>要对用户表中的行进行唯一编号，最好使用SERIAL而不是OID列，如果期望该表在其整个生命周期中拥有超过20亿个条目，则最好使用bigserial。</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="ctid">
+<h2><span class="section-number">1.19. </span>什么是CTID？<a class="headerlink" href="#ctid" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3 , V8R6</p>
+<p>问题描述：RT</p>
+<p>问题解析：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>CTID通过表中的块和偏移位置来标识特定的物理行。</p></li>
+<li><p>索引条目使用它们来指向物理行。</p></li>
+<li><p>行的CTID在更新时会更改，因此CTID不能用作长期行标识符。</p></li>
+<li><p>格式(blockid,itemid)：拿其中(0,1)来说；0表示块id；1表示在这块第一条记录。</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id15">
+<h2><span class="section-number">1.20. </span>数据库大小限制<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>问题描述：行，表和数据库的最大大小是多少？</p>
+<p>问题解答：</p>
+<blockquote>
+<div><p>以下这些是限制：</p>
+<ul class="simple">
+<li><p>数据库的最大大小？无限（存在32 TB数据库）</p></li>
+<li><p>表的最大尺寸？32 TB</p></li>
+<li><p>一行的最大大小？400 GB</p></li>
+<li><p>字段的最大大小？1 GB</p></li>
+<li><p>表中的最大行数？无限</p></li>
+<li><p>表中的最大列数？250-1600，取决于列类型</p></li>
+<li><p>一个表上的最大索引数？无限</p></li>
+</ul>
+<p>当然，这些实际上并不是无限的，而是限于可用的磁盘空间和内存/交换空间。当这些值变得异常大时，性能可能会受到影响。</p>
+<p>最大表大小为32 TB，不需要操作系统提供大文件支持。大表存储为多个1GB文件，因此文件系统大小限制并不重要。通过将默认块大小增加到32k，最大表大小，行大小和最大列数可以增加三倍。也可以使用表分区来增加最大表大小。</p>
+<p>一个限制是不能在长度超过2,000个字符的列上创建索引。最好通过长列的MD5哈希的函数索引来保证唯一性，并且全文索引允许在列中搜索单词。</p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果存储的表中的行大小超过2KB（每行中数据的总大小），则“表中的最大行数”可能限制为40亿或更少。</p>
+</div>
+</div>
+<div class="section" id="kes">
+<h2><span class="section-number">1.21. </span>KES数据页结构<a class="headerlink" href="#kes" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：所有</p>
+<p>问题描述：数据行存储需要哪些额外的空间？</p>
+<p>问题解析：</p>
+<blockquote>
+<div><p>例如，考虑一个100,000行的文件，每行有一个整数和文本描述。假设文本字符串的平均长度为二十个字节。文件大约为2.8MB。包含此数据的kingbase数据库文件的大小估计为5.2 MB</p>
+<p>每行52个字节：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>24字节：每行头（大约）</p></li>
+<li><p>24个字节：1个int字段和1个文本字段</p></li>
+<li><ul>
+<li><p>4个字节：页面上指向元组的指针</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p>kingbase中的数据页大小为8192字节（8KB），因此：每个数据库页面8192/52=158行（四舍五入）。注意，这里假设fillfactor是100%。</p>
+<p>大约需要 633个数据库页面（向上舍入）</p>
+<p>633个数据库页面*每页8192字节= 5,185,536字节（5.2 MB）</p>
+<p>索引不需要那么多的开销，但是确实包含要建立索引的数据，因此它们也可能很大。</p>
+<p>NULL存储为位图，因此它们使用的空间很小。</p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>大字段可能会透明压缩</p>
+</div>
+</div>
+<div class="section" id="copy">
+<h2><span class="section-number">1.22. </span>如何将数据从客户端通过copy命令导入数据库<a class="headerlink" href="#copy" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：所有</p>
+<p>问题描述：RT</p>
+<p>问题解答：通过copy导入数据，要求数据在数据库服务器上，如果数据在客户端机器上，需要用 \copy</p>
+</div>
+<div class="section" id="id16">
+<h2><span class="section-number">1.23. </span>Windows 如何配置免密登录<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：所有</p>
+<p>问题描述：RT</p>
+<p>问题解答：</p>
+<blockquote>
+<div><p>Linux通过配置 .kbpass，用户可以免密登录数据库。Windows下，对应文件是%APPDATA%kingbasekbpass.conf。文件内容格式：</p>
+<p>hostname:port:database:username:password</p>
+</div></blockquote>
+</div>
+<div class="section" id="id17">
+<h2><span class="section-number">1.24. </span>命令报参数错误问题<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：所有</p>
+<p>问题描述：命令正确，却报奇怪的错误</p>
+<p>问题描述：</p>
+<blockquote>
+<div><p>用户命令格式报错，但实际命令是正确的。如下图：</p>
+<a class="reference internal image-reference" href="_images/FAQ11099.png"><img alt="_images/FAQ11099.png" src="_images/FAQ11099.png" style="width: 554px; height: 34px;" /></a>
+</div></blockquote>
+<p>原因分析：命令内部包含非法字符。这种问题原因很难排查，需要使用时注意。</p>
+</div>
+<div class="section" id="to-date">
+<h2><span class="section-number">1.25. </span>To_date 函数问题<a class="headerlink" href="#to-date" title="Permalink to this headline">¶</a></h2>
+<p>问题描述：to_date 函数显示结果与oracle不一致</p>
+<p>验证版本：V8R6C2</p>
+<p>原因分析：</p>
+<blockquote>
+<div><p>系统除pg_catalog下有to_date函数外，组件kdb_oracle_datatype也会在sys用户下创建to_date函数，二者返回值是有区别的。默认调用的是sys用户下的。</p>
+<p>具体例子如下：</p>
+<a class="reference internal image-reference" href="_images/FAQ11300.png"><img alt="_images/FAQ11300.png" src="_images/FAQ11300.png" style="width: 393px; height: 336px;" /></a>
+</div></blockquote>
+</div>
+<div class="section" id="id18">
+<h2><span class="section-number">1.26. </span>视图源定义信息为啥和创建的语句不一样<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：所有版本</p>
+<p>问题解析：视图源定义信息是存在pg_description.description列中，这里有的和创建语句一致，有的不一致。这个和视图的状态有关。下面是获取视图定义的信息规则：</p>
+<ul class="simple">
+<li><p>有效视图：通过Sys_rewrite规则query查询树，反解析query查询获得视图的定义信息。</p></li>
+<li><p>无效视图：直接通过pg_description.description，得到定义信息</p></li>
+</ul>
+<p>获取视图定义：查询sys_get_viewdef（reloid），如下例子</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TEST</span><span class="o">=</span><span class="c1"># create force view vtest as select * from test;</span>
+<span class="n">WARNING</span><span class="p">:</span>  <span class="n">View</span> <span class="n">created</span> <span class="k">with</span> <span class="n">compilation</span> <span class="n">errors</span>
+<span class="n">CREATE</span> <span class="n">VIEW</span>
+<span class="n">TEST</span> <span class="o">=</span><span class="c1"># select sys_get_viewdef(&#39;VTEST&#39;::regclass);</span>
+   <span class="n">PG_GET_VIEWDEF</span>
+<span class="o">---------------------</span>
+ <span class="n">select</span> <span class="o">*</span> <span class="kn">from</span> <span class="nn">test</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id19">
+<h2><span class="section-number">1.27. </span>字符串类型长度怎么获取<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3 , V8R6</p>
+<p>问题分析：对于字符类型数据，pg_attribute.attlen值为 -1。字符串类型长度是 abs(atttypmod) – 4.</p>
+</div>
+<div class="section" id="sys-guid">
+<h2><span class="section-number">1.28. </span>如何改变sys_guid() 返回值类型<a class="headerlink" href="#sys-guid" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>问题描述：sys_guid函数默认返回的是16进制的串的ascii编码，通过修改参数guid_default_return_type=name，可以返回16进制字符串，但修改参数时，会发现参数实际已修改，但没效果。</p>
+<p>问题分析：</p>
+<blockquote>
+<div><p>以上问题是由于修改过程没有运行alter_sys_guid()函数导致的。修改过程如下：</p>
+<ul class="simple">
+<li><p>修改参数guid_default_return_type；</p></li>
+<li><p>重启数据库；</p></li>
+<li><p>执行 select alter_sys_guid()。这个实际是重建sys_guid()函数，根据参数guid_default_return_type决定是调用sys_guid_bytea，还是调用sys_guid_name。</p></li>
+</ul>
+<p>Alter_sys_guid 函数的内容：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>begin
+  select setting into return_type from sys_catalog.sys_settings where name = &#39;guid_default_return_type&#39;;
+  if lower(return_type) = &#39;bytea&#39; then
+    stmt = &#39;DROP FUNCTION IF EXISTS sys_catalog.sys_guid();
+     CREATE OR REPLACE INTERNAL FUNCTION sys_catalog.sys_guid() RETURNS BYTEA AS
+$$SELECT sys_catalog.sys_guid_bytea()$$ LANGUAGE sql;&#39;;
+  else
+    stmt = &#39;DROP FUNCTION IF EXISTS sys_catalog.sys_guid();
+     CREATE OR REPLACE INTERNAL FUNCTION sys_catalog.sys_guid() RETURNS NAME AS
+$$SELECT sys_catalog.sys_guid_name()$$ LANGUAGE sql;&#39;;
+  end if;
+end;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>对于R6 版本，没有alter_sys_guid，需要手动修改创建脚本。</p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="openssl">
+<h2><span class="section-number">1.29. </span>OPENSSL问题<a class="headerlink" href="#openssl" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：所有版本</p>
+<p>问题描述：</p>
+<p>用户使用sys_rman可能会遇到如下错误：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">could</span> <span class="ow">not</span> <span class="n">load</span> <span class="n">the</span> <span class="n">shared</span> <span class="n">library</span><span class="p">:</span><span class="n">crypto</span><span class="o">/</span><span class="n">dso</span><span class="o">/</span><span class="n">dso_dlfcn</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">113</span><span class="p">:</span><span class="n">filename</span><span class="p">(</span><span class="n">libssl_conf</span><span class="o">.</span><span class="n">so</span><span class="p">):</span>
+<span class="n">libssl_conf</span><span class="o">.</span><span class="n">so</span><span class="p">:</span> <span class="n">cannot</span> <span class="nb">open</span> <span class="n">shared</span> <span class="nb">object</span> <span class="n">file</span><span class="p">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span>
+</pre></div>
+</div>
+<p>问题解决：</p>
+<blockquote>
+<div><p>在UOS/Debain的系统中，修改配置文件/etc/profile 增加一行：export OPENSSL_CONF=/etc/ssl/</p>
+<p>如果还未能解决问题，可以修改archive_command，在命令行前加“export OPENSSL_CONF=/etc/ssl/”</p>
+</div></blockquote>
+</div>
+<div class="section" id="pg-relation-size">
+<h2><span class="section-number">1.30. </span>Pg_relation_size 问题<a class="headerlink" href="#pg-relation-size" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3 , V8R6</p>
+<p>问题描述：pg_relation_size 是否包含clob等大字段大小</p>
+<p>问题解答：不包含行外存储的数据段大小。pg_relation_size是根据 schema.relname取得表的relfilenode，从而确认表大小。不包括reltoastrelid。</p>
+</div>
+<div class="section" id="id20">
+<h2><span class="section-number">1.31. </span>全角字符支持<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R6</p>
+<p>问题描述：用户应用开发不规范，SQL 中间掺杂全角字符，比如“，”。</p>
+<p>问题解析：</p>
+<blockquote>
+<div><p>V8R6对于中文符号进行部分兼容，其中包括全角逗号、空格等。如：</p>
+<a class="reference internal image-reference" href="_images/FAQ13964.png"><img alt="_images/FAQ13964.png" src="_images/FAQ13964.png" style="width: 243px; height: 56px;" /></a>
+</div></blockquote>
+</div>
+<div class="section" id="id21">
+<h2><span class="section-number">1.32. </span>时间函数问题<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3 , V8R6</p>
+<p>问题描述：为什么有的时间函数在同一事务内返回的都是同一值？</p>
+<p>问题解析：</p>
+<blockquote>
+<div><p>KES的认为返回事务开始时间点的时间有利于保证同一事务的多个修改保持同样的时间戳。这点与oracle机制不同，oracle默认返回命令执行时间点的时间戳。实际上KES同时提供了两类函数：</p>
+<ul class="simple">
+<li><p>以下函数返回事务开始的时间戳：</p></li>
+</ul>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">transaction_timestamp</span><span class="p">()</span>
+<span class="n">now</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>以下返回语句执行时的时间戳</p></li>
+</ul>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">statement_timestamp</span><span class="p">()</span>
+<span class="n">clock_timestamp</span><span class="p">()</span>
+<span class="n">timeofday</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="ddl">
+<h2><span class="section-number">1.33. </span>如何取得对象的DDL信息<a class="headerlink" href="#ddl" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R6</p>
+<p>问题描述：RT</p>
+<p>问题解答：</p>
+<p>V8R6提供了类似oracle dbms_metadata的包，用于获取对象的定义信息。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">=</span><span class="c1"># select dbms_metadata.GET_DDL(&#39;table&#39;,&#39;t1&#39;);</span>
+         <span class="n">get_ddl</span>
+<span class="o">--------------------------</span>
+ <span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">PUBLIC</span><span class="o">.</span><span class="n">T1</span><span class="p">(</span> <span class="o">+</span>
+  <span class="n">ID</span> <span class="n">INTEGER</span>             <span class="o">+</span>
+ <span class="p">)</span>                       <span class="o">+</span>
+
+<span class="n">test</span><span class="o">=</span><span class="c1"># select dbms_metadata.get_index_ddl(&#39;ind_t1&#39;,&#39;public&#39;);</span>
+                   <span class="n">get_index_ddl</span>
+<span class="o">---------------------------------------------------</span>
+ <span class="n">CREATE</span> <span class="n">INDEX</span> <span class="n">ind_t1</span> <span class="n">ON</span> <span class="n">public</span><span class="o">.</span><span class="n">t1</span> <span class="n">USING</span> <span class="n">btree</span> <span class="p">(</span><span class="nb">id</span><span class="p">)</span><span class="o">+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="update">
+<h2><span class="section-number">1.34. </span>全表update非常慢<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R6</p>
+<p>问题描述：全表关联update时，效率非常低</p>
+<p>问题解决：请看以下两种update方法。方法一采用loop方式，效率非常低。而方法二采用hash方式进行连接，效率高</p>
+<a class="reference internal image-reference" href="_images/FAQ14823.png"><img alt="_images/FAQ14823.png" src="_images/FAQ14823.png" style="width: 650px; height: 308px;" /></a>
+</div>
+<div class="section" id="failed-to-find-conversion-function-from-unknown-to-text">
+<h2><span class="section-number">1.35. </span>Failed to find conversion function from UNKNOWN to TEXT<a class="headerlink" href="#failed-to-find-conversion-function-from-unknown-to-text" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3B0170 , B0180</p>
+<p>问题例子：</p>
+<a class="reference internal image-reference" href="_images/FAQ14910.png"><img alt="_images/FAQ14910.png" src="_images/FAQ14910.png" style="width: 561px; height: 180px;" /></a>
+<p>问题解决：升级到 190之后或160之前的版本。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="plsql.html" class="btn btn-neutral float-right" title="2. PLSQL类" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="legalnotice.html" class="btn btn-neutral float-left" title="版权声明" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 1999-2021, 北京人大金仓信息技术股份有限公司
+
+    </p>
+  </div>
+    
+    
+     使用 <a href="http://sphinx-doc.org/">Sphinx</a> 创建 。
+     最后更新于 Dec 07, 2021。 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

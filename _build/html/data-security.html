@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>9. 数据安全 &mdash; KingbaseES Frequently Asked Questions   documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/js/custom.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="10. TPCC测试类" href="TPCC-test.html" />
+    <link rel="prev" title="8. 工具类" href="tools.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> KingbaseES Frequently Asked Questions
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                 
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">前言</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="legalnotice.html">版权声明</a></li>
+</ul>
+<p class="caption"><span class="caption-text">常见问题</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="sql.html">1. SQL类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id1">1.1. 空值问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#null">1.1.1. ‘’ 与 null 兼容性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#is-null">1.1.2. 判断值是否为空，要用 is null</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#pg">1.1.3. PG模式下，‘’ 值问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#ora-input-emptystr-isnull">1.1.4. Ora_input_emptystr_isnull对于字符类型空值的影响</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#id2">1.1.5. Ora_input_emptystr_isnull对于数值类型空值的影响</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#core">1.2. Core分析</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#id3">1.2.1. 多线程core分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#id4">1.2.2. 如何生成core文件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id5">1.3. 关键字问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sql.html#id6">1.3.1. 如何确认是否系统关键字</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id7">1.4. 乱码或无效字符编码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#windows">1.5. Windows版本安装未注册服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id8">1.6. 如何创建一个间隔分区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#kesv8r2-3">1.7. [KESV8R2/3] 客服端服务器编码原理说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#mysqlsql-mode">1.8. 兼容MySQL参数sql_mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#mysql-date-format">1.9. MySQL date_format改写</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id9">1.10. 共有同义词和私有同义词有什么区别</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id10">1.11. 同义词查找规则</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id11">1.12. 如何查询版本的提交号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id12">1.13. 遇到关键字无法使用作为表名或列名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#nextval">1.14. Nextval在同一条语句中的值</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id13">1.15. 能为模式指定表空间吗？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id14">1.16. 丢失了数据库密码，如何恢复？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#cache">1.17. 序列的cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#oid">1.18. 什么是OID？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#ctid">1.19. 什么是CTID？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id15">1.20. 数据库大小限制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#kes">1.21. KES数据页结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#copy">1.22. 如何将数据从客户端通过copy命令导入数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id16">1.23. Windows 如何配置免密登录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id17">1.24. 命令报参数错误问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#to-date">1.25. To_date 函数问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id18">1.26. 视图源定义信息为啥和创建的语句不一样</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id19">1.27. 字符串类型长度怎么获取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#sys-guid">1.28. 如何改变sys_guid() 返回值类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#openssl">1.29. OPENSSL问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#pg-relation-size">1.30. Pg_relation_size 问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id20">1.31. 全角字符支持</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#id21">1.32. 时间函数问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#ddl">1.33. 如何取得对象的DDL信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#update">1.34. 全表update非常慢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#failed-to-find-conversion-function-from-unknown-to-text">1.35. Failed to find conversion function from UNKNOWN to TEXT</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plsql.html">2. PLSQL类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#kes-pl-sql-block-not-end-correctly">2.1. KES创建过程，报错：PL/SQL block not end correctly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#out">2.2. 如何调用含out参数的存储过程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#savepoint">2.3. Savepoint 使用问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#create-operator-bool">2.4. Create operator（bool与整型比较）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#for">2.5. For循环变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plsql.html#id1">2.6. 函数变量不能超过512</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameter.html">3. 参数相关</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#kingbase-conf-kingbase-auto-conf">3.1. Kingbase.conf 与 kingbase.auto.conf 参数文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#id2">3.2. 不同参数如何生效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#error-user-connect-times-and-max-error-user-connect-times">3.3. error_user_connect_times and max_error_user_connect_times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#exclude-reserved-words">3.4. Exclude_reserved_words 排除关键字</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#max-locks-per-transaction">3.5. max_locks_per_transaction设置过大引发数据库启动问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#max-identifier-length">3.6. max_identifier_length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter.html#id3">3.7. 数据库启动失败，报“内存段超过可用内存”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">4. License 相关</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id1">4.1. 如何查询license有效时间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id2">4.2. 如何查询license完整信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id3">4.3. 如何查询license单项信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id4">4.4. 替换license步骤</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id5">4.5. 替换license是否要重启数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id6">4.6. 如何判断license有效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#id7">4.7. License与网卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#bondlicense">4.8. Bond网卡切换license支持问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extended-plug-in.html">5. 扩展组件</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#id2">5.1. 如何查看系统是否支持某组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#oracle-fdw">5.2. oracle_fdw支持平台</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#create-extension-oracle-fdw-so">5.3. create extension oracle_fdw报.so找不到加载失败</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#id3">5.4. oracle_fdw支持功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#sys-pathman">5.5. Sys_pathman</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#separate-power">5.6. Separate_power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-plug-in.html#sysaudit">5.7. Sysaudit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended-plug-in.html#id4">5.7.1. 如何删除语句审计日志？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gis.html">6. 空间组件</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gis.html#create-extension-postgris-glibc-2-18-not-defined-in-file-libc-so-6">6.1. Create extension postgris 报错“GLIBC_2.18 not defined in file libc.so.6”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gis.html#acgis">6.2. acgis版本备份还原</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gis.html#r6">6.3. R6 是否支持超图</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="system-management.html">7. 系统管理类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="system-management.html#kesv8r2-r3">7.1. [KESV8R2/R3]表在指定表空间，为何显示为默认表空间？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-management.html#sys-class-reltablespace-0">7.2. 为什么sys_class里显示的很多表的 RELTABLESPACE值为 0？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-management.html#kes-sys-catalog">7.3. KES有什么办法，默认不读取sys_catalog下的系统视图？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-management.html#ip">7.4. 网线拔插后，IP丢失问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">8. 工具类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#s-pgsql-5432">8.1. 客户端连接找 .s.PGSQL.5432</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#er">8.2. 客户端管理工具无法加载ER图问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#client-encoding">8.3. 如何修改管理工具client_encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#id2">8.4. 迁移工具对于同名对象处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#invalid-byte-sequence-for-encoding-utf8-0x00">8.5. 数据迁移报“invalid byte sequence for encoding &quot;UTF8&quot;: 0x00 &quot;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#id3">8.6. 开始菜单没有数据库快捷工具图标</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#gui">8.7. 缺少操作系统GUI组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#r3scram-sha-256">8.8. R3客户端无法使用scram-sha-256认证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#undefined-symbol-pqgssencinuse">8.9. undefined symbol: PqgssEncInUse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#bulkload">8.10. Bulkload并行加载报错</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. 数据安全</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sys-rmancurrent-time-may-be-rewound">9.1. Sys_rman备份报“current time may be rewound”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">9.2. 如何导出一致时间点的数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">9.3. 索引问题导致数据访问问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TPCC-test.html">10. TPCC测试类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TPCC-test.html#tpccautovacuum">10.1. tpcc测试中是否需要开启autovacuum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TPCC-test.html#index-cursor-id">10.2. index_cursor_id参数的数值是固定的么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TPCC-test.html#tpccunixdomain">10.3. 在tpcc测试中unixdomain作用是？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TPCC-test.html#id1">10.4. 集群环境下测试tpcc连接参数怎样配置？</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="interface.html">11. 接口</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="interface/jdbc.html">11.1. JDBC接口</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id1">11.1.1. JDBC打开日志方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#vip-jdbc">11.1.2. 没有VIP情况下，JDBC连接如何配置？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#v8r6-jdbcvip">11.1.3. V8R6 JDBC能否使用VIP？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#lobupdate">11.1.4. LOB对象update机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#kbblob-oracle">11.1.5. KBBlob 迁移至Oracle</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">12. Docker环境相关问题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#exit-code-137">12.1. 【exit code 137】错误信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-license">12.2. Docker 环境下license机制</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="high-availability.html">13. 读写分离</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#id2">13.1. 读写分离分发机制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#id3">13.2. 如何测试一下现场的备机失败，转发主机的场景？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#id4">13.3. 失败重发机制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#ssh">13.4. ssh 引发的相关问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#id5">13.5. 读写分离备机备份报错</a></li>
+<li class="toctree-l2"><a class="reference internal" href="high-availability.html#hash">13.6. 读写分离集群Hash索引老是出问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cluster_faq.html">14. 高可用集群</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#libssl">14.1. libssl 问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#if-up-cmd-faild">14.2. if_up_cmd faild</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#arping">14.3. arping问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#arping-path">14.4. arping_path版本不正确</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#eshamodel-sh">14.5. esHAmodel.sh脚本错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#cluster">14.6. 集群名称不能使用cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#id2">14.7. 网络问题导致备机无法加入集群</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbasecluster">14.8. kingbasecluster服务启动失败</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#sys-md5">14.9. 集群sys_md5生成错误密码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#node">14.10. 两节点读写分离集群，集群无法创建主备，两个node都是主</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#max-connections">14.11. 集群无法修改max_connections参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#id3">14.12. 软连接配置错误，导致集群启动报缺少磁盘空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#rootssh-auth-fail">14.13. 未配置root用户ssh互信，部署集群时，添加节点“auth fail”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#show-pool-nodes">14.14. 防火墙导致集群show pool_nodes信息错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#v8r3auth-fail">14.15.  V8R3集群部署工具“auth fail”错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbase-monitor-shthere-are-no-1-standbys-in-sys-stat-replication">14.16. 集群通过kingbase_monitor.sh启动后“There are no 1 standbys in sys_stat_replication......&quot;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kes-v8r2kingbasecluster9999">14.17. KES V8R2集群kingbasecluster服务9999端口无法连接</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#r3-sys-md5">14.18. R3集群部署工具部署时，出现sys_md5的错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#r3bmjeshamodel-sh">14.19. R3集群BMJ启动esHAmodel.sh失败问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#bmj-r3es-clientes-server">14.20. BMJ R3集群切换后es_client无法和es_server通讯问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbasees-r3standby">14.21. kingbaseES R3集群启动后“无standby”问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbasees-r3kingbasecluster">14.22. kingbaseES R3集群kingbasecluster无法正确识别备库状态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbasees-r3-db-vip-cluster-vip">14.23. kingbaseES R3 集群无法加载db VIP 和cluster VIP案例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#down">14.24. 网关无法连通，导致集群down，手工启动数据库服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbaseclusterkingbase-monitor-sh-kingbasecluster">14.25. 备库kingbasecluster服务通过kingbase_monitor.sh启动失败，手工启动kingbasecluster服务解决</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kes-v8r3kingbase-monitor-sh-pam-nologin-8">14.26. KES V8R3集群通过kingbase_monitor.sh启动失败，提示“pam_nologin(8)&quot;错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#conflict-with-recovery">14.27. conflict with recovery问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#sys-dump">14.28. sys_dump备份问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#sys-restore">14.29. sys_restore 恢复数据错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_faq.html#kingbasees-r6open-files">14.30. kingbaseES R6集群部署“open files”问题</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KingbaseES Frequently Asked Questions</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">9. </span>数据安全</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">9. </span>数据安全<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="sys-rmancurrent-time-may-be-rewound">
+<h2><span class="section-number">9.1. </span>Sys_rman备份报“current time may be rewound”<a class="headerlink" href="#sys-rmancurrent-time-may-be-rewound" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3</p>
+<p>原因分析：数据库初始化后，系统往回修改了时间（从2029年改回2020年），备份时由于存在比当前时间之后的数据库对象，导致备份失败。</p>
+<p>处理：使用sys_dump 导出、导入后，sys_rman 备份正常。</p>
+</div>
+<div class="section" id="id2">
+<h2><span class="section-number">9.2. </span>如何导出一致时间点的数据<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R3 ， V8R6</p>
+<p>问题描述：默认sys_dump 导出的数据是表级的一致性，也就是对表发出copy命令时间点已提交的数据，但由于不同表copy时间点不同，因此，sys_dump导出的数据不是完全一致时间点。如何导出一致时间点数据？</p>
+<p>解决方法：</p>
+<blockquote>
+<div><p>Session A: sys_export_snapshot实际返回的是当前事务ID，实际可以不需要isolation level repeatable read。</p>
+<a class="reference internal image-reference" href="_images/FAQ31140.png"><img alt="_images/FAQ31140.png" src="_images/FAQ31140.png" style="width: 554px; height: 125px;" /></a>
+<p>Session B: sys_dump --snapshot=00000806-1</p>
+<p>Session A: 结束事务</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sesssion B 导出的是Session A 运行sys_export_snapshot时间点已提交的数据，即使在导出过程中其他会话对数据库进行了修改并提交。</p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">9.3. </span>索引问题导致数据访问问题<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>版本：V8R3</p>
+<p>问题原因：系统在进行压力测试，同时系统主备切换。主备间采取异步方式</p>
+<p>问题现象：</p>
+<blockquote>
+<div><p>可以看到，根据条件返回的记录数据与where条件不匹配。这3个条件是主键。</p>
+<a class="reference internal image-reference" href="_images/FAQ31384.png"><img alt="_images/FAQ31384.png" src="_images/FAQ31384.png" style="width: 554px; height: 299px;" /></a>
+</div></blockquote>
+<p>解决方案：rebuild index</p>
+<p>原因分析：</p>
+<blockquote>
+<div><p>1. 这条SQL采取的是索引访问；</p>
+<p>2. 根据索引取得两个ctid，再根据ctid取得数据；</p>
+<p>3. 通过访问表记录的xmax ，确定记录是有效的（未被删除）；</p>
+<p>4. 问题1：为什么索引entry的值（4,3,2521）与table tuple（7,5,998）值不一致？索引通过ctid与table tuple关联，当索引异常时，就可能出现该问题。</p>
+<p>5. 问题2：既然是主键，索引entry为什么会出现两个entry？索引是没有有效性判断的，需要访问表进行判断，也就是说就算索引存在两个相同entry，理论上通过tuple有效判断后最多只能留1条。</p>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="TPCC-test.html" class="btn btn-neutral float-right" title="10. TPCC测试类" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tools.html" class="btn btn-neutral float-left" title="8. 工具类" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 1999-2021, 北京人大金仓信息技术股份有限公司
+
+    </p>
+  </div>
+    
+    
+     使用 <a href="http://sphinx-doc.org/">Sphinx</a> 创建 。
+     最后更新于 Dec 07, 2021。 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
