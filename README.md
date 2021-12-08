@@ -1,4 +1,4 @@
-# KingbaseES
+# KingbaseES Frequently Asked Questions
 
 该文档库中所有文档都基于 sphinx-doc 构建，支持编译为HTML、PDF、WORD等sphinx-doc支持的文档类型。
 
@@ -26,7 +26,8 @@ sublime.rst: Sublime Text快速入门手册
 ### 编辑现有页面
 
 要编辑现有页面，找到对应.rst源文件，在您喜欢的文本编辑器中将其打开：
-  - Sublime Text。
+
+  - Sublime Text。
      添加插件 
      1. OmniMarkupPreviewer—用于解析渲染rst等多种标记语法，安装之后，按快捷键Ctrl+Alt+o预览； 
      2. reStructuredText—用于语法着色；
@@ -42,9 +43,9 @@ reStructuredText语法规则详见 style.txt和《产品手册编制规范》
 ### 添加新页面
 
 要添加新页面，请在要向其中添加文件的部分中创建一个具有有意义名称（并且不与现有.rst文件名称重复）的.rst文件。
-例如development/ref/ref-sql/sql-xxx.rst。
+例如Kingbase_FAQ/interface/odbc.rst。
 像编写任何其他文件一样编写其内容，并确保在文件的开头定义Sphinx的引用名称（检查其他文件的语法），该文件的名称基于前缀“ doc _”（例如.. _sql-xxx:）。
-然后，将页面添加到相关的“ toctree”（目录，例如development/ref/ref-sql/index.rst）。
+然后，将页面添加到相关的“ toctree”（目录，例如Kingbase_FAQ/index.rst）。
 
 
 
@@ -85,9 +86,6 @@ reStructuredText语法规则详见 style.txt和《产品手册编制规范》
     make htmlhelp	
 	run HTML Help Workshop with the ".hhp project file in $(BUILDDIR)/htmlhelp."
 
-### EPUB 构建方法 
-
-     make epub
 	
 
 
