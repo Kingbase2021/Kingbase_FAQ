@@ -12,7 +12,7 @@ extensions = [
 ]
 
 # kirlent_sphinx扩展
-extensions = ["kirlent_sphinx"]
+#extensions = ["kirlent_sphinx"]
 
 
 # -- 通用配置 ------------------------------------------------
