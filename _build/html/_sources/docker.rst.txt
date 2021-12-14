@@ -7,7 +7,7 @@ Docker环境相关问题
 
 Docker环境中，在sys_dump 或其他操作时，如果报错“exit colde 137”，通常表示内存问题。
 
-.. image:: images/FAQ34211.png
+.. figure:: images/FAQ34211.png
    :width: 554px
    :height: 92px
     

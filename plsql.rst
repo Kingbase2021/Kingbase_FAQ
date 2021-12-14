@@ -85,7 +85,7 @@ Create operator（bool与整型比较）
 
    对于整数类型数据与bool类型进行比较时，要么转换报错，要么结果错误。具体问题如下例：
 
-   .. image:: images/FAQ15841.png
+   .. figure:: images/FAQ15841.png
       :width: 368px
       :height: 232px
  

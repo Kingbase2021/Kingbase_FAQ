@@ -38,7 +38,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="12. Docker环境相关问题" href="../docker.html" />
+    <link rel="next" title="11.2. Spring-JDBC 常见问题" href="spring-jdbc.html" />
     <link rel="prev" title="11. 接口" href="../interface.html" /> 
 </head>
 
@@ -235,6 +235,185 @@
 <li class="toctree-l3"><a class="reference internal" href="#v8r6-jdbcvip">11.1.3. V8R6 JDBC能否使用VIP？</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#lobupdate">11.1.4. LOB对象update机制</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#kbblob-oracle">11.1.5. KBBlob 迁移至Oracle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jdbcjarjdk-oscpu">11.1.6. JDBC的jar包需要区分JDK版本，需要区分OS和CPU平台吗？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jdbcurl">11.1.7. JDBC的连接参数只能通过URL串来填写吗？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">11.1.8. 如何使用JDBC配置文件方式？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">11.1.9. JDBC读写分离怎么打开关闭?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">11.1.10. JDBC 读写分离都需要配置哪些参数？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">11.1.11. JDBC读写分离一主两备的URL和配置文件的样例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">11.1.12. JDBC连接池功能，是否开启，开启后的功能及性能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">11.1.13. JDBC读写分离配置参数依赖关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">11.1.14. JDBC读写分离在哪些情况下重发也不会成功</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">11.1.15. JDBC读写分离分发策略</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">11.1.16. JDBC读写分离相关参数默认值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sockettimeout0-jdbc">11.1.17. 集群状态正常，sockettimeout设置大于0时，为什么执行时间超长的事物会失败并导致jdbc重建连接？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rewind">11.1.18. 主备切换后，备机rewind，或者备机故障后，备机恢复时为什么 备机的连接数是持续上升，而不是一次性全部建好？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#web-jdbc">11.1.19. 主机切机后，应用第一次登陆WEB慢，JDBC等待时间分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">11.1.20. JDBC打开日志方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jdbc-utf8">11.1.21. JDBC 报错：无效的 &quot;UTF8&quot; 编码字节顺序</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jvmjdbc">11.1.22. 系统JVM和应用和JDBC和数据库编码之间的关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#v7-v8-jdbc">11.1.23. V7 V8 JDBC 混用问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">11.1.24. JDBC读写分离模式混淆找不到表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">11.1.25. JDBC读写分离日志分析办法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jdbcssl">11.1.26. JDBC使用SSL加密</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">11.1.27. JDBC常见异常</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jdbcblob">11.1.28. JDBC读取BLOB乱码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">11.1.29. 读写分离分发现象分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#com-kingbase8-util-ksqlexception-error-type-q-does-not-exist-r6">11.1.30. com.kingbase8.util.KSQLException: ERROR: type &quot;q&quot; does not exist（R6）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fetchsize">11.1.31. fetchsize功能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#r3r6-jar">11.1.32. 同时使用R3和R6，jar包冲突的解决方案</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jar">11.1.33. 如何查看jar包的版本号？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spring-jdbc.html">11.2. Spring-JDBC 常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spring-jdbc.html#lobhandler">11.2.1. 大字段的设置--lobHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spring-jdbc.html#org-springframework-data-jdbc-repository-config-dialectresolver-nodialectexception-cannot-determine-a-dialect-for-org-springframework-jdbc-core-jdbctemplate-7c90b7b7-please-provide-a-dialect">11.2.2. org.springframework.data.jdbc.repository.config.DialectResolver$NoDialectException: Cannot determine a dialect for org.springframework.jdbc.core.JdbcTemplate&#64;7c90b7b7. Please provide a Dialect.</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hibernate.html">11.3. Hibernate使用常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hibernate.html#id1">11.3.1. Hibernate使用需要配置方言包</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hibernate.html#v8-hibernatelong">11.3.2. V8 Hibernate非法long值问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hibernate.html#hibernate-1">11.3.3. Hibernate 无法确定参数类型$1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hibernate.html#hibernate-text-bytea">11.3.4. Hibernate 错误: 字段的类型为 TEXT, 但表达式的类型为 BYTEA你需要重写或转换表达式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hibernate.html#hibernatesql">11.3.5. Hibernate控制输出真实SQL日志</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hibernate.html#springboot-jpa">11.3.6. Springboot JPA配置方言包问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hibernate.html#hibernate-spatial">11.3.7. hibernate-spatial方言包配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hibernate.html#hibernatenumericchar-1-javaboolean">11.3.8. hibernate使用numeric或char(1)映射java的boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hibernate.html#the-column-name-sequence-catalog-was-not-found-in-this-resultset">11.3.9. The column name sequence_catalog was not found in this ResultSet.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hibernate.html#hilo">11.3.10. 主键自增策略hilo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hibernate.html#method-com-kingbase8-jdbc-kbpreparedstatement-setcharacterstream-int-reader-long-is-not-yet-implemented">11.3.11. Method com.kingbase8.jdbc.KbPreparedStatement.setCharacterStream(int, Reader, long) is not yet implemented.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hibernate.html#hibernatehql">11.3.12. Hibernate的hql不支持部分数据库函数的使用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hibernate.html#hibernateupdate">11.3.13. Hibernate设置为update已经建好表，仍旧去建表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hibernate.html#java-lang-nosuchmethoderror-javax-persistence-table-indexes-ljavax-persistence-index">11.3.14. java.lang.NoSuchMethodError: javax.persistence.Table.indexes()[Ljavax/persistence/Index;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hibernate.html#user">11.3.15. 表取名user怎么规避？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hibernate.html#id2">11.3.16. 其它模式下有同名表，导致当前模式没有表但未去建表</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mybatis.html">11.4. Mybatis 常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mybatis.html#mybatissql">11.4.1. Mybatis设置SQL超时时间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mybatis.html#mybatislong">11.4.2. Mybatis非法long值问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mybatis.html#mybatis-text-bytea">11.4.3. Mybatis 报错：字段的类型为 TEXT, 但表达式的类型为 BYTEA你需要重写或转换表达式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mybatis.html#mybatis-jdbc">11.4.4. Mybatis 控制JDBC底层不走预编译</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mybatis.html#mybatis-bind">11.4.5. Mybatis 控制Bind参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mybatis.html#mybatis-pagehelper">11.4.6. Mybatis 使用pagehelper插件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mybatis.html#id1">11.4.7. Mybatis 使用自动返回主键功能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mybatis.html#mybatisdatabaseid">11.4.8. Mybatis配置databaseId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mybatis.html#id2">11.4.9. Mybatis使用匿名块插入语句报错</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mybatis.html#mybatisscriptrunnerplsqlsql">11.4.10. Mybatis使用ScriptRunner执行含plsql的sql脚本报错</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mybatis.html#id3">11.4.11. Mybatis使用游标的注册方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mybatis.html#mybatisjson">11.4.12. Mybatis写json类型示例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mybatis-plus.html">11.5. Mybatis-plus常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mybatis-plus.html#id1">11.5.1. Mybatis-plus使用</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="activiti.html">11.6. Activiti使用常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="activiti.html#id1">11.6.1. Activiti使用</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html">11.7. Maven 仓库使用常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="maven.html#mavenkingbaseesjdbc">11.7.1. Maven本地仓库使用KingbaseES的JDBC驱动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maven.html#mavenkingbaseesdialect">11.7.2. Maven本地仓库使用KingbaseES的dialect方言包</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="druid.html">11.8. Druid 数据库连接池配置问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="druid.html#id1">11.8.1. Druid 配置国产金仓数据库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="druid.html#id2">11.8.2. Druid 配置例子</a></li>
+<li class="toctree-l3"><a class="reference internal" href="druid.html#id3">11.8.3. Druid的连接强制回收</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="c3p0.html">11.9. C3P0连接池配置问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="c3p0.html#c3p0v8">11.9.1. 常用C3p0配置金仓V8数据库</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DBCP.html">11.10. DBCP连接池配置问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DBCP.html#dbcpv8">11.10.1. 常用dbcp配置金仓V8数据库</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="apache-james.html">11.11. Apache James适配</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdo.html">11.12. Pdo接口常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdo.html#id1">11.12.1. 导入驱动失败</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdo.html#pdo-kdb">11.12.2. 加载 PDO_KDB 报错</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdo.html#php">11.12.3. PHP的线程安全和非线程安全</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdo.html#pdophp">11.12.4. 使用的PDO驱动与PHP版本不匹配</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdo.html#windowspdo">11.12.5. Windows下使用PDO驱动的方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdo.html#thinkphp">11.12.6. thinkphp使用过程中报函数不存在的问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdo.html#pdo-kdbpdo-pgsql">11.12.7. 通过金蝶等中间件查看驱动加载信息时，看不到pdo_kdb或者pdo_pgsql的信息</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="thinkPHP.html">11.13. ThinkPHP接口常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="thinkPHP.html#thinkphp-apache-kdb">11.13.1. 如何在搭建Thinkphp+apache+kdb环境</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="thinkPHP.html#apache">11.13.1.1. apache环境搭建</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thinkPHP.html#php">11.13.1.2. php环境搭建</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thinkPHP.html#thinkphphttpd">11.13.1.3. thinkphp在httpd中使用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="perl.html">11.14. Perl 常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="perl.html#perl-pdi">11.14.1. Perl 驱动pdi无法加载问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="perl.html#perlperl">11.14.2. 怎么在perl中配置金仓perl驱动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="perl.html#id3">11.14.3. 如何排查perl驱动加载失败步骤</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="odbc.html">11.15. ODBC常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="odbc.html#id1">11.15.1. 环境依赖</a></li>
+<li class="toctree-l3"><a class="reference internal" href="odbc.html#linux-unixodbc">11.15.2. linux unixodbc通过连接串连接数据库操作，如何添加连接参数？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="odbc.html#linuxodbc">11.15.3. linux环境下如何开启odbc驱动的日志？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="odbc.html#id2">11.15.4. linux下odbc驱动接口连接数据库失败，如何排查？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="odbc.html#id3">11.15.5. linux下odbc驱动开启日志？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="odbc.html#sqlfreestmt-sqlclosecursor">11.15.6. SQLFreeStmt()函数与SQLCloseCursor()有什么不同？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="odbc.html#dns">11.15.7. 连接串中如何通过驱动名连接数据库，即不通过DNS连接数据库？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="C%23.html">11.16. C# 常见通过问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="C%23.html#ndp">11.16.1. NDP的连接数问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="C%23.html#ndpnet45net451-netcore2-0">11.16.2. NDP驱动net45、net451, netcore2.0有什么不同？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">11.17. Python通过PyODBC连接Kingbase的说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="python.html#id1">11.17.1. 环境配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python.html#kingbasev7">11.17.2. KingbaseV7驱动配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python.html#kingbasev8">11.17.3. KingbaseV8驱动配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python.html#id2">11.17.4. 连接测试</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ruby.html">11.18. Ruby 常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ruby.html#ruby-pgkingbasees-v8r3">11.18.1. 如何使用ruby-pg驱动连接至kingbaseES V8R3数据库</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="qt.html">11.19. QT常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qt.html#windowsqt">11.19.1. windows如何加载QT驱动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qt.html#id1">11.19.2. 提需求时，如何进行描述：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qt.html#ssl">11.19.3. SSL认证如何配置</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="kci-v7.html">11.20. V7 KCI常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kci-v7.html#kci-oidoid">11.20.1. 用KCI操作大对象写到用户的表里，发现OID不是创建的OID</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="oci-v7.html">11.21. V7 OCI常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="oci-v7.html#oci">11.21.1. OCI读写分离配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oci-v7.html#id1">11.21.2. OCI日志分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oci-v7.html#id2">11.21.3. OCI日志配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oci-v7.html#id3">11.21.4. OCI配置文件如何配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oci-v7.html#oci-dci">11.21.5. OCI 和DCI的头文件可以混用吗？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="jdbc-v7.html">11.22. V7 JDBC常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="jdbc-v7.html#jdbc">11.22.1. JDBC读写分离配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jdbc-v7.html#id1">11.22.2. JDBC日志分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jdbc-v7.html#id2">11.22.3. JDBC读写分离分发策略</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jdbc-v7.html#fastpath-call-returned-invalid-large-object-descriptor-0">11.22.4. FastPath call returned invalid large object descriptor：0.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jdbc-v7.html#fetchsize">11.22.5. fetchsize功能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jdbc-v7.html#mybatis">11.22.6. mybatis一次执行多条语句时报错，错误信息为：“预置的语句中不能插入多个命令”</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="SSL.html">11.23. SSL认证常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SSL.html#id2">11.23.1. 证书生成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SSL.html#id3">11.23.2. 证书配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SSL.html#id4">11.23.3. 证书有效期</a></li>
 </ul>
 </li>
 </ul>
@@ -360,8 +539,8 @@
 <p>日志输出：loggerFile = 日志文件名字</p>
 <p>指定日志信息保存文件或者console 输出：</p>
 <blockquote>
-<div><p>1：如果没有指定loggerFile，表示不生成JDBC日志文件,日志信息全部打印到当前console输出。
-2：如果loggerFile有指定路径，则只打印到文件。例如：LogFile=e:\logFile.txt，默认值是null。这个路径可以是相对路径，也可以是绝对路径。</p>
+<div><p>1：如果没有指定loggerFile，表示不生成JDBC日志文件,日志信息全部打印到当前console输出。</p>
+<p>2：如果loggerFile有指定路径，则只打印到文件。例如：LogFile=e:\logFile.txt，默认值是null。这个路径可以是相对路径，也可以是绝对路径。</p>
 </div></blockquote>
 </div>
 <div class="section" id="vip-jdbc">
@@ -393,7 +572,9 @@
 <p>因为R3的大对象实际是bytea和text，数据都是写在用户表里的，内容都是一次写过去的。</p>
 <p>如果应用本身是update语句，驱动不会去修改语句，只有通过大对象的方法去写大对象才会生成该语句。</p>
 <p>这个write方法每次调用一次就会调用update语句写一次，Blob实际是bytea，没法分片写，所以实际blob内容是缓存在本地的，每次添加内容，都会在原来的内容上加上新的内容更新一次。</p>
-<a class="reference internal image-reference" href="interface\images/FAQ33958.png"><img alt="interface\images/FAQ33958.png" src="interface\images/FAQ33958.png" style="width: 554px; height: 416px;" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="interface\images/jdbc-FAQ33958.png"><img alt="interface\images/jdbc-FAQ33958.png" src="interface\images/jdbc-FAQ33958.png" style="width: 554px; height: 416px;" /></a>
+</div>
 </div></blockquote>
 </div>
 <div class="section" id="kbblob-oracle">
@@ -401,6 +582,632 @@
 <p>适用版本：所有版本</p>
 <p>问题描述：用户将BLOB从Kingbase迁移至Oracle，报错如下：“kblob cannot be cast to oracle.sql.blob”</p>
 <p>问题分析：KBBlob 不支持迁移至Oracle Blob，只能是Oracle Blob迁移至KBBlob</p>
+</div>
+<div class="section" id="jdbcjarjdk-oscpu">
+<h2><span class="section-number">11.1.6. </span>JDBC的jar包需要区分JDK版本，需要区分OS和CPU平台吗？<a class="headerlink" href="#jdbcjarjdk-oscpu" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>问题分析：JDBC目前编译时，是根据JDK环境编译的jar包。所以请使用时检查应用的JDK环境。V82的JDBC驱动支持Oracle 1.6，1.7，1.8 和OpenJDK 1.6,1.7,1.8</p>
+<p>兼容度：低版本JDK环境编译的jar包可以运行在高版本的JDK环境下，反之则不行。
+JAVA程序编译出来都是class文件的中间码(运行在JVM虚拟机上)，不是机器码所以不区分OS和CPU，只区分JDK环境。所以正常来说只需要保证JDK的版本匹配即可。</p>
+</div>
+<div class="section" id="jdbcurl">
+<h2><span class="section-number">11.1.7. </span>JDBC的连接参数只能通过URL串来填写吗？<a class="headerlink" href="#jdbcurl" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>问题描述：JDBC的连接参数只能通过URL串来填写吗？</p>
+<p>问题分析：不是，除了ConfigurePath外，其它也可用配置文件方式。JDBC的可选的连接串参数是比较多的，当你需要的参数较多时都写在连接串上显得比较笨拙，为了方便现场人员运维管理，新提供了JDBC配置文件的方式来配置参数。</p>
+</div>
+<div class="section" id="id2">
+<h2><span class="section-number">11.1.8. </span>如何使用JDBC配置文件方式？<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>问题分析：JDBC是否使用配置文件，是通过连接串参数ConfigurePath控制。当你ConfigurePath=jdbc.conf时，会优先使用配置文件里的参数。如果没有ConfigurePath参数，就只使用URL连接串中的参数。</p>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">11.1.9. </span>JDBC读写分离怎么打开关闭?<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>问题分析：JDBC是否使用读写分离功能,通过USEDISPATCH控制。USEDISPATCH=true时就会使用读写分离功能进行分发。USEDISPATCH=false，或者不写这个参数时，就使用原JDBC单机方式。</p>
+</div>
+<div class="section" id="id4">
+<h2><span class="section-number">11.1.10. </span>JDBC 读写分离都需要配置哪些参数？<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>一般情况下，只需额外5个参数来控制。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#打开读写分离功能，</span>
+<span class="n">USEDISPATCH</span><span class="o">=</span><span class="n">true</span>
+<span class="c1">#备机地址</span>
+<span class="n">SLAVE_ADD</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">8.223</span><span class="p">,</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">8.130</span>
+<span class="c1">#备机端口</span>
+<span class="n">SLAVE_PORT</span><span class="o">=</span><span class="mi">54321</span><span class="p">,</span><span class="mi">54321</span>
+<span class="c1">#主机读负载率，备机之间轮询平分，取值范围0-100,例如0表示读语句全部分发备机，100表示读语句全部发送主机</span>
+<span class="n">HOSTLOADRATE</span><span class="o">=</span><span class="mi">33</span>
+<span class="c1">#底层socket receive的超时时间</span>
+<span class="n">socketTimeout</span><span class="o">=</span><span class="mi">10</span>
+<span class="c1">#是否使用连接池缓存连接</span>
+<span class="n">USECONNECT_POOL</span><span class="o">=</span><span class="n">false</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2><span class="section-number">11.1.11. </span>JDBC读写分离一主两备的URL和配置文件的样例<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>1：只用连接串,开启JDBC读写分离 一主两备：</p>
+<p>URL</p>
+<blockquote>
+<div><p><a class="reference external" href="jdbc:kingbase8://192.168.8.128:54321/TEST?USEDISPATCH=true&amp;SLAVE_ADD=192.168.8.223,192.168.8.130&amp;SLAVE_PORT=54321,54321&amp;HOSTLOADRATE=33&amp;USECONNECT_POOL=false">jdbc:kingbase8://192.168.8.128:54321/TEST?USEDISPATCH=true&amp;SLAVE_ADD=192.168.8.223,192.168.8.130&amp;SLAVE_PORT=54321,54321&amp;HOSTLOADRATE=33&amp;USECONNECT_POOL=false</a></p>
+</div></blockquote>
+<p>2：连接串+配置文件,开启JDBC读写分离 一主两备：</p>
+<p>URL</p>
+<blockquote>
+<div><p><a class="reference external" href="jdbc:kingbase8://192.168.8.128:54321/TEST?ConfigurePath=jdbc.conf">jdbc:kingbase8://192.168.8.128:54321/TEST?ConfigurePath=jdbc.conf</a></p>
+</div></blockquote>
+<p>配置文件</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">USEDISPATCH</span><span class="o">=</span><span class="n">true</span>
+<span class="n">SLAVE_ADD</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">8.223</span><span class="p">,</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">8.130</span>
+<span class="n">SLAVE_PORT</span><span class="o">=</span><span class="mi">54321</span><span class="p">,</span><span class="mi">54321</span>
+<span class="n">HOSTLOADRATE</span><span class="o">=</span><span class="mi">33</span>
+<span class="n">socketTimeout</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">USECONNECT_POOL</span><span class="o">=</span><span class="n">false</span>
+</pre></div>
+</div>
+<p>3：目前读写分离实际项目中用到的配置文件参数样例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#主机地址</span>
+<span class="n">HOST</span><span class="o">=</span><span class="mf">121.1</span><span class="o">.</span><span class="mf">20.3</span>
+<span class="n">PORT</span><span class="o">=</span><span class="mi">54321</span>
+<span class="n">DBNAME</span><span class="o">=</span><span class="n">NPC</span>
+<span class="n">user</span><span class="o">=</span><span class="n">RDWWpom</span>
+
+<span class="n">password</span><span class="o">=</span><span class="n">RDWW123456</span>
+<span class="c1">#loggerLevel can be OFF, INFO, DEBUG, TRACE</span>
+<span class="n">loggerLevel</span><span class="o">=</span><span class="n">OFF</span>
+<span class="n">loggerFile</span><span class="o">=</span><span class="n">jdbc_test</span><span class="o">.</span><span class="n">log</span>
+<span class="n">preferQueryMode</span><span class="o">=</span><span class="n">extendedForPrepared</span>
+<span class="c1">#是否使用读写分离功能</span>
+<span class="n">USEDISPATCH</span><span class="o">=</span><span class="n">true</span>
+<span class="n">HOSTLOADRATE</span><span class="o">=</span><span class="mi">33</span>
+<span class="c1">#备机地址</span>
+<span class="n">SLAVE_ADD</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">8.220</span><span class="p">,</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">8.221</span>
+<span class="n">SLAVE_PORT</span><span class="o">=</span><span class="mi">54321</span><span class="p">,</span><span class="mi">54321</span>
+<span class="c1">#是否使用连接池缓存连接</span>
+<span class="n">USECONNECT_POOL</span><span class="o">=</span><span class="n">false</span>
+<span class="n">CONNECT_POOLSIZE</span><span class="o">=</span><span class="mi">1</span>
+<span class="c1">#在新建连接时检查当前连接DB是不是Master,如果不是回去slave检查有没有Master,如果还是找不到Master就会向上报错</span>
+<span class="n">MASTER_CHECK</span><span class="o">=</span><span class="n">true</span>
+<span class="c1">#失败重发的最高次数</span>
+<span class="n">RETRYTIMES</span><span class="o">=</span><span class="mi">10</span>
+<span class="c1">#失败重发每次的间隔时间（单位：秒）</span>
+<span class="n">RETRYINTERVAL</span><span class="o">=</span><span class="mi">5</span>
+<span class="c1">#开启集群备机监测线程定时监测集群备机状态</span>
+<span class="n">CLUSTER_MONITOR</span><span class="o">=</span><span class="n">true</span>
+<span class="c1">#监测线程每次监测的间隔时间（单位：秒）</span>
+<span class="n">MONITORINTERVAL</span><span class="o">=</span><span class="mi">5</span>
+<span class="c1">#指定底层socket receive的超时时间，值可以为任意正整数，“0”表示没有超时，一直等，直到返回，默认取值为：“0”（单位：秒）</span>
+<span class="c1">#socketTimeout=10</span>
+<span class="c1">#指定Socket做connect时的超时时间，默认取值为：“10”（单位：秒）</span>
+<span class="c1">#connectTimeout=10</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2><span class="section-number">11.1.12. </span>JDBC连接池功能，是否开启，开启后的功能及性能<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>问题分析：</p>
+<blockquote>
+<div><p>如果应用已经有了连接池，就不开启JDBC连接池，因为连接池需要锁来管理全局队列，高并发建连接会有性能损耗。</p>
+<p>如果应用没有连接池，可以开启JDBC连接池，因为频繁建连接时很耗时的行为。开启连接池可以降低应用频繁建连接的损耗。</p>
+<p>JDBC连接池功能限制：JDBC连接池只是为了读写分离测试性能时使用，只支持相同用户的连接。如果是不同用户的连接，不要使用，会有模式混乱问题。</p>
+</div></blockquote>
+</div>
+<div class="section" id="id7">
+<h2><span class="section-number">11.1.13. </span>JDBC读写分离配置参数依赖关系<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>关于JDBC 读写分离配置项的依赖关系：</p>
+<dl class="simple">
+<dt>USEDISPATCH=false</dt><dd><p>#是否使用读写分离功能,此配置项关闭JDBC就变成单机JDBC，无读写分离功能。</p>
+</dd>
+<dt>MASTER_CHECK=true</dt><dd><p>#在新建连接时检查当前连接DB是不是Master,如果不是会去slave节点中检查有没有新升级的Master,如果还是找不到Master节点就会向上报错。（此功能开启需要同时开启读写分离功能）。</p>
+</dd>
+<dt>USECONNECT_POOL=false</dt><dd><p>#是否使用连接池缓存连接，此功能开启需要同时开启读写分离功能。（此功能开启需要同时开启读写分离功能）。</p>
+</dd>
+<dt>MASTER_CHECK=true</dt><dd><p>#在新建连接时检查当前连接DB是不是Master,如果不是回去slave检查有没有Master,如果还是找不到Master就会向上报错。（此功能开启需要同时开启读写分离功能）。</p>
+</dd>
+<dt>RETRYTIMES=10</dt><dd><p>#连接异常问题造成的语句执行失败情况下，重建连接并重发的最高重试次数（0~100）。（此功能开启需要同时开启读写分离功能）</p>
+</dd>
+<dt>RETRYINTERVAL=10</dt><dd><p>#失败时重建连接并重发的每次的间隔时间（单位：秒）。（此功能开启需要重试次数大于0）</p>
+</dd>
+<dt>CLUSTER_MONITOR=true</dt><dd><p>#开启集群备机监测线程定时监测集群备机状态，更新全局备机信息（无锁）。（此功能开启需要同时开启读写分离功能）。</p>
+</dd>
+<dt>MONITORINTERVAL=5</dt><dd><p>#备机监测线程每次查询备机信息的间隔时间（单位：秒）。（此功能开启需要同时开启读写分离功能）。</p>
+</dd>
+<dt>TransactionDispatchStrategy=2</dt><dd><p>#事务中语句的分法策略，1表示事务中的所有语句都不分发，默认是2 表示事务中遇到写语句之前的读语句可以分发。（此功能开启需要同时开启读写分离功能）。</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id8">
+<h2><span class="section-number">11.1.14. </span>JDBC读写分离在哪些情况下重发也不会成功<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>JDBC支持切机本意就是指尽量让应用的语句不因为切机造成执行失败，让应用对切机无感知。对于单事务语句基本都可以重发成功。</p>
+<p>但是并不是所有的语句都可以重发成功。</p>
+<ul class="simple">
+<li><p>涉及连接会话上下文的情况。</p></li>
+<li><p>游标：cursor，refcursor切机后全部丢失，重发不能成功。</p></li>
+<li><p>事务：切机后连接全部都断掉了，事务回退失败，不能重发。</p></li>
+<li><p>结果集遍历：和游标类似，重发不能成功。</p></li>
+<li><p>批量执行。</p></li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h2><span class="section-number">11.1.15. </span>JDBC读写分离分发策略<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>读语句分发，分两种情况：</p>
+<ol class="arabic simple">
+<li><p>单语句事务，这种情况下每条语句都是一个独立的事务，所以读语句分发备机没有问题</p></li>
+<li><p>多语句事务，这种情况下，读语句处于事务内，分发需要考虑事务隔离级别，V82支持的三种隔离级别：可重复读，读提交，序列化。严格意义上这三种都不允许读语句分发，因为可能出现不可重复读或者读不到已提交的内容。</p></li>
+</ol>
+<p>但是如果事务内的语句就不分发的话，读写分离就失去大半意义了，因为无论是应用还是框架基本上都是用事务控制的，所以JDBC提供一个分发策略参数控制，</p>
+<p>TransactionDispatchStrategy可以选择分发策略：（性能优先，默认是2）</p>
+<ol class="arabic simple">
+<li><p>事务内的所有语句都只发主机，完全不分发备机。</p></li>
+<li><p>事务内遇到写语句之前的读语句，可以分发备机，遇到写语句之后就只发主机。</p></li>
+</ol>
+</div>
+<div class="section" id="id10">
+<h2><span class="section-number">11.1.16. </span>JDBC读写分离相关参数默认值<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<dl class="simple">
+<dt>loggerLevel=OFF</dt><dd><p>#默认 OFF，可用参数OFF, DEBUG, TRACE</p>
+</dd>
+<dt>loggerFile=jdbc_test.log</dt><dd><p>#默认 null，日志文件名，可以是相对路径，也可以是绝对路径，如果默认null就是不生成日志文件</p>
+</dd>
+<dt>preferQueryMode=extendedForPrepared</dt><dd><p>#默认 extend，可用参数simple，extend，extendedForPrepared</p>
+</dd>
+<dt>socketTimeout=10</dt><dd><p>#默认 0（没有超时，一直等，直到返回），单位是秒，可选值为任意正整数，控制底层socket receive的超时时间。次参数设置取决于应用的超时控制机制，如果应用有自己的超时控制比较好，能够自己控制对端不在线而造成的socket receive一直等待的时间，这个值可以设0完全让应用去控制超时时间。但是如果应有没有超时控制或者控制的不好，只要JDBC不返回，应用不能自己根据超时返回，一直阻塞，那就需要设置这个超时时间，一般设置为该应用查询语句正常返回的最长返回时间。</p>
+</dd>
+<dt>USEDISPATCH=true</dt><dd><p>#默认 false，用来控制是否使用读写分离功能</p>
+</dd>
+<dt>HOSTLOADRATE=33</dt><dd><p>#默认 0，用来控制主机读负载率</p>
+</dd>
+<dt>SLAVE_ADD=192.168.8.228,192.168.8.229</dt><dd><p>#备机地址
+#默认 null</p>
+</dd>
+<dt>SLAVE_PORT=54321,54321</dt><dd><p>#默认 null</p>
+</dd>
+<dt>USECONNECT_POOL=false</dt><dd><p>#是否使用连接池缓存连接
+#默认 false，开启连接池</p>
+</dd>
+<dt>CONNECT_POOLSIZE=100</dt><dd><p>#默认 10个连接</p>
+</dd>
+<dt>MASTER_CHECK=true</dt><dd><p>#在新建连接时检查当前连接DB是不是Master,如果不是回去slave检查有没有Master,如果还是找不到Master就会向上报错
+#默认 true</p>
+</dd>
+<dt>RETRYTIMES=10</dt><dd><p>#失败重发的最高次数
+#默认 10 次</p>
+</dd>
+<dt>RETRYINTERVAL=5</dt><dd><p>#失败重发每次的间隔时间（单位：秒）
+#默认 5 秒</p>
+</dd>
+<dt>CLUSTER_MONITOR=true</dt><dd><p>#开启集群备机监测线程定时监测集群备机状态
+#默认 开启</p>
+</dd>
+<dt>MONITORINTERVAL=5</dt><dd><p>#监测线程每次监测的间隔时间（单位：秒）
+#默认 50秒</p>
+</dd>
+<dt>TransactionDispatchStrategy =2  默认是2</dt><dd><p>#事务内语句分发策略，提供两种策略选择
+#1：事务内语句全都不分发，只发给主机。2：事务内遇到写语句之前读语句可以分发</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="sockettimeout0-jdbc">
+<h2><span class="section-number">11.1.17. </span>集群状态正常，sockettimeout设置大于0时，为什么执行时间超长的事物会失败并导致jdbc重建连接？<a class="headerlink" href="#sockettimeout0-jdbc" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>sockettimeout是控制底层socket超时返回的最长时间，默认是0，即没有超时。如果指定大于0的值，意思就是最多等待sockettimeout的时间socket的receive操作就会返回，这主要是用来防止当server掉线时，client端socket的receive操作会一直等待。但是这会带来副作用，就是如果一条语句真的执行很长时间超过了sockettimeout的值时，会被认为是超时而中断receive返回超时错误，如果是在读写分离状态下，超时会造成重建连连接重发语句。一条语句如果是因为大于设置的socketTimeout而超时退出，那么应用需等待（socketTimeout * （RETRYTIMES + 1）+ RETRYINTERVAL * RETRYTIMES）才会收到异常。此时需要根据用户的语句最长执行时间来设置sockettimeout或者设置为0一直等待。</p>
+<p>如果应用自己有防这种JDBC操作一直不返回的机制，JDBC调用不返回，应用会有自己的超时控制，那就不需要JDBC设置soc kettimeout，让应用自己控制超时时间就好。</p>
+<p>如果应用没有这种防呆机制，一个JDBC操作不返回就会造成应用完全卡死，那就需要设置JDBC的sockettimeout值，让JDBC来控制超时时间。</p>
+</div>
+<div class="section" id="rewind">
+<h2><span class="section-number">11.1.18. </span>主备切换后，备机rewind，或者备机故障后，备机恢复时为什么 备机的连接数是持续上升，而不是一次性全部建好？<a class="headerlink" href="#rewind" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>主备切换后，连接不是马上就全部建立起来的，而是应用确实调用到JDBC时，JDBC才会去判断集群是否切换了，重建连接，重发语句执行。所以连接数是恢复速度和应用的操作JDBC负荷有关，通常是慢慢建立起来的，备机的连接会稍滞后于主机连接恢复速度，因为切机重发时，都是只要能找到新的主机就可以重发成功了，不会等到所有备机重启完成。只有等到下一次发送语句触发备机时，JDBC才会去检测备机是否已经起来了，如果是才会重建备机连接。</p>
+</div>
+<div class="section" id="web-jdbc">
+<h2><span class="section-number">11.1.19. </span>主机切机后，应用第一次登陆WEB慢，JDBC等待时间分析<a class="headerlink" href="#web-jdbc" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<ol class="arabic">
+<li><p>局域网内 测试拔网线切机</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>集群的新主机起来可连接后-&gt;</p></li>
+<li><p>应用用户登录WEB-&gt;</p></li>
+<li><p>使用连接池中已经有的JDBC连接(主机的连接都已经失效，备机的连接在rewind之前都还有效) -&gt;</p></li>
+<li><p>发送SQL -&gt;</p></li>
+<li><p>(I/O Error 20秒)收到错误返回 -&gt;</p></li>
+<li><p>重建JDBC连接 （sleep 5秒）-&gt;</p></li>
+<li><p>(在线0.1秒返回)+(不在线的需要10秒返回) -&gt;</p></li>
+<li><p>重建连接完成开始执行登陆SQL返回，总计35秒左右。</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>其中 (不在线的需要10秒返回) 这个可以通过connectTimeout 参数控制connect超时时间，默认是10秒。</p></li>
+</ol>
+<p>其中 (sleep 5秒) 这个可以通过RETRYINTERVAL参数控制重建连接的间隔时间，默认是5秒。</p>
+<p>其中 (I/O Error 20秒) 这个可以通过socketTimeout参数控制receive的超时时间，默认是0无限等待。</p>
+<ol class="arabic simple" start="3">
+<li><p>备机的连接不是马上断掉，而是在一段时间内都还可以使用，等到rewind时连接才会全部断掉。</p></li>
+</ol>
+</div>
+<div class="section" id="id11">
+<h2><span class="section-number">11.1.20. </span>JDBC打开日志方式<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>JDBC驱动支持控制日志打印级别和日志输出到文件或者控制台。</p>
+<p><a href="#id12"><span class="problematic" id="id13">**</span></a>日志级别：<a href="#id14"><span class="problematic" id="id15">**</span></a>loggerLevel = 日志级别</p>
+<p>指定日志记录级别。例如：&quot;OFF&quot;, &quot;INFO&quot;, &quot;DEBUG&quot;, &quot;TRACE&quot;，默认值是null即不输出日志。通常读写分离将日志开启到INFO，单机将日志开到TRACE。</p>
+<p><a href="#id16"><span class="problematic" id="id17">**</span></a>日志输出：<a href="#id18"><span class="problematic" id="id19">**</span></a>loggerFile = 日志文件名字</p>
+<p><strong>指定日志信息保存文件或者console 输出：</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>如果没有指定loggerFile，表示不生成JDBC日志文件,日志信息全部打印到当前console输出。</p></li>
+<li><p>如果loggerFile有指定路径，则只打印到文件。例如：loggerFile=e:\logFile.txt，默认值是null。这个路径可以是相对路径，也可以是绝对路径。</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="jdbc-utf8">
+<h2><span class="section-number">11.1.21. </span>JDBC 报错：无效的 &quot;UTF8&quot; 编码字节顺序<a class="headerlink" href="#jdbc-utf8" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>V82早期版本的JDBC默认都是UTF8编码的，需要设置client_Encoding=GBK来指定客户端编码。这个参数现在已经变更为clientEncoding</p>
+<p>V82目前版本的JDBC 默认都是获取系统默认编码，自动设置为系统的clientEncoding，绝大多数情况下是不需要用户再自己指定这个参数的。</p>
+</div>
+<div class="section" id="jvmjdbc">
+<h2><span class="section-number">11.1.22. </span>系统JVM和应用和JDBC和数据库编码之间的关系<a class="headerlink" href="#jvmjdbc" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p><strong>乱码的问题通常都是编码不一致导致。</strong></p>
+<p><strong>分析步骤</strong></p>
+<p>第一 落实应用的编码是什么。需要询问应用的开发人员。</p>
+<p>第二 落实JVM的file.encoding 是什么？一般Windows环境是GBK，linux是UTF8。</p>
+<p>第三 如果应用的编码和JVM的file.encoding一致，JDBC默认使用JVM的编码，不需要额外指定clientEncoding参数。否则需要指定JVM的-Dfile.encoding=GBK或者JDBC的clientEncoding参数。</p>
+<p>第四 如果还是报无效编码错误，就把JDBC日志打开到INFO或者TRACE，确认连接串信息对不对，再去看日志里是否有乱码数据。</p>
+<p><strong>编码解释</strong></p>
+<ol class="arabic simple">
+<li><p>系统JVM的默认编码：file.encoding 通常和操作系统默认编码一样。当然用户可以同过jvm参数-Dfile.encoding=UTF8 来手动指定期望的编码格式。JDK1.7及以上的可以通过命令java -XshowSettings:properties –version 产看jvm参数值。</p></li>
+<li><p>应用的编码：应用开发的时候自己指定的编码格式。通常应用的编码是要和运行环境的jvm的file.encoding保持一致。</p></li>
+<li><p>JDBC的编码：JDBC通过参数clientEncoding指定编码格式，包括JDBC发给数据库的内容和返回给应用的内容都是按clientEncoding编码。通常需要和应用的编码保持一致。</p></li>
+<li><p>数据库的编码：</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>client_encoding 就是客户端编码，JDBC通过clientEncoding指定。</p></li>
+<li><p>server_encoding 就是服务端编码，这个是数据库自身存储时的编码。</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="v7-v8-jdbc">
+<h2><span class="section-number">11.1.23. </span>V7 V8 JDBC 混用问题<a class="headerlink" href="#v7-v8-jdbc" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>V8的JDBC 连接 V7的数据库出现的错误:</p>
+<blockquote>
+<div><p>com.kingbase8.util.KSQLException: FATAL: 3 在参数 &quot;extra_float_digits&quot; (-15 .. 2)的有效范围之外</p>
+</div></blockquote>
+<p>V7的JDBC 连接 V8的数据库出现的错误：</p>
+<blockquote>
+<div><p>[KingbaseES JDBC Driver]不能与数据库建立连接: 不支持的前端协议 3.3: 服务端支持 1.0 到 3.0。</p>
+</div></blockquote>
+</div>
+<div class="section" id="id20">
+<h2><span class="section-number">11.1.24. </span>JDBC读写分离模式混淆找不到表<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>如果是开启读写分离的，可能是开启了JDBC连接池，目前JDBC连接池只支持相同的URL相同用户的连接，不支持多用户名。</p>
+<p>解决办法关闭JDBC连接池指定连接参数 USECONNECT_POOL=false 即可</p>
+</div>
+<div class="section" id="id21">
+<h2><span class="section-number">11.1.25. </span>JDBC读写分离日志分析办法<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>常用的JDBC日志的命令：</p>
+<ol class="arabic simple">
+<li><p>比如我要看一个线程的日志，假如131 是线程ID，</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">grep</span> <span class="s2">&quot;\[131\]&quot;</span> <span class="o">./</span><span class="n">jdbc_new</span><span class="o">.</span><span class="n">log</span> <span class="o">&gt;</span> <span class="mf">131.</span><span class="n">log</span>
+</pre></div>
+</div>
+<p>这样就能看到131线程的完整JDBC日志，这样就能看到这个线程都干了什么事情，反推应用的业务逻辑。</p>
+<ol class="arabic simple" start="2">
+<li><p>比如我要看 131这个线程里的所有执行语句</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">grep</span> <span class="s2">&quot;consume time&quot;</span> <span class="o">./</span><span class="mf">131.</span><span class="n">log</span> <span class="o">&gt;</span> <span class="mi">131</span><span class="n">_consume</span><span class="o">.</span><span class="n">log</span>
+</pre></div>
+</div>
+<p>这个日志就是这个线程里执行的全部的SQL是什么和SQL执行的时间。</p>
+<p>例子：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2019</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">08</span> <span class="mi">11</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mi">29</span><span class="p">]</span> <span class="p">[</span><span class="mi">114</span><span class="p">]</span> <span class="p">[</span><span class="n">com</span><span class="o">.</span><span class="n">kingbase8</span><span class="o">.</span><span class="n">dispatcher</span><span class="o">.</span><span class="n">executor</span><span class="o">.</span><span class="n">DispatchAbstractStatement</span><span class="o">--&gt;</span><span class="n">executeTemplet</span><span class="p">]</span> <span class="n">DispatchPreparedStatementV2</span><span class="o">.</span><span class="n">executeQuery</span><span class="p">(</span><span class="n">select</span> <span class="n">pk_value</span> <span class="p">,</span><span class="n">CTID</span><span class="p">,</span><span class="n">XMIN</span> <span class="kn">from</span> <span class="nn">ecms_gen_pk</span> <span class="n">where</span> <span class="n">pk_name</span> <span class="o">=</span> <span class="s1">&#39;pk_web_url_access_log&#39;</span> <span class="k">for</span> <span class="n">update</span><span class="p">;)</span> <span class="n">consume</span> <span class="n">time</span><span class="p">:::</span><span class="mi">17</span><span class="p">(</span><span class="n">ms</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>比如我要看 monitor线程的日志</p></li>
+</ol>
+<p>从全日志里搜  monitor找到对应的线程ID比如是[32]</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">grep</span> <span class="s2">&quot;\[32\]&quot;</span> <span class="o">./</span><span class="n">jdbc_new</span><span class="o">.</span><span class="n">log</span> <span class="o">&gt;</span> <span class="mf">32.</span><span class="n">log</span>
+</pre></div>
+</div>
+<p>这样就能看到monitor不停的刷在线的主备机的IP，这样基本就能看到集群的历史和现在的状态，主备机都是谁。</p>
+<ol class="arabic simple" start="4">
+<li><p>比如我要看是哪条SQL把事务设置为写事务了，从而不再分发备机。</p></li>
+</ol>
+<p>从日志里搜”Enter transactional state from sql”，后面的SQL就是被识别为写语句的SQL。</p>
+<p>例子：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2019</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">08</span> <span class="mi">11</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mi">29</span><span class="p">]</span> <span class="p">[</span><span class="mi">114</span><span class="p">]</span> <span class="p">[</span><span class="n">com</span><span class="o">.</span><span class="n">kingbase8</span><span class="o">.</span><span class="n">dispatcher</span><span class="o">.</span><span class="n">sqlParser</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">SqlParser</span><span class="o">--&gt;</span><span class="n">parse</span><span class="p">]</span> <span class="n">Enter</span> <span class="n">transactional</span> <span class="n">state</span> <span class="kn">from</span> <span class="nn">sql</span><span class="p">[</span><span class="n">select</span> <span class="n">pk_value</span> <span class="kn">from</span> <span class="nn">ecms_gen_pk</span> <span class="n">where</span> <span class="n">pk_name</span> <span class="o">=</span> <span class="s1">&#39;pk_web_url_access_log&#39;</span> <span class="k">for</span> <span class="n">update</span><span class="p">]</span><span class="o">.</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>比如我要看应用建一个新的JDBC连接的时间消耗</p></li>
+</ol>
+<p>从日志里搜“this connect consume time”，这个会显示建一个连接的时间消耗。</p>
+<p>例子：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2019</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">08</span> <span class="mi">11</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="mi">16</span><span class="p">]</span> <span class="p">[</span><span class="mi">302</span><span class="p">]</span> <span class="p">[</span><span class="n">com</span><span class="o">.</span><span class="n">kingbase8</span><span class="o">.</span><span class="n">Driver</span><span class="o">--&gt;</span><span class="n">makeConnection</span><span class="p">]</span> <span class="n">this</span> <span class="n">connect</span> <span class="n">consume</span> <span class="n">time</span><span class="p">:::</span><span class="mi">135</span><span class="p">(</span><span class="n">ms</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>比如我要看看都发生了什么错误</p></li>
+</ol>
+<p>从日志里搜“Exception”，就能看到所有的异常信息。</p>
+<p>例子：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2019</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">08</span> <span class="mi">11</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span><span class="mi">29</span><span class="p">]</span> <span class="p">[</span><span class="mi">302</span><span class="p">]</span> <span class="p">[</span><span class="n">com</span><span class="o">.</span><span class="n">kingbase8</span><span class="o">.</span><span class="n">Driver</span><span class="o">--&gt;</span><span class="n">connect</span><span class="p">]</span> <span class="n">Unexpected</span> <span class="n">connection</span> <span class="n">error</span><span class="p">:</span> <span class="n">java</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">SQLException</span><span class="p">:</span> <span class="n">JDBC</span> <span class="n">can</span><span class="s1">&#39;t find a vaild master database in cluster...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="jdbcssl">
+<h2><span class="section-number">11.1.26. </span>JDBC使用SSL加密<a class="headerlink" href="#jdbcssl" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p><strong>1. 使用LibPQFactory</strong></p>
+<p><strong>服务器：</strong></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>确保安装openssl</p></li>
+<li><p>在data目录下，创建自签名的证书</p></li>
+</ol>
+<blockquote>
+<div><p>为服务器创建一个快速的自签名的证书，填充那些openssl要求的信息。确保把本地主机名当做&quot;Common Name&quot;输入；挑战密码可以留空。该程序将生成一个用口令保护的密钥，它不会接受小于四字符的口令。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">new</span> <span class="o">-</span><span class="n">text</span> <span class="o">-</span><span class="n">out</span> <span class="n">server</span><span class="o">.</span><span class="n">req</span>
+</pre></div>
+</div>
+<p>要移去密钥（如果你想自动启动服务器就必须这样），运行下面的命令：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">rsa</span> <span class="o">-</span><span class="ow">in</span> <span class="n">privkey</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">out</span> <span class="n">server</span><span class="o">.</span><span class="n">key</span>
+<span class="n">rm</span> <span class="n">privkey</span><span class="o">.</span><span class="n">pem</span>
+</pre></div>
+</div>
+<p>将一个证书变成自签名的证书并复制密钥和证书到服务器将要查找它们的地方</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>openssl req -x509 -days 3650 -in server.req -text -key server.key -out server.crt
+
+修改文件权限，如果文件的权限比这个更自由，服务器将拒绝该文件。
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="n">og</span><span class="o">-</span><span class="n">rwx</span> <span class="n">server</span><span class="o">.</span><span class="n">key</span>
+</pre></div>
+</div>
+<p>生成根证书</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">server</span><span class="o">.</span><span class="n">crt</span> <span class="n">root</span><span class="o">.</span><span class="n">crt</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>配置kingbase.conf文件</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssl</span> <span class="o">=</span> <span class="n">on</span>                                 <span class="c1"># (change requires restart)</span>
+<span class="c1">#ssl_ciphers = &#39;HIGH:MEDIUM:+3DES:!aNULL&#39; # allowed SSL ciphers</span>
+                                               <span class="c1"># (change requires restart)</span>
+<span class="c1">#ssl_prefer_server_ciphers = on              # (change requires restart)</span>
+<span class="c1">#ssl_ecdh_curve = &#39;prime256v1&#39;               # (change requires restart)</span>
+<span class="c1">#ssl_cert_file = &#39;server.crt&#39;               # (change requires restart)</span>
+<span class="c1">#ssl_key_file = &#39;server.key&#39;                # (change requires restart)</span>
+<span class="n">ssl_ca_file</span> <span class="o">=</span> <span class="s1">&#39; root.crt &#39;</span>                       <span class="c1"># (change requires restart)</span>
+<span class="c1">#ssl_crl_file = &#39;&#39;                           # (change requires restart)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>配置sys_hba.conf文件</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hostssl</span>    <span class="nb">all</span>             <span class="nb">all</span>             <span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">0</span>               <span class="n">md5</span>  <span class="n">clientcert</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>5)重启数据库服务器</p>
+<p>6)为客户端创建所需证书</p>
+<blockquote>
+<div><p>生成kingbase8.key</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">genrsa</span> <span class="o">-</span><span class="n">des3</span> <span class="o">-</span><span class="n">out</span> <span class="n">kingbase8</span><span class="o">.</span><span class="n">key</span> <span class="mi">1024</span>
+<span class="n">openssl</span> <span class="n">rsa</span> <span class="o">-</span><span class="ow">in</span> <span class="n">kingbase8</span><span class="o">.</span><span class="n">key</span> <span class="o">-</span><span class="n">out</span> <span class="n">kingbase8</span><span class="o">.</span><span class="n">key</span>
+<span class="n">chmod</span> <span class="mi">400</span> <span class="n">kingbase8</span><span class="o">.</span><span class="n">key</span>
+</pre></div>
+</div>
+<p>生成kingbase8.csr，CN需要指定为要连接数据库的用户名，如需匹配不同的用户，可指定为*</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">new</span> <span class="o">-</span><span class="n">key</span> <span class="n">kingbase8</span><span class="o">.</span><span class="n">key</span> <span class="o">-</span><span class="n">out</span> <span class="n">kingbase8</span><span class="o">.</span><span class="n">csr</span> <span class="o">-</span><span class="n">subj</span> <span class="s1">&#39;/C=GB/ST=Berkshire/L=Newbury/O=Kingbase/CN=SYSTEM&#39;</span>
+</pre></div>
+</div>
+<p>生成kingbase8.crt</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">x509</span> <span class="o">-</span><span class="n">req</span> <span class="o">-</span><span class="n">days</span> <span class="mi">3650</span> <span class="o">-</span><span class="ow">in</span> <span class="n">kingbase8</span><span class="o">.</span><span class="n">csr</span> <span class="o">-</span><span class="n">CA</span> <span class="n">root</span><span class="o">.</span><span class="n">crt</span> <span class="o">-</span><span class="n">CAkey</span> <span class="n">server</span><span class="o">.</span><span class="n">key</span> <span class="o">-</span><span class="n">out</span> <span class="n">kingbase8</span><span class="o">.</span><span class="n">crt</span> <span class="o">-</span><span class="n">CAcreateserial</span>
+</pre></div>
+</div>
+<p>生成kingbase8.pk8</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">pkcs8</span> <span class="o">-</span><span class="n">topk8</span> <span class="o">-</span><span class="n">outform</span> <span class="n">DER</span> <span class="o">-</span><span class="ow">in</span> <span class="n">kingbase8</span><span class="o">.</span><span class="n">key</span> <span class="o">-</span><span class="n">out</span> <span class="n">kingbase8</span><span class="o">.</span><span class="n">pk8</span> <span class="o">-</span><span class="n">nocrypt</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div></blockquote>
+<p><strong>jdbc：</strong></p>
+<blockquote>
+<div><p>通过参数sslmode配置证书验证方式，该参数支持四个值：disable（禁用SSL）、require、verify-ca、verify-full。使用verify-ca和verify-full时，需通过连接参数sslrootcert指定根证书文件的位置，如不指定，Linux默认路径为$HOME/.kingbase8/root.crt，Windows默认路径为%APPDATA%kingbase8root.crt，将服务器data目录下的root.crt放到对应目录下即可。只有verify-full模式会对主机名进行验证。</p>
+<p>通过参数sslcert配置客户端证书位置，如不指定，Linux默认路径为$HOME/.kingbase8/kingbase8.crt，Windows默认路径为%APPDATA%kingbase8kingbase8.crt，将服务器data目录下的kingbase8.crt放到对应目录下即可。</p>
+<p>通过参数sslkey配置秘钥文件位置，如不指定，Linux默认路径为$HOME/.kingbase8/kingbase8.pk8，Windows默认路径为%APPDATA%kingbase8kingbase8.pk8，将服务器data目录下的kingbase8.pk8放到对应目录下即可。</p>
+<p>举例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>jdbc:kingbase8://192.168.222.128:54321/TEST?sslmode=verify-ca&amp;sslrootcert=root.crt&amp;sslcert=kingbase8.crt&amp;sslkey=kingbase8.pk8
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>2. 使用默认的SSLSocketFactory</strong></p>
+<p><strong>服务器：</strong></p>
+<blockquote>
+<div><p>1)、2)、3)、4)、5)见上</p>
+<ol class="arabic simple" start="6">
+<li><p>创建truststore，用于认证服务器端证书</p></li>
+</ol>
+<blockquote>
+<div><p>把服务器证书转化为der格式</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">x509</span> <span class="o">-</span><span class="ow">in</span> <span class="n">server</span><span class="o">.</span><span class="n">crt</span> <span class="o">-</span><span class="n">out</span> <span class="n">server</span><span class="o">.</span><span class="n">crt</span><span class="o">.</span><span class="n">der</span> <span class="o">-</span><span class="n">outform</span> <span class="n">der</span>
+</pre></div>
+</div>
+<p>创建truststore，装入服务器证书</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">keytool</span> <span class="o">-</span><span class="n">keystore</span> <span class="o">./</span><span class="n">truststore</span> <span class="o">-</span><span class="n">alias</span> <span class="n">kingbase8server</span> <span class="o">-</span><span class="kn">import</span> <span class="o">-</span><span class="n">file</span> <span class="o">./</span><span class="n">server</span><span class="o">.</span><span class="n">crt</span><span class="o">.</span><span class="n">der</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="7">
+<li><p>创建keystore，保存客户端证书</p></li>
+</ol>
+<blockquote>
+<div><p>生成客户端的keyPair</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">keytool</span> <span class="o">-</span><span class="n">genkeypair</span> <span class="o">-</span><span class="n">dname</span> <span class="s2">&quot;cn=kingbase8client, ou=basesoft, o=basesoft, c=CN&quot;</span> <span class="o">-</span><span class="n">alias</span> <span class="n">kingbase8client</span> <span class="o">-</span><span class="n">keystore</span> <span class="o">./</span><span class="n">keystore</span> <span class="o">-</span><span class="n">validity</span> <span class="mi">180</span>
+</pre></div>
+</div>
+<p>生成证书请求</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">keytool</span> <span class="o">-</span><span class="n">certreq</span> <span class="o">-</span><span class="n">alias</span> <span class="n">kingbase8client</span> <span class="o">-</span><span class="n">file</span> <span class="o">./</span><span class="n">kingbase8client</span><span class="o">.</span><span class="n">csr</span> <span class="o">-</span><span class="n">keystore</span> <span class="o">./</span><span class="n">keystore</span>
+</pre></div>
+</div>
+<p>用root.crt签发客户端证书</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">x509</span> <span class="o">-</span><span class="n">sha1</span> <span class="o">-</span><span class="n">req</span> <span class="o">-</span><span class="ow">in</span> <span class="o">./</span><span class="n">kingbase8client</span><span class="o">.</span><span class="n">csr</span> <span class="o">-</span><span class="n">CA</span> <span class="o">./</span><span class="n">root</span><span class="o">.</span><span class="n">crt</span> <span class="o">-</span><span class="n">CAkey</span> <span class="o">./</span><span class="n">server</span><span class="o">.</span><span class="n">key</span> <span class="o">-</span><span class="n">CAcreateserial</span> <span class="o">-</span><span class="n">out</span> <span class="o">./</span><span class="n">kingbase8client</span><span class="o">.</span><span class="n">crt</span><span class="o">.</span><span class="n">der</span> <span class="o">-</span><span class="n">outform</span> <span class="n">DER</span> <span class="o">-</span><span class="n">days</span> <span class="mi">365</span> <span class="o">-</span><span class="n">passin</span> <span class="k">pass</span><span class="p">:</span><span class="mi">123456</span> <span class="o">-</span><span class="n">extfile</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pki</span><span class="o">/</span><span class="n">tls</span><span class="o">/</span><span class="n">openssl</span><span class="o">.</span><span class="n">cnf</span> <span class="o">-</span><span class="n">extensions</span> <span class="n">v3_req</span>
+</pre></div>
+</div>
+<p>把证书添加到keystore中</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">keytool</span> <span class="o">-</span><span class="n">keystore</span> <span class="o">./</span><span class="n">keystore</span> <span class="o">-</span><span class="n">alias</span> <span class="n">kingbase8server</span> <span class="o">-</span><span class="kn">import</span> <span class="o">-</span><span class="n">file</span> <span class="o">./</span><span class="n">server</span><span class="o">.</span><span class="n">crt</span><span class="o">.</span><span class="n">der</span>
+<span class="n">keytool</span> <span class="o">-</span><span class="n">keystore</span> <span class="o">./</span><span class="n">keystore</span> <span class="o">-</span><span class="n">alias</span> <span class="n">kingbase8client</span> <span class="o">-</span><span class="kn">import</span> <span class="o">-</span><span class="n">file</span> <span class="o">./</span><span class="n">kingbase8client</span><span class="o">.</span><span class="n">crt</span><span class="o">.</span><span class="n">der</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div></blockquote>
+<p><strong>jdbc：</strong></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>只需配置连接参数ssl=true；</p></li>
+<li><p>将truststore和keystore拷贝到客户端；</p></li>
+<li><p>执行程序时指定java运行参数</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">Djavax</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">trustStore</span><span class="o">=</span><span class="n">truststore</span> <span class="o">-</span><span class="n">Djavax</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">trustStorePassword</span><span class="o">=</span><span class="mi">123456</span>
+<span class="o">-</span><span class="n">Djavax</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">keyStore</span><span class="o">=</span><span class="n">keystore</span> <span class="o">-</span><span class="n">Djavax</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">keyStorePassword</span><span class="o">=</span><span class="mi">123456</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic simple">
+<li><p>生成keystore时，签发客户端证书命令，可能会对openssl的版本有一定的要求，自测使用版本为OpenSSL 1.0.1e-fips，可以通过命令openssl version查看openssl版本。</p></li>
+<li><p>如果需要不与主机名和用户名绑定，使用LibPQFactory方式，需要配置jdbc连接参数sslmode为verify-ca，指定该参数不会验证主机名，生成kingbase8.csr时，CN指定为*，可匹配不同的用户。使用SSLSocketFactory不验证主机名和用户名。</p></li>
+<li><p>使用java命令执行应用程序时，可以通过-cp或-Djava.ext.dirs指定jar包路径。但通过后者指定时，会覆盖Java本身的ext设置，如果未指定该系统属性的原加载路径，将失去一些功能，如java自带的加解密算法实现，会报NOSuchAlgorithmException的错误。故需同时在该设置下指定路径$JAVA_HOME/jre/lib/ext，如-Djava.ext.dirs=./plugin: $JAVA_HOME/jre/lib/ex。</p></li>
+</ol>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>如果openssl版本太高，使用其生成的证书服务器可能会报&quot;unknown message digest algorithm&quot;错误，此时需将openssl.cnf配置加密算法改为sha1，并且通过环境变量OPENSSL_CONF指定该文件的位置。</p></li>
+</ol>
+<blockquote>
+<div><p>openssl version      查看openssl的版本
+openssl version -d   查看openssl.cnf所在目录</p>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="id22">
+<h2><span class="section-number">11.1.27. </span>JDBC常见异常<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<ol class="arabic simple">
+<li><p>com.kingbase8.util.KSQLException:The column index is out of range: 1, number of columns: 0.</p></li>
+</ol>
+<p>该异常报错原因是sql无需绑定参数（如空sql:””），然后进行了参数绑定，请客户自己排查原因。</p>
+<ol class="arabic simple" start="2">
+<li><p>Bad version number in .class file(unable to load class com.kingbase8.Driver)</p></li>
+</ol>
+<p>异常原因为jdk的版本小于jdbc驱动包编译的版本，提升jdk版本或使用与jdk版本对应的jar包。</p>
+<ol class="arabic simple" start="3">
+<li><p>java.lang.NoClassDefFoundError或java.lang.ClassNotFoundException</p></li>
+</ol>
+<p>这两个异常都是找不到类，通常是缺少jar包，百度下该类在什么包里，导入对应jar包即可。</p>
+<p>查看是否导入jar包：</p>
+<p><strong>工具idea</strong>：</p>
+<p>1）点击File –&gt; Project Structure；</p>
+<p>2）找到Modules，选中项目，点击Dependencies；</p>
+<p>3）如果缺少，点击右侧+号即可导入。</p>
+<div class="figure align-default">
+<img alt="../_images/jdbc-1.png" src="../_images/jdbc-1.png" />
+</div>
+<p><strong>工具eclipse：</strong></p>
+<p>1）点击项目，右键，选中Build Path，Configure Build Path，在Libraries中查看所有导入的包。缺少可通过Add JARs导入。</p>
+<div class="figure align-default">
+<img alt="../_images/jdbc-2.png" src="../_images/jdbc-2.png" />
+</div>
+<p>2）直接展开项目，也可以查看，如未导入，直接选中未导入的jar包，右键，Build Path，Add to Build Path。</p>
+<div class="figure align-default">
+<img alt="../_images/jdbc-3.png" src="../_images/jdbc-3.png" />
+</div>
+<ol class="arabic simple" start="4">
+<li><p>This connection has been closed.</p></li>
+</ol>
+<p>该异常是因为使用了已关闭的连接，该连接可能由客户端关闭，也可能是jdbc遇到了I/O异常时，关闭当前连接。应用程序未处理I/O异常，直接使用该连接，就会导致该异常。</p>
+<ol class="arabic simple" start="5">
+<li><p>I/O异常( An I/O e rror occurred while sending to the backend.)</p></li>
+</ol>
+<p>通常是由网络原因导致的，也有可能是超时导致或者磁盘满了。如果是单条语句报I/O异常，通常是语句超时导致，语句超时指的就是语句执行时间超过了socketTimeout设置的时间。如果多条语句报错，那就是其他两个原因。</p>
+<p>也有可能是绑定的从参数个数超过了SQL的参数限制（Short.MAX_VALUE:32767)。（java.io.IOException:Tried to send an out-of-range integer as a 2-byte value:）</p>
+<p>如果是在流写入的过程中遇到该异常，也可能是创建临时文件失败。写入的流如果大于50k，就会在默认临时文件目录（java.io.tmpdir的值)中创建一个文件来缓存内容，中间出现IO异常，也会抛出该错误信息。</p>
+<p>以上错误可以通过错误堆栈来区分。</p>
+<ol class="arabic simple" start="6">
+<li><p>替换jar包未生效问题</p></li>
+</ol>
+<p>原因是之前的jar包未删除。排查方法：可以删除新导入的jar包，看项目是否可以正常运行，如果可以正常运行，说明还存在其他jar包，删掉之前的jar包，再导入新的jar包。找不到其他的jar包可能原因是用户修改了驱动包名称或者驱动包被打在了其他jar包里。</p>
+<ol class="arabic simple" start="7">
+<li><p>连接错误分析</p></li>
+</ol>
+<p>（1）java.net.SocketTimeoutException:connect time out</p>
+<p>该错误表示底层的socket连接在10s内（connectTimeout默认值为10s）建立失败，此时客户端与服务器之间网络不通。</p>
+<p>（2）com.kingbase8.util.KSQLException: Connection to 192.168.19.128:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+Caused by: java.net.ConnectException: Connection refused: connect</p>
+<p>该错误表示设置的端口无法连接，可能是数据库未开启或者端口填写错误。</p>
+<p>（3）The authentication type 10 is not supported. Check that you have configured the sys_hba.conf file to include the client's IP address or subnet, and that it is using an authentication scheme supported by the driver.</p>
+<p>该错误是R3的驱动连接了R6的数据库。原因是R3的驱动不支持sha256验证，R6数据库默认就是sha256验证方式。</p>
+<p>（4）SCRAM authentication is not supported by this driver. You need JDK &gt;= 8 and pgjdbc &gt;= 42.2.0 (not &quot;.jre&quot; versions)</p>
+<p>R6 jdk1.6版本的驱动不支持sha256验证，需要使用md5验证方式。首先需要修改sys_hba.conf中的验证方式为md5，然后需要创建一个md5加密的用户。show password_encryption查看密码加密方式，不是md5的话需要修改加密方式为md5再创建用户。创建好后可以使用SELECT rolname,rolpassword FROM pg_authid;查看用户名和密码。</p>
+<p>（5）FATAL:invalid value for parameter &quot;client_encoding&quot;:XXX</p>
+<p>该错误是指服务器不支持XXX客户端编码。JDBC驱动连接数据库时默认设置的客户端编码是JVM的编码，如果该编码服务器不支持就会报上述错误。可以通过修改JVM编码或者通过设置JDBC连接参数clientEncoding来解决。</p>
+<ol class="arabic simple" start="8">
+<li><p>无法确定参数$1的类型</p></li>
+</ol>
+<p>使用$1::type或cast函数对参数进行类型强转。使用Hibernate通常用cast函数，否则无法通过hibernate的语句解析。</p>
+</div>
+<div class="section" id="jdbcblob">
+<h2><span class="section-number">11.1.28. </span>JDBC读取BLOB乱码<a class="headerlink" href="#jdbcblob" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>BLOB存储的内容为二进制，不会出现乱码。
+1.如果打印内容为com.kingbase8.jdbc.KbBlob&#64;14ae5a5，这个是Blob的对象名称，需要调用Blob的getBytes等方法，把Blob的存储内容拿出来，具体的参考手册示例。
+2.如果打印内容为x开头的十六进制字符串，和ksql查询出的内容一样，或者转字符串的时候使用了其他编码，打印出来的也可能是乱码，此时可以直接比较byte数组的大小，如果取出来的结果的数组是写之前的2倍加2的大小，那么需要更换新驱动或者在连接串指定连接参数prepareThreshold=-1。
+如果不是以上两种情况，那就是写之前就已经转成了乱码，直接把待写入的byte数组转成字符串看是否是乱码。</p>
+</div>
+<div class="section" id="id23">
+<h2><span class="section-number">11.1.29. </span>读写分离分发现象分析<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>问题描述1：集群状态正常，主机负载率也不是100，但是查询语句全部分发主机。</p>
+<p>问题分析：原因可能为连接数据库的用户的权限小于流复制的权限，导致JDBC检测线程查不到在线备机，所有语句全部分发主机。是否该原因可通过工具或者ksql使用相同用户连接相同数据库，执行select CLIENT_ADDR from sys_stat_replication;看是否可以查询到备机。</p>
+<p>解决办法：使用超级用户</p>
+<p>问题描述2：读语句发往同一台备机</p>
+<p>问题分析：使用同一个Statement执行的读语句都会发往同一台备机，原因是Statement的底层实际是有一个主Statement和一个备Statement，如果备Statement不为空时，不会去重新获取新的Statement，会一直使用同一个。如果想将语句进行分发，就建立新的Statement来执行语句。使用PreparedStatement/CallableStatement定义语句后，反复使用execute执行，多次执行都是发往同一台机器。</p>
+</div>
+<div class="section" id="com-kingbase8-util-ksqlexception-error-type-q-does-not-exist-r6">
+<h2><span class="section-number">11.1.30. </span>com.kingbase8.util.KSQLException: ERROR: type &quot;q&quot; does not exist（R6）<a class="headerlink" href="#com-kingbase8-util-ksqlexception-error-type-q-does-not-exist-r6" title="Permalink to this headline">¶</a></h2>
+<p>适用版本：V8R2</p>
+<p>问题分析：该问题是由于服务器开启了空串转为null参数（ora_input_emptystr_isnull=true），开启该参数后，原先为空串可以用q'&lt;&gt;'表示，但是有些版本驱动已经修改，服务器未修改，所以会有该问题。</p>
+<p>解决办法：通过升级服务器版本或者关闭空串转为null参数（ora_input_emptystr_isnull=false）来解决。</p>
+</div>
+<div class="section" id="fetchsize">
+<h2><span class="section-number">11.1.31. </span>fetchsize功能<a class="headerlink" href="#fetchsize" title="Permalink to this headline">¶</a></h2>
+<p>V8R3：使用参数defaultRowFetchSize指定返回行数即可。</p>
+<p>V8R6：自动提交模式下，使用参数defaultRowFetchSize指定返回行数即可。</p>
+<p>非自动提交模式下，使用参数defaultRowFetchSize指定返回行数，同时指定连接参数     useFetchSizeInAutoCommit=true。同时还需将服务器的GUC参数enable_autocommit_crossquery和enable_autocommit_fetch置为true。</p>
+</div>
+<div class="section" id="r3r6-jar">
+<h2><span class="section-number">11.1.32. </span>同时使用R3和R6，jar包冲突的解决方案<a class="headerlink" href="#r3r6-jar" title="Permalink to this headline">¶</a></h2>
+<p>V8R6使用别名包，驱动名称为com.kingbase86.Driver。连接串示例：<a class="reference external" href="jdbc:kingbase86://localhost:54321/test">jdbc:kingbase86://localhost:54321/test</a></p>
+</div>
+<div class="section" id="jar">
+<h2><span class="section-number">11.1.33. </span>如何查看jar包的版本号？<a class="headerlink" href="#jar" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="n">kingbase8</span><span class="o">-</span><span class="mf">8.6</span><span class="o">.</span><span class="mf">0.</span><span class="n">jar</span> <span class="o">-</span><span class="n">version</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -412,7 +1219,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../docker.html" class="btn btn-neutral float-right" title="12. Docker环境相关问题" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="spring-jdbc.html" class="btn btn-neutral float-right" title="11.2. Spring-JDBC 常见问题" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../interface.html" class="btn btn-neutral float-left" title="11. 接口" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -432,7 +1239,7 @@
     
     
      使用 <a href="http://sphinx-doc.org/">Sphinx</a> 创建 。
-     最后更新于 Dec 07, 2021。 
+     最后更新于 Dec 14, 2021。 
 
 </footer>
 

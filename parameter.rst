@@ -109,7 +109,7 @@ max_identifier_length
 
    数据库启动报内存不足，错误信息如下：
 
-   .. image:: images/FAQ20071.png
+   .. figure:: images/FAQ20071.png
       :width: 553px
       :height: 84px
 
@@ -117,7 +117,7 @@ max_identifier_length
 
    - 原因1：实际物理内存不够
 
-   .. image:: images/FAQ20092.png
+   .. figure:: images/FAQ20092.png
       :width: 460px
       :height: 44px
 
@@ -125,17 +125,17 @@ max_identifier_length
 
    - 原因3：系统参数设置过小
 
-   .. image:: images/FAQ20175.png
+   .. figure:: images/FAQ20175.png
       :width: 421px
       :height: 36px
 
-   .. image:: images/FAQ20177.png
+   .. figure:: images/FAQ20177.png
       :width: 267px
       :height: 177px
 
    - 原因4：启用了大页，但是大页内存却不够。数据库参数huge_pages = on，表示数据库启动时只能用大页。如果操作系统大页内存设置过小，数据库就无法启动
 
-   .. image:: images/FAQ20260.png
+   .. figure:: images/FAQ20260.png
       :width: 312px
       :height: 64px
 

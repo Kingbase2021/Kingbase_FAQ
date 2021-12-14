@@ -233,6 +233,185 @@
 <li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#v8r6-jdbcvip">11.1.3. V8R6 JDBC能否使用VIP？</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#lobupdate">11.1.4. LOB对象update机制</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#kbblob-oracle">11.1.5. KBBlob 迁移至Oracle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#jdbcjarjdk-oscpu">11.1.6. JDBC的jar包需要区分JDK版本，需要区分OS和CPU平台吗？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#jdbcurl">11.1.7. JDBC的连接参数只能通过URL串来填写吗？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#id2">11.1.8. 如何使用JDBC配置文件方式？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#id3">11.1.9. JDBC读写分离怎么打开关闭?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#id4">11.1.10. JDBC 读写分离都需要配置哪些参数？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#id5">11.1.11. JDBC读写分离一主两备的URL和配置文件的样例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#id6">11.1.12. JDBC连接池功能，是否开启，开启后的功能及性能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#id7">11.1.13. JDBC读写分离配置参数依赖关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#id8">11.1.14. JDBC读写分离在哪些情况下重发也不会成功</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#id9">11.1.15. JDBC读写分离分发策略</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#id10">11.1.16. JDBC读写分离相关参数默认值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#sockettimeout0-jdbc">11.1.17. 集群状态正常，sockettimeout设置大于0时，为什么执行时间超长的事物会失败并导致jdbc重建连接？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#rewind">11.1.18. 主备切换后，备机rewind，或者备机故障后，备机恢复时为什么 备机的连接数是持续上升，而不是一次性全部建好？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#web-jdbc">11.1.19. 主机切机后，应用第一次登陆WEB慢，JDBC等待时间分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#id11">11.1.20. JDBC打开日志方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#jdbc-utf8">11.1.21. JDBC 报错：无效的 &quot;UTF8&quot; 编码字节顺序</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#jvmjdbc">11.1.22. 系统JVM和应用和JDBC和数据库编码之间的关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#v7-v8-jdbc">11.1.23. V7 V8 JDBC 混用问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#id20">11.1.24. JDBC读写分离模式混淆找不到表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#id21">11.1.25. JDBC读写分离日志分析办法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#jdbcssl">11.1.26. JDBC使用SSL加密</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#id22">11.1.27. JDBC常见异常</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#jdbcblob">11.1.28. JDBC读取BLOB乱码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#id23">11.1.29. 读写分离分发现象分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#com-kingbase8-util-ksqlexception-error-type-q-does-not-exist-r6">11.1.30. com.kingbase8.util.KSQLException: ERROR: type &quot;q&quot; does not exist（R6）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#fetchsize">11.1.31. fetchsize功能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#r3r6-jar">11.1.32. 同时使用R3和R6，jar包冲突的解决方案</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc.html#jar">11.1.33. 如何查看jar包的版本号？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/spring-jdbc.html">11.2. Spring-JDBC 常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/spring-jdbc.html#lobhandler">11.2.1. 大字段的设置--lobHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/spring-jdbc.html#org-springframework-data-jdbc-repository-config-dialectresolver-nodialectexception-cannot-determine-a-dialect-for-org-springframework-jdbc-core-jdbctemplate-7c90b7b7-please-provide-a-dialect">11.2.2. org.springframework.data.jdbc.repository.config.DialectResolver$NoDialectException: Cannot determine a dialect for org.springframework.jdbc.core.JdbcTemplate&#64;7c90b7b7. Please provide a Dialect.</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/hibernate.html">11.3. Hibernate使用常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/hibernate.html#id1">11.3.1. Hibernate使用需要配置方言包</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/hibernate.html#v8-hibernatelong">11.3.2. V8 Hibernate非法long值问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/hibernate.html#hibernate-1">11.3.3. Hibernate 无法确定参数类型$1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/hibernate.html#hibernate-text-bytea">11.3.4. Hibernate 错误: 字段的类型为 TEXT, 但表达式的类型为 BYTEA你需要重写或转换表达式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/hibernate.html#hibernatesql">11.3.5. Hibernate控制输出真实SQL日志</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/hibernate.html#springboot-jpa">11.3.6. Springboot JPA配置方言包问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/hibernate.html#hibernate-spatial">11.3.7. hibernate-spatial方言包配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/hibernate.html#hibernatenumericchar-1-javaboolean">11.3.8. hibernate使用numeric或char(1)映射java的boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/hibernate.html#the-column-name-sequence-catalog-was-not-found-in-this-resultset">11.3.9. The column name sequence_catalog was not found in this ResultSet.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/hibernate.html#hilo">11.3.10. 主键自增策略hilo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/hibernate.html#method-com-kingbase8-jdbc-kbpreparedstatement-setcharacterstream-int-reader-long-is-not-yet-implemented">11.3.11. Method com.kingbase8.jdbc.KbPreparedStatement.setCharacterStream(int, Reader, long) is not yet implemented.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/hibernate.html#hibernatehql">11.3.12. Hibernate的hql不支持部分数据库函数的使用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/hibernate.html#hibernateupdate">11.3.13. Hibernate设置为update已经建好表，仍旧去建表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/hibernate.html#java-lang-nosuchmethoderror-javax-persistence-table-indexes-ljavax-persistence-index">11.3.14. java.lang.NoSuchMethodError: javax.persistence.Table.indexes()[Ljavax/persistence/Index;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/hibernate.html#user">11.3.15. 表取名user怎么规避？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/hibernate.html#id2">11.3.16. 其它模式下有同名表，导致当前模式没有表但未去建表</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/mybatis.html">11.4. Mybatis 常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/mybatis.html#mybatissql">11.4.1. Mybatis设置SQL超时时间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/mybatis.html#mybatislong">11.4.2. Mybatis非法long值问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/mybatis.html#mybatis-text-bytea">11.4.3. Mybatis 报错：字段的类型为 TEXT, 但表达式的类型为 BYTEA你需要重写或转换表达式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/mybatis.html#mybatis-jdbc">11.4.4. Mybatis 控制JDBC底层不走预编译</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/mybatis.html#mybatis-bind">11.4.5. Mybatis 控制Bind参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/mybatis.html#mybatis-pagehelper">11.4.6. Mybatis 使用pagehelper插件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/mybatis.html#id1">11.4.7. Mybatis 使用自动返回主键功能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/mybatis.html#mybatisdatabaseid">11.4.8. Mybatis配置databaseId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/mybatis.html#id2">11.4.9. Mybatis使用匿名块插入语句报错</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/mybatis.html#mybatisscriptrunnerplsqlsql">11.4.10. Mybatis使用ScriptRunner执行含plsql的sql脚本报错</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/mybatis.html#id3">11.4.11. Mybatis使用游标的注册方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/mybatis.html#mybatisjson">11.4.12. Mybatis写json类型示例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/mybatis-plus.html">11.5. Mybatis-plus常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/mybatis-plus.html#id1">11.5.1. Mybatis-plus使用</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/activiti.html">11.6. Activiti使用常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/activiti.html#id1">11.6.1. Activiti使用</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/maven.html">11.7. Maven 仓库使用常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/maven.html#mavenkingbaseesjdbc">11.7.1. Maven本地仓库使用KingbaseES的JDBC驱动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/maven.html#mavenkingbaseesdialect">11.7.2. Maven本地仓库使用KingbaseES的dialect方言包</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/druid.html">11.8. Druid 数据库连接池配置问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/druid.html#id1">11.8.1. Druid 配置国产金仓数据库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/druid.html#id2">11.8.2. Druid 配置例子</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/druid.html#id3">11.8.3. Druid的连接强制回收</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/c3p0.html">11.9. C3P0连接池配置问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/c3p0.html#c3p0v8">11.9.1. 常用C3p0配置金仓V8数据库</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/DBCP.html">11.10. DBCP连接池配置问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/DBCP.html#dbcpv8">11.10.1. 常用dbcp配置金仓V8数据库</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/apache-james.html">11.11. Apache James适配</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/pdo.html">11.12. Pdo接口常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/pdo.html#id1">11.12.1. 导入驱动失败</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/pdo.html#pdo-kdb">11.12.2. 加载 PDO_KDB 报错</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/pdo.html#php">11.12.3. PHP的线程安全和非线程安全</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/pdo.html#pdophp">11.12.4. 使用的PDO驱动与PHP版本不匹配</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/pdo.html#windowspdo">11.12.5. Windows下使用PDO驱动的方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/pdo.html#thinkphp">11.12.6. thinkphp使用过程中报函数不存在的问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/pdo.html#pdo-kdbpdo-pgsql">11.12.7. 通过金蝶等中间件查看驱动加载信息时，看不到pdo_kdb或者pdo_pgsql的信息</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/thinkPHP.html">11.13. ThinkPHP接口常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/thinkPHP.html#thinkphp-apache-kdb">11.13.1. 如何在搭建Thinkphp+apache+kdb环境</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../interface/thinkPHP.html#apache">11.13.1.1. apache环境搭建</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../interface/thinkPHP.html#php">11.13.1.2. php环境搭建</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../interface/thinkPHP.html#thinkphphttpd">11.13.1.3. thinkphp在httpd中使用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/perl.html">11.14. Perl 常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/perl.html#perl-pdi">11.14.1. Perl 驱动pdi无法加载问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/perl.html#perlperl">11.14.2. 怎么在perl中配置金仓perl驱动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/perl.html#id3">11.14.3. 如何排查perl驱动加载失败步骤</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/odbc.html">11.15. ODBC常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/odbc.html#id1">11.15.1. 环境依赖</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/odbc.html#linux-unixodbc">11.15.2. linux unixodbc通过连接串连接数据库操作，如何添加连接参数？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/odbc.html#linuxodbc">11.15.3. linux环境下如何开启odbc驱动的日志？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/odbc.html#id2">11.15.4. linux下odbc驱动接口连接数据库失败，如何排查？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/odbc.html#id3">11.15.5. linux下odbc驱动开启日志？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/odbc.html#sqlfreestmt-sqlclosecursor">11.15.6. SQLFreeStmt()函数与SQLCloseCursor()有什么不同？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/odbc.html#dns">11.15.7. 连接串中如何通过驱动名连接数据库，即不通过DNS连接数据库？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/C%23.html">11.16. C# 常见通过问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/C%23.html#ndp">11.16.1. NDP的连接数问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/C%23.html#ndpnet45net451-netcore2-0">11.16.2. NDP驱动net45、net451, netcore2.0有什么不同？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/python.html">11.17. Python通过PyODBC连接Kingbase的说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/python.html#id1">11.17.1. 环境配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/python.html#kingbasev7">11.17.2. KingbaseV7驱动配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/python.html#kingbasev8">11.17.3. KingbaseV8驱动配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/python.html#id2">11.17.4. 连接测试</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/ruby.html">11.18. Ruby 常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/ruby.html#ruby-pgkingbasees-v8r3">11.18.1. 如何使用ruby-pg驱动连接至kingbaseES V8R3数据库</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/qt.html">11.19. QT常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/qt.html#windowsqt">11.19.1. windows如何加载QT驱动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/qt.html#id1">11.19.2. 提需求时，如何进行描述：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/qt.html#ssl">11.19.3. SSL认证如何配置</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/kci-v7.html">11.20. V7 KCI常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/kci-v7.html#kci-oidoid">11.20.1. 用KCI操作大对象写到用户的表里，发现OID不是创建的OID</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/oci-v7.html">11.21. V7 OCI常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/oci-v7.html#oci">11.21.1. OCI读写分离配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/oci-v7.html#id1">11.21.2. OCI日志分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/oci-v7.html#id2">11.21.3. OCI日志配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/oci-v7.html#id3">11.21.4. OCI配置文件如何配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/oci-v7.html#oci-dci">11.21.5. OCI 和DCI的头文件可以混用吗？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/jdbc-v7.html">11.22. V7 JDBC常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc-v7.html#jdbc">11.22.1. JDBC读写分离配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc-v7.html#id1">11.22.2. JDBC日志分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc-v7.html#id2">11.22.3. JDBC读写分离分发策略</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc-v7.html#fastpath-call-returned-invalid-large-object-descriptor-0">11.22.4. FastPath call returned invalid large object descriptor：0.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc-v7.html#fetchsize">11.22.5. fetchsize功能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/jdbc-v7.html#mybatis">11.22.6. mybatis一次执行多条语句时报错，错误信息为：“预置的语句中不能插入多个命令”</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interface/SSL.html">11.23. SSL认证常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/SSL.html#id2">11.23.1. 证书生成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/SSL.html#id3">11.23.2. 证书配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/SSL.html#id4">11.23.3. 证书有效期</a></li>
 </ul>
 </li>
 </ul>
@@ -454,7 +633,7 @@ file for details.</p>
     
     
      使用 <a href="http://sphinx-doc.org/">Sphinx</a> 创建 。
-     最后更新于 Dec 07, 2021。 
+     最后更新于 Dec 14, 2021。 
 
 </footer>
 

@@ -23,7 +23,7 @@ Sys_rman备份报“current time may be rewound”
 
    Session A: sys_export_snapshot实际返回的是当前事务ID，实际可以不需要isolation level repeatable read。 
 
-   .. image:: images/FAQ31140.png
+   .. figure:: images/FAQ31140.png
       :width: 554px
       :height: 125px
 
@@ -47,7 +47,7 @@ Sys_rman备份报“current time may be rewound”
 
    可以看到，根据条件返回的记录数据与where条件不匹配。这3个条件是主键。
 
-   .. image:: images/FAQ31384.png
+   .. figure:: images/FAQ31384.png
       :width: 554px
       :height: 299px
 

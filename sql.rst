@@ -151,13 +151,13 @@ Ora_input_emptystr_isnull对于字符类型空值的影响
 
    1) ora_input_emptystr_isnull=on 插入的数据，‘’和null都会转为null，之后的select操作不管ora_input_emptystr_isnull为何值，返回结果都相同：
 
-   .. image:: images/FAQ846.png
+   .. figure:: images/FAQ846.png
       :width: 516px
       :height: 523px
 
    2) 在ora_input_emptystr_isnull=off时插入的数据，ora_input_emptystr_isnull值不同，返回的结果也不同：
 
-   .. image:: images/FAQ925.png
+   .. figure:: images/FAQ925.png
       :width: 624px
       :height: 531px
 
@@ -177,13 +177,13 @@ Ora_input_emptystr_isnull对于数值类型空值的影响
 
    1) 当ora_input_emptystr_isnull=on ，insert 与 select 对于 ‘’ 都没问题
 
-   .. image:: images/FAQ1349.png
+   .. figure:: images/FAQ1349.png
       :width: 380px
       :height: 297px
 
    2) 当ora_input_emptystr_isnull=off ，insert 与 select 对于 ‘’都有问题
 
-   .. image:: images/FAQ1410.png
+   .. figure:: images/FAQ1410.png
       :width: 457px
       :height: 304px
 
@@ -231,7 +231,7 @@ Core分析
 
    1、 确认针对用户的core文件大小没有限制。
 
-   .. image:: images/FAQ2141.png
+   .. figure:: images/FAQ2141.png
       :width: 243px
       :height: 34px
 
@@ -256,13 +256,13 @@ Core分析
 
    1、 确认core文件是哪个程序生成的
 
-   .. image:: images/FAQ2359.png
+   .. figure:: images/FAQ2359.png
       :width: 650px
       :height: 44px
 
    2、 使用gdb分析core文件。
 
-   .. image:: images/FAQ2376.png
+   .. figure:: images/FAQ2376.png
       :width: 649px
       :height: 426px
 
@@ -296,7 +296,7 @@ Core分析
 
       虽然unreserved 的关键字可以用于字段名等，但不能用于列别名。
 
-   .. image:: images/FAQ2717.png
+   .. figure:: images/FAQ2717.png
       :width: 367px
       :height: 140px
 
@@ -410,7 +410,7 @@ Windows版本安装未注册服务
 
    MySQL 的group by : MySQL支持selectlist中非聚集列可以不出现在group by中。sql标准是必须出现在group by中， 如：select col1, col2 from tab group by col1; kingbase 为兼容mysql，设置了个参数ql_mode参数，目前只支持ONLY_FULL_GROUP_BY选项。如果sql_mode中不包含ONLY_FULL_GROUP_BY，group by语句可以不符合sql标准。 也就是与mysql结果相同。 
 
-   .. image:: images/FAQ5663.png
+   .. figure:: images/FAQ5663.png
       :width: 650px
       :height: 268px
 
@@ -781,7 +781,7 @@ Windows 如何配置免密登录
 
    用户命令格式报错，但实际命令是正确的。如下图：
 
-   .. image:: images/FAQ11099.png
+   .. figure:: images/FAQ11099.png
       :width: 554px
       :height: 34px
 
@@ -802,7 +802,7 @@ To_date 函数问题
 
    具体例子如下：
 
-   .. image:: images/FAQ11300.png
+   .. figure:: images/FAQ11300.png
       :width: 393px
       :height: 336px
 
@@ -924,7 +924,7 @@ Pg_relation_size 问题
 
    V8R6对于中文符号进行部分兼容，其中包括全角逗号、空格等。如：
 
-   .. image:: images/FAQ13964.png
+   .. figure:: images/FAQ13964.png
       :width: 243px
       :height: 56px
 
@@ -992,7 +992,7 @@ V8R6提供了类似oracle dbms_metadata的包，用于获取对象的定义信�
 
 问题解决：请看以下两种update方法。方法一采用loop方式，效率非常低。而方法二采用hash方式进行连接，效率高
 
-.. image:: images/FAQ14823.png
+.. figure:: images/FAQ14823.png
    :width: 650px
    :height: 308px
 
@@ -1004,7 +1004,7 @@ Failed to find conversion function from UNKNOWN to TEXT
 
 问题例子：
 
-.. image:: images/FAQ14910.png
+.. figure:: images/FAQ14910.png
    :width: 561px
    :height: 180px
 

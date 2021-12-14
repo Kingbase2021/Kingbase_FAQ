@@ -183,7 +183,7 @@ SELECT get_license_validdays();   如果返回值为 -2 ，表示永久licens
 
    4、 License 例子如下：
 
-   .. image:: images/FAQ24011.png
+   .. figure:: images/FAQ24011.png
       :width: 556px
       :height: 518px
 

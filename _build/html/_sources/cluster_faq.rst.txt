@@ -24,7 +24,7 @@ libssl 问题
 
 1、查看ssh库函数信息
 
-.. image:: images/cluster_FAQ266.png
+.. figure:: images/cluster_FAQ266.png
    :width:  400px
    :height: 184px
 
@@ -110,7 +110,7 @@ arping问题
 
 故障日志：
 
-.. image:: images/cluster_FAQ1846.png
+.. figure:: images/cluster_FAQ1846.png
    :width: 400px
    :height: 184px
 
@@ -137,11 +137,11 @@ arping_path版本不正确
 
 故障日志：
 
-.. image:: images/cluster_FAQ2048.png
+.. figure:: images/cluster_FAQ2048.png
    :width: 400px
    :height: 300px
 
-.. image:: images/cluster_FAQ2050.png
+.. figure:: images/cluster_FAQ2050.png
    :width: 400px
    :height: 200px
 
@@ -159,15 +159,15 @@ esHAmodel.sh脚本错误
 
 适用版本：V8R3
 
-.. image:: images/cluster_FAQ2163.png
+.. figure:: images/cluster_FAQ2163.png
    :width: 400px
    :height: 33px
 
-.. image:: images/cluster_FAQ2164.png
+.. figure:: images/cluster_FAQ2164.png
    :width: 400px
    :height: 33px
 
-.. image:: images/cluster_FAQ2165.png
+.. figure:: images/cluster_FAQ2165.png
    :width: 400px
    :height: 31px
 
@@ -183,7 +183,7 @@ esHAmodel.sh脚本错误
 
 查看crontab service：
 
-.. image:: images/cluster_FAQ2313.png
+.. figure:: images/cluster_FAQ2313.png
    :width: 400px
    :height: 203px
 
@@ -375,7 +375,7 @@ kingbasecluster服务启动失败
 
 **“No Space left on device”**
 
-.. image:: images/cluster_FAQ4862.png
+.. figure:: images/cluster_FAQ4862.png
    :width:  554px
    :height: 416px
 
@@ -385,14 +385,14 @@ kingbasecluster服务启动失败
 
 适用版本：V8R3
 
-.. image:: images/cluster_FAQ4907.png
+.. figure:: images/cluster_FAQ4907.png
    :width:  554px
    :height: 416px
 
 
 在配置root用户的ssh互信时，需要做以下配置：
 
-.. image:: images/cluster_FAQ4935.png
+.. figure:: images/cluster_FAQ4935.png
    :width: 378px
    :height: 800px
 
@@ -408,7 +408,7 @@ kingbasecluster服务启动失败
 
 故障现象：
 
-.. image:: images/cluster_FAQ5000.png
+.. figure:: images/cluster_FAQ5000.png
    :width:  554px
    :height: 345px
 
@@ -425,7 +425,7 @@ kingbasecluster服务启动失败
 
 适用版本：V8R3
 
-.. image:: images/cluster_FAQ5256.png
+.. figure:: images/cluster_FAQ5256.png
    :width:  554px
    :height: 416px
 
@@ -450,11 +450,11 @@ kingbasecluster服务启动失败
 
 故障现象：
 
-.. image:: images/cluster_FAQ5498.png
+.. figure:: images/cluster_FAQ5498.png
    :width:  554px
    :height: 233px
 
-.. image:: images/cluster_FAQ5501.png
+.. figure:: images/cluster_FAQ5501.png
    :width:  554px
    :height: 256px
 
@@ -471,7 +471,7 @@ cpu:海光
  
    先重做备机 记得之前的data备份一下这个问题之前出现过，但是概率极低，是pg原生的问题，已经在跟进社区的修复代码，你先使用临时方案解决一下。
 
-   .. image:: images/cluster_FAQ5635.png
+   .. figure:: images/cluster_FAQ5635.png
       :width: 308px
       :height: 134px
 
@@ -485,7 +485,7 @@ KES V8R2集群kingbasecluster服务9999端口无法连接
 
 连接集群9999端口失败，提示“所有数据库服务down”，但是可以连接54321端口，说明数据库服务正常。
 
-.. image:: images/cluster_FAQ5745.png
+.. figure:: images/cluster_FAQ5745.png
    :width:  554px
    :height: 256px
 
@@ -493,17 +493,17 @@ KES V8R2集群kingbasecluster服务9999端口无法连接
 
    1、查看数据库和集群进程状态
 
-   .. image:: images/cluster_FAQ5772.png
+   .. figure:: images/cluster_FAQ5772.png
       :width:  554px
       :height: 256px
 
-   .. image:: images/cluster_FAQ5775.png
+   .. figure:: images/cluster_FAQ5775.png
       :width:  554px
       :height: 256px
 
    2、主库cluster.log日志
 
-   .. image:: images/cluster_FAQ5797.png
+   .. figure:: images/cluster_FAQ5797.png
       :width:  554px
       :height: 196px
 
@@ -519,7 +519,7 @@ KES V8R2集群kingbasecluster服务9999端口无法连接
 
 连接测试：
 
-   .. image:: images/cluster_FAQ5974.png
+   .. figure:: images/cluster_FAQ5974.png
       :width:  554px
       :height: 138px
 
@@ -536,7 +536,7 @@ R3集群部署工具部署时，出现sys_md5的错误
 
 故障现象：
 
-.. image:: images/cluster_FAQ6067.png
+.. figure:: images/cluster_FAQ6067.png
    :width:  554px
    :height: 416px
 
@@ -544,7 +544,7 @@ R3集群部署工具部署时，出现sys_md5的错误
 
    手工执行sys_md5命令
 
-   .. image:: images/cluster_FAQ6096.png
+   .. figure:: images/cluster_FAQ6096.png
       :width:  554px
       :height: 29px
 
@@ -558,7 +558,7 @@ R3集群BMJ启动esHAmodel.sh失败问题
 
 故障现象：
 
-   .. image:: images/cluster_FAQ6185.png
+   .. figure:: images/cluster_FAQ6185.png
       :width:  554px
       :height: 312px
 
@@ -568,7 +568,7 @@ R3集群BMJ启动esHAmodel.sh失败问题
 
    查看/etc/profile环境变量PATH的设置
 
-   .. image:: images/cluster_FAQ6269.png
+   .. figure:: images/cluster_FAQ6269.png
       :width:  554px
       :height: 108px
 
@@ -593,7 +593,7 @@ BMJ R3集群切换后es_client无法和es_server通讯问题
 
    银河麒麟专用机在起集群的时候，报错找不到备节点的es_server，但是我在主节点执行es_client那条命令是可以返回值的，两边的es_server服务也都起着呢，这种情况得怎么处理？
 
-   .. image:: images/cluster_FAQ6606.png
+   .. figure:: images/cluster_FAQ6606.png
       :width:  554px
       :height: 179px
 
@@ -604,7 +604,7 @@ BMJ R3集群切换后es_client无法和es_server通讯问题
 
 问题原因：
 
-   .. image:: images/cluster_FAQ6710.png
+   .. figure:: images/cluster_FAQ6710.png
       :width: 430px
       :height: 931px
 
@@ -618,13 +618,13 @@ kingbaseES R3集群启动后“无standby”问题
 
    一主二备的架构，通过kingbase_monitor.sh启动后，出现以下故障信息。
 
-   .. image:: images/cluster_FAQ6806.png
+   .. figure:: images/cluster_FAQ6806.png
       :width:  554px
       :height: 39px
 
 集群日志信息：
 
-   .. image:: images/cluster_FAQ6818.png
+   .. figure:: images/cluster_FAQ6818.png
       :width:  554px
       :height: 116px
 
@@ -637,7 +637,7 @@ kingbaseES R3集群启动后“无standby”问题
 
    在系统配置了防火墙规则，开放指定的端口后，问题解决。
 
-   .. image:: images/cluster_FAQ6935.png
+   .. figure:: images/cluster_FAQ6935.png
       :width:  554px
       :height: 200px
  
@@ -651,7 +651,7 @@ kingbaseES R3集群kingbasecluster无法正确识别备库状态
 
    读写分离集群，测试主备切机后，show pool_nodes备机状态为down。
 
-   .. image:: images/cluster_FAQ7031.png
+   .. figure:: images/cluster_FAQ7031.png
       :width:  554px
       :height: 311px
 
@@ -663,13 +663,13 @@ kingbaseES R3集群kingbasecluster无法正确识别备库状态
 
 复制槽状态：
 
-.. image:: images/cluster_FAQ7097.png
+.. figure:: images/cluster_FAQ7097.png
    :width:  554px
    :height: 312px
 
 cluster.log：
  
-.. image:: images/cluster_FAQ7114.png
+.. figure:: images/cluster_FAQ7114.png
    :width:  554px
    :height: 130px
 
@@ -701,7 +701,7 @@ kingbaseES R3 集群无法加载db VIP 和cluster VIP案例
 
    通过kingbase_monitor.sh启动提示“无法加载db VIP”
 
-   .. image:: images/cluster_FAQ7114.png
+   .. figure:: images/cluster_FAQ7114.png
       :width:  554px
       :height: 130px
 
@@ -711,23 +711,23 @@ kingbaseES R3 集群无法加载db VIP 和cluster VIP案例
 
    2）手工启动kingbasecluster服务，发现提示“不能加载cluster VIP”。
 
-   .. image:: images/cluster_FAQ7560.png
+   .. figure:: images/cluster_FAQ7560.png
       :width:  554px
       :height: 173px
 
    3）检查arping版本正常，kingbasecluster.conf文件发现加载vip语句有错误。
 
-   .. image:: images/cluster_FAQ7669.png
+   .. figure:: images/cluster_FAQ7669.png
       :width:  554px
       :height: 164px
 
-   .. image:: images/cluster_FAQ7721.png
+   .. figure:: images/cluster_FAQ7721.png
       :width: 326px
       :height: 83px
 
    4）修改kingbasecluster.conf配置后，手工启动kingbasecluster服务正常。
 
-   .. image:: images/cluster_FAQ7723.png
+   .. figure:: images/cluster_FAQ7723.png
       :width: 488px
       :height: 149px
 
@@ -735,13 +735,13 @@ kingbaseES R3 集群无法加载db VIP 和cluster VIP案例
 
    6）手工执行sh -x change_vip.sh，发现错误“DEV”变量为空值。
 
-   .. image:: images/cluster_FAQ7776.png
+   .. figure:: images/cluster_FAQ7776.png
       :width: 540px
       :height: 168px
 
    7） 检查HAmodule.conf文件，发现“DEV"变量赋值为空。
 
-   .. image:: images/cluster_FAQ7862.png
+   .. figure:: images/cluster_FAQ7862.png
       :width: 486px
       :height: 297px
 
@@ -760,15 +760,15 @@ kingbaseES R3 集群无法加载db VIP 和cluster VIP案例
 
    整个集群在测试网关连通时，无法ping通网关，导致整个集群宕机。在此期间network_rewind尝试recovery，但是不能恢复数据库服务，kingbasecluster服务被计划任务重启。
 
-   .. image:: images/cluster_FAQ7898.png
+   .. figure:: images/cluster_FAQ7898.png
       :width: 513px
       :height: 97px
 
-   .. image:: images/cluster_FAQ8150.png
+   .. figure:: images/cluster_FAQ8150.png
       :width:  554px
       :height: 299px
 
-   .. image:: images/cluster_FAQ8153.png
+   .. figure:: images/cluster_FAQ8153.png
       :width:  554px
       :height: 146px
 
@@ -776,13 +776,13 @@ kingbaseES R3 集群无法加载db VIP 和cluster VIP案例
 
    在8:39分后，人工干预下，手工重新启动所有节点的数据库服务后，集群恢复正常。
 
-   .. image:: images/cluster_FAQ8204.png
+   .. figure:: images/cluster_FAQ8204.png
       :width:  554px
       :height: 165px
 
 问题总结：
 
-   .. image:: images/cluster_FAQ8213.png
+   .. figure:: images/cluster_FAQ8213.png
       :width:  554px
       :height: 292px
 
@@ -803,35 +803,35 @@ kingbaseES R3 集群无法加载db VIP 和cluster VIP案例
 
    备库kingbasecluster服务进程和端口（9999）启动正常，但通过ksql连接9999端口访问失败，telnet访问9999端口正常。
 
-   .. image:: images/cluster_FAQ8414.png
+   .. figure:: images/cluster_FAQ8414.png
       :width:  554px
       :height: 84px
 
    kingbasecluster进程和端口：
 
-   .. image:: images/cluster_FAQ8439.png
+   .. figure:: images/cluster_FAQ8439.png
       :width:  554px
       :height: 377px
 
-   .. image:: images/cluster_FAQ8442.png
+   .. figure:: images/cluster_FAQ8442.png
       :width:  554px
       :height: 116px
 
    9999端口socket文件不存在：
 
-   .. image:: images/cluster_FAQ8464.png
+   .. figure:: images/cluster_FAQ8464.png
       :width:  554px
       :height: 212px
 
    telnet连接9999端口：
 
-   .. image:: images/cluster_FAQ8483.png
+   .. figure:: images/cluster_FAQ8483.png
       :width:  554px
       :height: 169px
 
 解决方法：
 
-   .. image:: images/cluster_FAQ8492.png
+   .. figure:: images/cluster_FAQ8492.png
       :width: 422px
       :height: 169px
 
@@ -852,7 +852,7 @@ KES V8R3集群通过kingbase_monitor.sh启动失败，提示“pam_nologin(8)"�
 
 故障现象：
 
-   .. image:: images/cluster_FAQ8643.png
+   .. figure:: images/cluster_FAQ8643.png
       :width:  554px
       :height: 163px
 
@@ -862,7 +862,7 @@ KES V8R3集群通过kingbase_monitor.sh启动失败，提示“pam_nologin(8)"�
 
    因为kingbase_monitor.sh启动，会通过ssh远程连接node做集群服务的检测，怀疑和ssh连接的身份认证有关系。
 
-   .. image:: images/cluster_FAQ8760.png
+   .. figure:: images/cluster_FAQ8760.png
       :width:  554px
       :height: 136px
 
@@ -870,7 +870,7 @@ KES V8R3集群通过kingbase_monitor.sh启动失败，提示“pam_nologin(8)"�
 
    如下图所示，需要将/etc/pam.d/sshd文件中的标识的行注释后，重新启动集群后，问题解决。
 
-   .. image:: images/cluster_FAQ8820.png
+   .. figure:: images/cluster_FAQ8820.png
       :width:  554px
       :height: 234px
 
@@ -906,7 +906,7 @@ sys_dump备份问题
 
    V8R6 sys_dump备份成dump格式可以正常备份，备份成sql格式报错。
 
-   .. image:: images/cluster_FAQ9139.png
+   .. figure:: images/cluster_FAQ9139.png
       :width:  554px
       :height: 301px
 
@@ -928,7 +928,7 @@ sys_restore 恢复数据错误
 
 错误现象：
 
-   .. image:: images/cluster_FAQ9267.png
+   .. figure:: images/cluster_FAQ9267.png
       :width:  554px
       :height: 312px
 
@@ -946,7 +946,7 @@ kingbaseES R6集群部署“open files”问题
 
    BMJ环境，kingbaseES R6集群部署时，es_client连接远程服务器检测环境，“open files”参数配置错误，但是通过查看远程主机（ulimit-n结果为655360），符合部署要求。
 
-   .. image:: images/cluster_FAQ9467.png
+   .. figure:: images/cluster_FAQ9467.png
       :width:  554px
       :height: 358px
 
@@ -954,13 +954,13 @@ kingbaseES R6集群部署“open files”问题
 
    1、手工执行出错信息的命令
 
-   .. image:: images/cluster_FAQ9494.png
+   .. figure:: images/cluster_FAQ9494.png
       :width:  554px
       :height: 160px
     
    2、查看远程机器的open files
 
-   .. image:: images/cluster_FAQ9516.png
+   .. figure:: images/cluster_FAQ9516.png
       :width:  554px
       :height: 301px
 

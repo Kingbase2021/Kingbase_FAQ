@@ -1,0 +1,27 @@
+C3P0连接池配置问题
+========================
+
+
+常用C3p0配置金仓V8数据库
+-----------------------------
+
+.. code::
+
+    <c3p0-config>
+           <named-config name="database">
+        <property name="user">SYSTEM</property>
+        <property name="password">MANAGER</property>
+        <property name="driverClass">com. kingbase8.Driver</property>
+        <property name="jdbcUrl">jdbc:kingbase8://127.0.0.1:54321/TEST </property> 
+    <property name="initialPoolSize">2</property>
+        <property name="maxPoolSize">100</property>
+    <property name="minPoolSize">10</property>
+
+    <!--最大空闲时间,单位秒,指定的时间内未使用则连接被丢弃。Default: 0永不丢弃-->
+    <property name="maxIdleTime">1800</property>
+    <!--连接有效性检测-->
+            <property name="preferredTestQuery">select 1 from dual</property>
+            <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+            <property name="acquireIncrement">3</property>
+           </named-config>
+    </c3p0-config>

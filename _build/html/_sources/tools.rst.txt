@@ -11,7 +11,7 @@
 
    客户端连接报错如下
 
-   .. image:: images/FAQ28490.png
+   .. figure:: images/FAQ28490.png
       :width: 650px
       :height: 47px
 
@@ -40,7 +40,7 @@
 
    以下文件内容取自 ManagerTools/configuration/\*/bundles.info
 
-   .. image:: images/FAQ28979.png
+   .. figure:: images/FAQ28979.png
       :width: 650px
       :height: 148px
 
@@ -63,7 +63,7 @@
 
    manager连接数据库所使用的client_encoding是通过ManagerTools/manager.ini设置的。
 
-   .. image:: images/FAQ29287.png
+   .. figure:: images/FAQ29287.png
      :width: 510px
      :height: 128px
 

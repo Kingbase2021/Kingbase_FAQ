@@ -2,7 +2,7 @@ KingbaseES常见问题手册
 ==================================================
 
 
-Frequently Asked Questions
+
 
 
 .. toctree::

@@ -234,6 +234,185 @@
 <li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#v8r6-jdbcvip">11.1.3. V8R6 JDBC能否使用VIP？</a></li>
 <li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#lobupdate">11.1.4. LOB对象update机制</a></li>
 <li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#kbblob-oracle">11.1.5. KBBlob 迁移至Oracle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#jdbcjarjdk-oscpu">11.1.6. JDBC的jar包需要区分JDK版本，需要区分OS和CPU平台吗？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#jdbcurl">11.1.7. JDBC的连接参数只能通过URL串来填写吗？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id2">11.1.8. 如何使用JDBC配置文件方式？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id3">11.1.9. JDBC读写分离怎么打开关闭?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id4">11.1.10. JDBC 读写分离都需要配置哪些参数？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id5">11.1.11. JDBC读写分离一主两备的URL和配置文件的样例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id6">11.1.12. JDBC连接池功能，是否开启，开启后的功能及性能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id7">11.1.13. JDBC读写分离配置参数依赖关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id8">11.1.14. JDBC读写分离在哪些情况下重发也不会成功</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id9">11.1.15. JDBC读写分离分发策略</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id10">11.1.16. JDBC读写分离相关参数默认值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#sockettimeout0-jdbc">11.1.17. 集群状态正常，sockettimeout设置大于0时，为什么执行时间超长的事物会失败并导致jdbc重建连接？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#rewind">11.1.18. 主备切换后，备机rewind，或者备机故障后，备机恢复时为什么 备机的连接数是持续上升，而不是一次性全部建好？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#web-jdbc">11.1.19. 主机切机后，应用第一次登陆WEB慢，JDBC等待时间分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id11">11.1.20. JDBC打开日志方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#jdbc-utf8">11.1.21. JDBC 报错：无效的 &quot;UTF8&quot; 编码字节顺序</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#jvmjdbc">11.1.22. 系统JVM和应用和JDBC和数据库编码之间的关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#v7-v8-jdbc">11.1.23. V7 V8 JDBC 混用问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id20">11.1.24. JDBC读写分离模式混淆找不到表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id21">11.1.25. JDBC读写分离日志分析办法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#jdbcssl">11.1.26. JDBC使用SSL加密</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id22">11.1.27. JDBC常见异常</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#jdbcblob">11.1.28. JDBC读取BLOB乱码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#id23">11.1.29. 读写分离分发现象分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#com-kingbase8-util-ksqlexception-error-type-q-does-not-exist-r6">11.1.30. com.kingbase8.util.KSQLException: ERROR: type &quot;q&quot; does not exist（R6）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#fetchsize">11.1.31. fetchsize功能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#r3r6-jar">11.1.32. 同时使用R3和R6，jar包冲突的解决方案</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc.html#jar">11.1.33. 如何查看jar包的版本号？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/spring-jdbc.html">11.2. Spring-JDBC 常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/spring-jdbc.html#lobhandler">11.2.1. 大字段的设置--lobHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/spring-jdbc.html#org-springframework-data-jdbc-repository-config-dialectresolver-nodialectexception-cannot-determine-a-dialect-for-org-springframework-jdbc-core-jdbctemplate-7c90b7b7-please-provide-a-dialect">11.2.2. org.springframework.data.jdbc.repository.config.DialectResolver$NoDialectException: Cannot determine a dialect for org.springframework.jdbc.core.JdbcTemplate&#64;7c90b7b7. Please provide a Dialect.</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/hibernate.html">11.3. Hibernate使用常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/hibernate.html#id1">11.3.1. Hibernate使用需要配置方言包</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/hibernate.html#v8-hibernatelong">11.3.2. V8 Hibernate非法long值问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/hibernate.html#hibernate-1">11.3.3. Hibernate 无法确定参数类型$1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/hibernate.html#hibernate-text-bytea">11.3.4. Hibernate 错误: 字段的类型为 TEXT, 但表达式的类型为 BYTEA你需要重写或转换表达式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/hibernate.html#hibernatesql">11.3.5. Hibernate控制输出真实SQL日志</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/hibernate.html#springboot-jpa">11.3.6. Springboot JPA配置方言包问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/hibernate.html#hibernate-spatial">11.3.7. hibernate-spatial方言包配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/hibernate.html#hibernatenumericchar-1-javaboolean">11.3.8. hibernate使用numeric或char(1)映射java的boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/hibernate.html#the-column-name-sequence-catalog-was-not-found-in-this-resultset">11.3.9. The column name sequence_catalog was not found in this ResultSet.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/hibernate.html#hilo">11.3.10. 主键自增策略hilo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/hibernate.html#method-com-kingbase8-jdbc-kbpreparedstatement-setcharacterstream-int-reader-long-is-not-yet-implemented">11.3.11. Method com.kingbase8.jdbc.KbPreparedStatement.setCharacterStream(int, Reader, long) is not yet implemented.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/hibernate.html#hibernatehql">11.3.12. Hibernate的hql不支持部分数据库函数的使用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/hibernate.html#hibernateupdate">11.3.13. Hibernate设置为update已经建好表，仍旧去建表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/hibernate.html#java-lang-nosuchmethoderror-javax-persistence-table-indexes-ljavax-persistence-index">11.3.14. java.lang.NoSuchMethodError: javax.persistence.Table.indexes()[Ljavax/persistence/Index;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/hibernate.html#user">11.3.15. 表取名user怎么规避？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/hibernate.html#id2">11.3.16. 其它模式下有同名表，导致当前模式没有表但未去建表</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/mybatis.html">11.4. Mybatis 常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/mybatis.html#mybatissql">11.4.1. Mybatis设置SQL超时时间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/mybatis.html#mybatislong">11.4.2. Mybatis非法long值问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/mybatis.html#mybatis-text-bytea">11.4.3. Mybatis 报错：字段的类型为 TEXT, 但表达式的类型为 BYTEA你需要重写或转换表达式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/mybatis.html#mybatis-jdbc">11.4.4. Mybatis 控制JDBC底层不走预编译</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/mybatis.html#mybatis-bind">11.4.5. Mybatis 控制Bind参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/mybatis.html#mybatis-pagehelper">11.4.6. Mybatis 使用pagehelper插件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/mybatis.html#id1">11.4.7. Mybatis 使用自动返回主键功能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/mybatis.html#mybatisdatabaseid">11.4.8. Mybatis配置databaseId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/mybatis.html#id2">11.4.9. Mybatis使用匿名块插入语句报错</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/mybatis.html#mybatisscriptrunnerplsqlsql">11.4.10. Mybatis使用ScriptRunner执行含plsql的sql脚本报错</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/mybatis.html#id3">11.4.11. Mybatis使用游标的注册方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/mybatis.html#mybatisjson">11.4.12. Mybatis写json类型示例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/mybatis-plus.html">11.5. Mybatis-plus常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/mybatis-plus.html#id1">11.5.1. Mybatis-plus使用</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/activiti.html">11.6. Activiti使用常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/activiti.html#id1">11.6.1. Activiti使用</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/maven.html">11.7. Maven 仓库使用常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/maven.html#mavenkingbaseesjdbc">11.7.1. Maven本地仓库使用KingbaseES的JDBC驱动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/maven.html#mavenkingbaseesdialect">11.7.2. Maven本地仓库使用KingbaseES的dialect方言包</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/druid.html">11.8. Druid 数据库连接池配置问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/druid.html#id1">11.8.1. Druid 配置国产金仓数据库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/druid.html#id2">11.8.2. Druid 配置例子</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/druid.html#id3">11.8.3. Druid的连接强制回收</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/c3p0.html">11.9. C3P0连接池配置问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/c3p0.html#c3p0v8">11.9.1. 常用C3p0配置金仓V8数据库</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/DBCP.html">11.10. DBCP连接池配置问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/DBCP.html#dbcpv8">11.10.1. 常用dbcp配置金仓V8数据库</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/apache-james.html">11.11. Apache James适配</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface/pdo.html">11.12. Pdo接口常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/pdo.html#id1">11.12.1. 导入驱动失败</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/pdo.html#pdo-kdb">11.12.2. 加载 PDO_KDB 报错</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/pdo.html#php">11.12.3. PHP的线程安全和非线程安全</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/pdo.html#pdophp">11.12.4. 使用的PDO驱动与PHP版本不匹配</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/pdo.html#windowspdo">11.12.5. Windows下使用PDO驱动的方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/pdo.html#thinkphp">11.12.6. thinkphp使用过程中报函数不存在的问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/pdo.html#pdo-kdbpdo-pgsql">11.12.7. 通过金蝶等中间件查看驱动加载信息时，看不到pdo_kdb或者pdo_pgsql的信息</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/thinkPHP.html">11.13. ThinkPHP接口常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/thinkPHP.html#thinkphp-apache-kdb">11.13.1. 如何在搭建Thinkphp+apache+kdb环境</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="interface/thinkPHP.html#apache">11.13.1.1. apache环境搭建</a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface/thinkPHP.html#php">11.13.1.2. php环境搭建</a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface/thinkPHP.html#thinkphphttpd">11.13.1.3. thinkphp在httpd中使用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/perl.html">11.14. Perl 常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/perl.html#perl-pdi">11.14.1. Perl 驱动pdi无法加载问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/perl.html#perlperl">11.14.2. 怎么在perl中配置金仓perl驱动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/perl.html#id3">11.14.3. 如何排查perl驱动加载失败步骤</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/odbc.html">11.15. ODBC常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/odbc.html#id1">11.15.1. 环境依赖</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/odbc.html#linux-unixodbc">11.15.2. linux unixodbc通过连接串连接数据库操作，如何添加连接参数？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/odbc.html#linuxodbc">11.15.3. linux环境下如何开启odbc驱动的日志？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/odbc.html#id2">11.15.4. linux下odbc驱动接口连接数据库失败，如何排查？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/odbc.html#id3">11.15.5. linux下odbc驱动开启日志？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/odbc.html#sqlfreestmt-sqlclosecursor">11.15.6. SQLFreeStmt()函数与SQLCloseCursor()有什么不同？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/odbc.html#dns">11.15.7. 连接串中如何通过驱动名连接数据库，即不通过DNS连接数据库？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/C%23.html">11.16. C# 常见通过问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/C%23.html#ndp">11.16.1. NDP的连接数问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/C%23.html#ndpnet45net451-netcore2-0">11.16.2. NDP驱动net45、net451, netcore2.0有什么不同？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/python.html">11.17. Python通过PyODBC连接Kingbase的说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/python.html#id1">11.17.1. 环境配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/python.html#kingbasev7">11.17.2. KingbaseV7驱动配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/python.html#kingbasev8">11.17.3. KingbaseV8驱动配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/python.html#id2">11.17.4. 连接测试</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/ruby.html">11.18. Ruby 常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/ruby.html#ruby-pgkingbasees-v8r3">11.18.1. 如何使用ruby-pg驱动连接至kingbaseES V8R3数据库</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/qt.html">11.19. QT常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/qt.html#windowsqt">11.19.1. windows如何加载QT驱动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/qt.html#id1">11.19.2. 提需求时，如何进行描述：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/qt.html#ssl">11.19.3. SSL认证如何配置</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/kci-v7.html">11.20. V7 KCI常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/kci-v7.html#kci-oidoid">11.20.1. 用KCI操作大对象写到用户的表里，发现OID不是创建的OID</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/oci-v7.html">11.21. V7 OCI常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/oci-v7.html#oci">11.21.1. OCI读写分离配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/oci-v7.html#id1">11.21.2. OCI日志分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/oci-v7.html#id2">11.21.3. OCI日志配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/oci-v7.html#id3">11.21.4. OCI配置文件如何配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/oci-v7.html#oci-dci">11.21.5. OCI 和DCI的头文件可以混用吗？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/jdbc-v7.html">11.22. V7 JDBC常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc-v7.html#jdbc">11.22.1. JDBC读写分离配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc-v7.html#id1">11.22.2. JDBC日志分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc-v7.html#id2">11.22.3. JDBC读写分离分发策略</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc-v7.html#fastpath-call-returned-invalid-large-object-descriptor-0">11.22.4. FastPath call returned invalid large object descriptor：0.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc-v7.html#fetchsize">11.22.5. fetchsize功能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/jdbc-v7.html#mybatis">11.22.6. mybatis一次执行多条语句时报错，错误信息为：“预置的语句中不能插入多个命令”</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface/SSL.html">11.23. SSL认证常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface/SSL.html#id2">11.23.1. 证书生成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/SSL.html#id3">11.23.2. 证书配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface/SSL.html#id4">11.23.3. 证书有效期</a></li>
 </ul>
 </li>
 </ul>
@@ -363,7 +542,9 @@
 </div>
 <p>附件：</p>
 <p>1、查看ssh库函数信息</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ266.png"><img alt="_images/cluster_FAQ266.png" src="_images/cluster_FAQ266.png" style="width: 400px; height: 184px;" /></a>
+</div>
 </div>
 <div class="section" id="if-up-cmd-faild">
 <h2><span class="section-number">14.2. </span>if_up_cmd faild<a class="headerlink" href="#if-up-cmd-faild" title="Permalink to this headline">¶</a></h2>
@@ -422,7 +603,9 @@ arping utility, iputils-s20160308
 <p>数据库版本：kingbaseES V008R003</p>
 <p>问题现象：部署工具部署三节点集群，在启动数据库时启动超时，启动失败。</p>
 <p>故障日志：</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ1846.png"><img alt="_images/cluster_FAQ1846.png" src="_images/cluster_FAQ1846.png" style="width: 400px; height: 184px;" /></a>
+</div>
 <p>解决方案：</p>
 <p>   1、查看arping版本信息：arping -v</p>
 <p>   2、在arping的版本信息中包含：“iputils”字样</p>
@@ -435,8 +618,12 @@ arping utility, iputils-s20160308
 <p>数据库版本：kingbaseES V008R003</p>
 <p>问题现象：部署工具部署集群，在启动集群后，集群两个node宕机</p>
 <p>故障日志：</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ2048.png"><img alt="_images/cluster_FAQ2048.png" src="_images/cluster_FAQ2048.png" style="width: 400px; height: 300px;" /></a>
+</div>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ2050.png"><img alt="_images/cluster_FAQ2050.png" src="_images/cluster_FAQ2050.png" style="width: 400px; height: 200px;" /></a>
+</div>
 <p>解决方案：</p>
 <p>   1、查看arping版本信息：arping -v</p>
 <p>   2、在arping的版本信息中包含：“iputils”字样</p>
@@ -445,16 +632,24 @@ arping utility, iputils-s20160308
 <div class="section" id="eshamodel-sh">
 <h2><span class="section-number">14.5. </span>esHAmodel.sh脚本错误<a class="headerlink" href="#eshamodel-sh" title="Permalink to this headline">¶</a></h2>
 <p>适用版本：V8R3</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ2163.png"><img alt="_images/cluster_FAQ2163.png" src="_images/cluster_FAQ2163.png" style="width: 400px; height: 33px;" /></a>
+</div>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ2164.png"><img alt="_images/cluster_FAQ2164.png" src="_images/cluster_FAQ2164.png" style="width: 400px; height: 33px;" /></a>
+</div>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ2165.png"><img alt="_images/cluster_FAQ2165.png" src="_images/cluster_FAQ2165.png" style="width: 400px; height: 31px;" /></a>
+</div>
 <p>系统环境：海光+中科方德SVS2.16.2</p>
 <p>数据库版本：V008R007C003B0070</p>
 <p>问题现象：BMJ部署集群时，执行esHAmodel.sh脚本报错</p>
 <p>故障现象：</p>
 <p>查找crond可执行文件：（crond文件存在，但是which无法查找到）</p>
 <p>查看crontab service：</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ2313.png"><img alt="_images/cluster_FAQ2313.png" src="_images/cluster_FAQ2313.png" style="width: 400px; height: 203px;" /></a>
+</div>
 <p>解决方案：</p>
 <blockquote>
 <div><p>1、首先查看crontab service服务是否正常启动。</p>
@@ -564,21 +759,29 @@ arping utility, iputils-s20160308
 <h2><span class="section-number">14.12. </span>软连接配置错误，导致集群启动报缺少磁盘空间<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>适用版本：V8R3</p>
 <p><strong>“No Space left on device”</strong></p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ4862.png"><img alt="_images/cluster_FAQ4862.png" src="_images/cluster_FAQ4862.png" style="width: 554px; height: 416px;" /></a>
+</div>
 </div>
 <div class="section" id="rootssh-auth-fail">
 <h2><span class="section-number">14.13. </span>未配置root用户ssh互信，部署集群时，添加节点“auth fail”<a class="headerlink" href="#rootssh-auth-fail" title="Permalink to this headline">¶</a></h2>
 <p>适用版本：V8R3</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ4907.png"><img alt="_images/cluster_FAQ4907.png" src="_images/cluster_FAQ4907.png" style="width: 554px; height: 416px;" /></a>
+</div>
 <p>在配置root用户的ssh互信时，需要做以下配置：</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ4935.png"><img alt="_images/cluster_FAQ4935.png" src="_images/cluster_FAQ4935.png" style="width: 378px; height: 800px;" /></a>
+</div>
 </div>
 <div class="section" id="show-pool-nodes">
 <h2><span class="section-number">14.14. </span>防火墙导致集群show pool_nodes信息错误<a class="headerlink" href="#show-pool-nodes" title="Permalink to this headline">¶</a></h2>
 <p>适用版本：V8R3</p>
 <p>系统环境： 鲲鹏920 + kylin V10</p>
 <p>故障现象：</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ5000.png"><img alt="_images/cluster_FAQ5000.png" src="_images/cluster_FAQ5000.png" style="width: 554px; height: 345px;" /></a>
+</div>
 <p>解决步骤：</p>
 <blockquote>
 <div><p>在show pool_nodes下备库的状态信息显示为“down”，而从sys_stat_replication中，主备流复制状态正常，备库数据库进程启动正常。通过kingbasecluster -C -D处理，仍然不能改变备库状态。</p>
@@ -588,7 +791,9 @@ arping utility, iputils-s20160308
 <div class="section" id="v8r3auth-fail">
 <h2><span class="section-number">14.15. </span> V8R3集群部署工具“auth fail”错误<a class="headerlink" href="#v8r3auth-fail" title="Permalink to this headline">¶</a></h2>
 <p>适用版本：V8R3</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ5256.png"><img alt="_images/cluster_FAQ5256.png" src="_images/cluster_FAQ5256.png" style="width: 554px; height: 416px;" /></a>
+</div>
 <p>平台：aarch+centos7.4</p>
 <p>故障现象：用集群部署工具部署集群时，添加节点时，出现“auth fail”故障。</p>
 <p>解决方案：</p>
@@ -602,8 +807,12 @@ arping utility, iputils-s20160308
 <h2><span class="section-number">14.16. </span>集群通过kingbase_monitor.sh启动后“There are no 1 standbys in sys_stat_replication......&quot;<a class="headerlink" href="#kingbase-monitor-shthere-are-no-1-standbys-in-sys-stat-replication" title="Permalink to this headline">¶</a></h2>
 <p>适用版本：V8R3</p>
 <p>故障现象：</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ5498.png"><img alt="_images/cluster_FAQ5498.png" src="_images/cluster_FAQ5498.png" style="width: 554px; height: 233px;" /></a>
+</div>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ5501.png"><img alt="_images/cluster_FAQ5501.png" src="_images/cluster_FAQ5501.png" style="width: 554px; height: 256px;" /></a>
+</div>
 <p>系统环境：</p>
 <p>产品版本： V008R003C002B0140</p>
 <p>操作系统：麒麟v10</p>
@@ -611,7 +820,9 @@ arping utility, iputils-s20160308
 <p>解决方案：</p>
 <blockquote>
 <div><p>先重做备机 记得之前的data备份一下这个问题之前出现过，但是概率极低，是pg原生的问题，已经在跟进社区的修复代码，你先使用临时方案解决一下。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ5635.png"><img alt="_images/cluster_FAQ5635.png" src="_images/cluster_FAQ5635.png" style="width: 308px; height: 134px;" /></a>
+</div>
 </div></blockquote>
 </div>
 <div class="section" id="kes-v8r2kingbasecluster9999">
@@ -619,14 +830,22 @@ arping utility, iputils-s20160308
 <p>适用版本：V8R3</p>
 <p>故障现象：</p>
 <p>连接集群9999端口失败，提示“所有数据库服务down”，但是可以连接54321端口，说明数据库服务正常。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ5745.png"><img alt="_images/cluster_FAQ5745.png" src="_images/cluster_FAQ5745.png" style="width: 554px; height: 256px;" /></a>
+</div>
 <p>查看故障原因：</p>
 <blockquote>
 <div><p>1、查看数据库和集群进程状态</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ5772.png"><img alt="_images/cluster_FAQ5772.png" src="_images/cluster_FAQ5772.png" style="width: 554px; height: 256px;" /></a>
+</div>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ5775.png"><img alt="_images/cluster_FAQ5775.png" src="_images/cluster_FAQ5775.png" style="width: 554px; height: 256px;" /></a>
+</div>
 <p>2、主库cluster.log日志</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ5797.png"><img alt="_images/cluster_FAQ5797.png" src="_images/cluster_FAQ5797.png" style="width: 554px; height: 196px;" /></a>
+</div>
 <p>从上可知，数据库服务和cluster进程从系统层面正常，但是从日志看cluster服务拒绝连接。</p>
 </div></blockquote>
 <p>解决方案：</p>
@@ -634,7 +853,9 @@ arping utility, iputils-s20160308
 <p> 2）bin/kingbasecluser -n -d &gt;cluter.log 2&gt;&amp;1 重启主备库cluster服务</p>
 <p>连接测试：</p>
 <blockquote>
-<div><a class="reference internal image-reference" href="_images/cluster_FAQ5974.png"><img alt="_images/cluster_FAQ5974.png" src="_images/cluster_FAQ5974.png" style="width: 554px; height: 138px;" /></a>
+<div><div class="figure align-default">
+<a class="reference internal image-reference" href="_images/cluster_FAQ5974.png"><img alt="_images/cluster_FAQ5974.png" src="_images/cluster_FAQ5974.png" style="width: 554px; height: 138px;" /></a>
+</div>
 <p># kingbasecluster 9999 端口连接成功。</p>
 </div></blockquote>
 </div>
@@ -643,11 +864,15 @@ arping utility, iputils-s20160308
 <p>适用版本：V8R3</p>
 <p>数据库版本：V8R003C002B0270</p>
 <p>故障现象：</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ6067.png"><img alt="_images/cluster_FAQ6067.png" src="_images/cluster_FAQ6067.png" style="width: 554px; height: 416px;" /></a>
+</div>
 <p>解决问题：</p>
 <blockquote>
 <div><p>手工执行sys_md5命令</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ6096.png"><img alt="_images/cluster_FAQ6096.png" src="_images/cluster_FAQ6096.png" style="width: 554px; height: 29px;" /></a>
+</div>
 </div></blockquote>
 <p>故障原因：在用部署工具部署时，db.zip和cluster.zip包选择错误，导致。</p>
 </div>
@@ -656,13 +881,17 @@ arping utility, iputils-s20160308
 <p>适用版本：V8R3</p>
 <p>故障现象：</p>
 <blockquote>
-<div><a class="reference internal image-reference" href="_images/cluster_FAQ6185.png"><img alt="_images/cluster_FAQ6185.png" src="_images/cluster_FAQ6185.png" style="width: 554px; height: 312px;" /></a>
+<div><div class="figure align-default">
+<a class="reference internal image-reference" href="_images/cluster_FAQ6185.png"><img alt="_images/cluster_FAQ6185.png" src="_images/cluster_FAQ6185.png" style="width: 554px; height: 312px;" /></a>
+</div>
 <p>在BMJ R3集群下启动esHAmodel.sh失败，shell脚本无法找到相应的外部命令。</p>
 </div></blockquote>
 <p>问题查看：</p>
 <blockquote>
 <div><p>查看/etc/profile环境变量PATH的设置</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ6269.png"><img alt="_images/cluster_FAQ6269.png" src="_images/cluster_FAQ6269.png" style="width: 554px; height: 108px;" /></a>
+</div>
 </div></blockquote>
 <p>问题原因：在配置java环境变量时，修改了PATH变量，缺少了读取系统可执行文件的路径。BMJ的脚本在执行时，shell脚本需要调用profile来设置环境变量。</p>
 <p>解决问题：</p>
@@ -678,7 +907,9 @@ arping utility, iputils-s20160308
 <p>故障现象：</p>
 <blockquote>
 <div><p>银河麒麟专用机在起集群的时候，报错找不到备节点的es_server，但是我在主节点执行es_client那条命令是可以返回值的，两边的es_server服务也都起着呢，这种情况得怎么处理？</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ6606.png"><img alt="_images/cluster_FAQ6606.png" src="_images/cluster_FAQ6606.png" style="width: 554px; height: 179px;" /></a>
+</div>
 </div></blockquote>
 <p>问题诊断：</p>
 <blockquote>
@@ -686,7 +917,9 @@ arping utility, iputils-s20160308
 </div></blockquote>
 <p>问题原因：</p>
 <blockquote>
-<div><a class="reference internal image-reference" href="_images/cluster_FAQ6710.png"><img alt="_images/cluster_FAQ6710.png" src="_images/cluster_FAQ6710.png" style="width: 430px; height: 931px;" /></a>
+<div><div class="figure align-default">
+<a class="reference internal image-reference" href="_images/cluster_FAQ6710.png"><img alt="_images/cluster_FAQ6710.png" src="_images/cluster_FAQ6710.png" style="width: 430px; height: 931px;" /></a>
+</div>
 </div></blockquote>
 </div>
 <div class="section" id="kingbasees-r3standby">
@@ -695,11 +928,15 @@ arping utility, iputils-s20160308
 <p>问题现象：</p>
 <blockquote>
 <div><p>一主二备的架构，通过kingbase_monitor.sh启动后，出现以下故障信息。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ6806.png"><img alt="_images/cluster_FAQ6806.png" src="_images/cluster_FAQ6806.png" style="width: 554px; height: 39px;" /></a>
+</div>
 </div></blockquote>
 <p>集群日志信息：</p>
 <blockquote>
-<div><a class="reference internal image-reference" href="_images/cluster_FAQ6818.png"><img alt="_images/cluster_FAQ6818.png" src="_images/cluster_FAQ6818.png" style="width: 554px; height: 116px;" /></a>
+<div><div class="figure align-default">
+<a class="reference internal image-reference" href="_images/cluster_FAQ6818.png"><img alt="_images/cluster_FAQ6818.png" src="_images/cluster_FAQ6818.png" style="width: 554px; height: 116px;" /></a>
+</div>
 </div></blockquote>
 <p>问题诊断：</p>
 <blockquote>
@@ -708,7 +945,9 @@ arping utility, iputils-s20160308
 <p>问题解决：</p>
 <blockquote>
 <div><p>在系统配置了防火墙规则，开放指定的端口后，问题解决。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ6935.png"><img alt="_images/cluster_FAQ6935.png" src="_images/cluster_FAQ6935.png" style="width: 554px; height: 200px;" /></a>
+</div>
 </div></blockquote>
 </div>
 <div class="section" id="kingbasees-r3kingbasecluster">
@@ -717,15 +956,21 @@ arping utility, iputils-s20160308
 <p>故障现象：</p>
 <blockquote>
 <div><p>读写分离集群，测试主备切机后，show pool_nodes备机状态为down。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ7031.png"><img alt="_images/cluster_FAQ7031.png" src="_images/cluster_FAQ7031.png" style="width: 554px; height: 311px;" /></a>
+</div>
 </div></blockquote>
 <p>解决方案：</p>
 <p>1） 查看主备流复制状态正常，复制槽状态正常。</p>
 <p>2） cluster.log日志提示备库的数据库服务错误。</p>
 <p>复制槽状态：</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ7097.png"><img alt="_images/cluster_FAQ7097.png" src="_images/cluster_FAQ7097.png" style="width: 554px; height: 312px;" /></a>
+</div>
 <p>cluster.log：</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ7114.png"><img alt="_images/cluster_FAQ7114.png" src="_images/cluster_FAQ7114.png" style="width: 554px; height: 130px;" /></a>
+</div>
 <p><strong>初步判断kingbasecluster读取后台数据库状态信息错误：</strong></p>
 <p>1）先用kingbase_monitor.sh关闭集群。</p>
 <p>2）手工启动kingbasecluster</p>
@@ -742,23 +987,37 @@ arping utility, iputils-s20160308
 <p>故障现象：</p>
 <blockquote>
 <div><p>通过kingbase_monitor.sh启动提示“无法加载db VIP”</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ7114.png"><img alt="_images/cluster_FAQ7114.png" src="_images/cluster_FAQ7114.png" style="width: 554px; height: 130px;" /></a>
+</div>
 </div></blockquote>
 <p>解决方案：</p>
 <blockquote>
 <div><p>1）查看数据库服务正常，并且主备流复制状态正常，集群kingbasecluster服务无法启动。</p>
 <p>2）手工启动kingbasecluster服务，发现提示“不能加载cluster VIP”。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ7560.png"><img alt="_images/cluster_FAQ7560.png" src="_images/cluster_FAQ7560.png" style="width: 554px; height: 173px;" /></a>
+</div>
 <p>3）检查arping版本正常，kingbasecluster.conf文件发现加载vip语句有错误。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ7669.png"><img alt="_images/cluster_FAQ7669.png" src="_images/cluster_FAQ7669.png" style="width: 554px; height: 164px;" /></a>
+</div>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ7721.png"><img alt="_images/cluster_FAQ7721.png" src="_images/cluster_FAQ7721.png" style="width: 326px; height: 83px;" /></a>
+</div>
 <p>4）修改kingbasecluster.conf配置后，手工启动kingbasecluster服务正常。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ7723.png"><img alt="_images/cluster_FAQ7723.png" src="_images/cluster_FAQ7723.png" style="width: 488px; height: 149px;" /></a>
+</div>
 <p>5）通过kingbase_monitor.sh启动仍然报错，提示“无法加载db VIP”。</p>
 <p>6）手工执行sh -x change_vip.sh，发现错误“DEV”变量为空值。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ7776.png"><img alt="_images/cluster_FAQ7776.png" src="_images/cluster_FAQ7776.png" style="width: 540px; height: 168px;" /></a>
+</div>
 <p>7） 检查HAmodule.conf文件，发现“DEV&quot;变量赋值为空。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ7862.png"><img alt="_images/cluster_FAQ7862.png" src="_images/cluster_FAQ7862.png" style="width: 486px; height: 297px;" /></a>
+</div>
 <p>8） 在所有的HAmodule.conf文件中，给”DEV“变量指定网卡名称后，重新通过kingbase_monitor.sh启动集群正常。</p>
 <p>9） 以上问题有可能实施人员部署中操作有误，或者是版本bug，需要进一步验证。</p>
 </div></blockquote>
@@ -769,18 +1028,28 @@ arping utility, iputils-s20160308
 <p>故障现象：</p>
 <blockquote>
 <div><p>整个集群在测试网关连通时，无法ping通网关，导致整个集群宕机。在此期间network_rewind尝试recovery，但是不能恢复数据库服务，kingbasecluster服务被计划任务重启。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ7898.png"><img alt="_images/cluster_FAQ7898.png" src="_images/cluster_FAQ7898.png" style="width: 513px; height: 97px;" /></a>
+</div>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ8150.png"><img alt="_images/cluster_FAQ8150.png" src="_images/cluster_FAQ8150.png" style="width: 554px; height: 299px;" /></a>
+</div>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ8153.png"><img alt="_images/cluster_FAQ8153.png" src="_images/cluster_FAQ8153.png" style="width: 554px; height: 146px;" /></a>
+</div>
 </div></blockquote>
 <p>问题分析：</p>
 <blockquote>
 <div><p>在8:39分后，人工干预下，手工重新启动所有节点的数据库服务后，集群恢复正常。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ8204.png"><img alt="_images/cluster_FAQ8204.png" src="_images/cluster_FAQ8204.png" style="width: 554px; height: 165px;" /></a>
+</div>
 </div></blockquote>
 <p>问题总结：</p>
 <blockquote>
-<div><a class="reference internal image-reference" href="_images/cluster_FAQ8213.png"><img alt="_images/cluster_FAQ8213.png" src="_images/cluster_FAQ8213.png" style="width: 554px; height: 292px;" /></a>
+<div><div class="figure align-default">
+<a class="reference internal image-reference" href="_images/cluster_FAQ8213.png"><img alt="_images/cluster_FAQ8213.png" src="_images/cluster_FAQ8213.png" style="width: 554px; height: 292px;" /></a>
+</div>
 </div></blockquote>
 </div>
 <div class="section" id="kingbaseclusterkingbase-monitor-sh-kingbasecluster">
@@ -793,18 +1062,30 @@ arping utility, iputils-s20160308
 <p>故障现象：</p>
 <blockquote>
 <div><p>备库kingbasecluster服务进程和端口（9999）启动正常，但通过ksql连接9999端口访问失败，telnet访问9999端口正常。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ8414.png"><img alt="_images/cluster_FAQ8414.png" src="_images/cluster_FAQ8414.png" style="width: 554px; height: 84px;" /></a>
+</div>
 <p>kingbasecluster进程和端口：</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ8439.png"><img alt="_images/cluster_FAQ8439.png" src="_images/cluster_FAQ8439.png" style="width: 554px; height: 377px;" /></a>
+</div>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ8442.png"><img alt="_images/cluster_FAQ8442.png" src="_images/cluster_FAQ8442.png" style="width: 554px; height: 116px;" /></a>
+</div>
 <p>9999端口socket文件不存在：</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ8464.png"><img alt="_images/cluster_FAQ8464.png" src="_images/cluster_FAQ8464.png" style="width: 554px; height: 212px;" /></a>
+</div>
 <p>telnet连接9999端口：</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ8483.png"><img alt="_images/cluster_FAQ8483.png" src="_images/cluster_FAQ8483.png" style="width: 554px; height: 169px;" /></a>
+</div>
 </div></blockquote>
 <p>解决方法：</p>
 <blockquote>
-<div><a class="reference internal image-reference" href="_images/cluster_FAQ8492.png"><img alt="_images/cluster_FAQ8492.png" src="_images/cluster_FAQ8492.png" style="width: 422px; height: 169px;" /></a>
+<div><div class="figure align-default">
+<a class="reference internal image-reference" href="_images/cluster_FAQ8492.png"><img alt="_images/cluster_FAQ8492.png" src="_images/cluster_FAQ8492.png" style="width: 422px; height: 169px;" /></a>
+</div>
 <p>手工启动备库kingbasecluster服务后，问题解决。</p>
 </div></blockquote>
 </div>
@@ -818,18 +1099,24 @@ arping utility, iputils-s20160308
 </div></blockquote>
 <p>故障现象：</p>
 <blockquote>
-<div><a class="reference internal image-reference" href="_images/cluster_FAQ8643.png"><img alt="_images/cluster_FAQ8643.png" src="_images/cluster_FAQ8643.png" style="width: 554px; height: 163px;" /></a>
+<div><div class="figure align-default">
+<a class="reference internal image-reference" href="_images/cluster_FAQ8643.png"><img alt="_images/cluster_FAQ8643.png" src="_images/cluster_FAQ8643.png" style="width: 554px; height: 163px;" /></a>
+</div>
 <p>集群通过kingbase_monitor.sh脚本启动后，身份认证失败。</p>
 </div></blockquote>
 <p>解决思路：</p>
 <blockquote>
 <div><p>因为kingbase_monitor.sh启动，会通过ssh远程连接node做集群服务的检测，怀疑和ssh连接的身份认证有关系。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ8760.png"><img alt="_images/cluster_FAQ8760.png" src="_images/cluster_FAQ8760.png" style="width: 554px; height: 136px;" /></a>
+</div>
 </div></blockquote>
 <p>解决方法：</p>
 <blockquote>
 <div><p>如下图所示，需要将/etc/pam.d/sshd文件中的标识的行注释后，重新启动集群后，问题解决。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ8820.png"><img alt="_images/cluster_FAQ8820.png" src="_images/cluster_FAQ8820.png" style="width: 554px; height: 234px;" /></a>
+</div>
 </div></blockquote>
 </div>
 <div class="section" id="conflict-with-recovery">
@@ -853,7 +1140,9 @@ arping utility, iputils-s20160308
 <p>故障现象：</p>
 <blockquote>
 <div><p>V8R6 sys_dump备份成dump格式可以正常备份，备份成sql格式报错。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ9139.png"><img alt="_images/cluster_FAQ9139.png" src="_images/cluster_FAQ9139.png" style="width: 554px; height: 301px;" /></a>
+</div>
 </div></blockquote>
 <p>问题分析：</p>
 <blockquote>
@@ -868,7 +1157,9 @@ arping utility, iputils-s20160308
 <p>操作系统：红帽8.7</p>
 <p>错误现象：</p>
 <blockquote>
-<div><a class="reference internal image-reference" href="_images/cluster_FAQ9267.png"><img alt="_images/cluster_FAQ9267.png" src="_images/cluster_FAQ9267.png" style="width: 554px; height: 312px;" /></a>
+<div><div class="figure align-default">
+<a class="reference internal image-reference" href="_images/cluster_FAQ9267.png"><img alt="_images/cluster_FAQ9267.png" src="_images/cluster_FAQ9267.png" style="width: 554px; height: 312px;" /></a>
+</div>
 </div></blockquote>
 <p>故障原因：</p>
 <blockquote>
@@ -881,14 +1172,20 @@ arping utility, iputils-s20160308
 <p>问题现象：</p>
 <blockquote>
 <div><p>BMJ环境，kingbaseES R6集群部署时，es_client连接远程服务器检测环境，“open files”参数配置错误，但是通过查看远程主机（ulimit-n结果为655360），符合部署要求。</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ9467.png"><img alt="_images/cluster_FAQ9467.png" src="_images/cluster_FAQ9467.png" style="width: 554px; height: 358px;" /></a>
+</div>
 </div></blockquote>
 <p>检查问题原因：</p>
 <blockquote>
 <div><p>1、手工执行出错信息的命令</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ9494.png"><img alt="_images/cluster_FAQ9494.png" src="_images/cluster_FAQ9494.png" style="width: 554px; height: 160px;" /></a>
+</div>
 <p>2、查看远程机器的open files</p>
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/cluster_FAQ9516.png"><img alt="_images/cluster_FAQ9516.png" src="_images/cluster_FAQ9516.png" style="width: 554px; height: 301px;" /></a>
+</div>
 </div></blockquote>
 <p>解决方案：</p>
 <blockquote>
@@ -926,7 +1223,7 @@ arping utility, iputils-s20160308
     
     
      使用 <a href="http://sphinx-doc.org/">Sphinx</a> 创建 。
-     最后更新于 Dec 07, 2021。 
+     最后更新于 Dec 14, 2021。 
 
 </footer>
 
