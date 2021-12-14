@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# KDMS文档构建配置文件
+# KES_FAQ文档构建配置文件
 
 #import sphinx_rtd_theme
 import sys
