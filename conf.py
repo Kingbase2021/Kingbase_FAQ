@@ -155,27 +155,6 @@ latex_elements = {
     'fontenc': r'\usepackage[T1,T2A]{fontenc}',# 使用LaTeX正确地处理Unicode
 	'textgreek':'',
 	'preamble': r'''
-    \usepackage{longtable,pdflscape}
-    \usepackage{fontspec}
-    \usepackage{xeCJK}
-    \usepackage{indentfirst}
-    \setCJKmainfont[BoldFont = SimHei , ItalicFont = KaiTi]{SimSun}
-    \setCJKsansfont{SimHei} [BoldFont = *~Bold]
-    \setCJKmonofont{FangSong}
-    \setCJKfamilyfont {zhsong} {SimSun}
-    \setCJKfamilyfont {zhhei} {SimHei}
-    \setCJKfamilyfont {zhfs} {FangSong}
-    \setCJKfamilyfont {zhkai} {KaiTi}
-    \setCJKfamilyfont {zhyahei} {SimSun} [BoldFont = *~Bold]
-    \setCJKfamilyfont {zhli} {LiSu}
-    \setCJKfamilyfont {zhyou} {YouYuan}
-    \NewDocumentCommand \songti   { } { \CJKfamily {zhsong} }
-    \NewDocumentCommand \heiti    { } { \CJKfamily {zhhei} }
-    \NewDocumentCommand \fangsong { } { \CJKfamily {zhfs} }
-    \NewDocumentCommand \kaishu   { } { \CJKfamily {zhkai} }
-    \NewDocumentCommand \lishu    { } { \CJKfamily {zhli} }
-    \NewDocumentCommand \youyuan  { } { \CJKfamily {zhyou} }
-    \NewDocumentCommand \yahei    { } { \CJKfamily {zhyahei} }
     \XeTeXlinebreaklocale "zh"
     \XeTeXlinebreakskip = 0pt plus 1pt
     \renewcommand\today{\number\year年\number\month月\number\day日}
