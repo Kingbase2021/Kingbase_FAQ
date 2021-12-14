@@ -25,11 +25,21 @@ LobHandler 接口为操作 BLOB/CLOB 提供了统一访问接口，而不管底�
 	 class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="true"/>
 
 
-org.springframework.data.jdbc.repository.config.DialectResolver$NoDialectException: Cannot determine a dialect for org.springframework.jdbc.core.JdbcTemplate@7c90b7b7. Please provide a Dialect.
-------------------
+Cannot determine a dialect for org.springframework.jdbc.core
+-----------------------------------------------------------------
+
+
+问题描述：
+
+.. code::
+
+   org.springframework.data.jdbc.repository.config.DialectResolver$NoDialectException: Cannot determine a dialect for org.springframework.jdbc.core.JdbcTemplate@7c90b7b7. Please provide a Dialect.
+
 
 
 堆栈信息：
+  
+.. code::
   
   org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jdbcConverter' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Unsatisfied dependency expressed through method 'jdbcConverter' parameter 4; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception; nested exception is org.springframework.data.jdbc.repository.config.DialectResolver$NoDialectException: Cannot determine a dialect for org.springframework.jdbc.core.JdbcTemplate@7c90b7b7. Please provide a Dialect.
 

@@ -65,7 +65,7 @@ LOB对象update机制
 
    这个write方法每次调用一次就会调用update语句写一次，Blob实际是bytea，没法分片写，所以实际blob内容是缓存在本地的，每次添加内容，都会在原来的内容上加上新的内容更新一次。
 
-   .. figure:: images/jdbc-FAQ33958.png
+   .. figure:: images/jdbc-33958.png
       :width: 554px
       :height: 416px
  
@@ -162,11 +162,15 @@ JDBC读写分离一主两备的URL和配置文件的样例
 
 URL   
 
+.. code::
+
   jdbc:kingbase8://192.168.8.128:54321/TEST?USEDISPATCH=true&SLAVE_ADD=192.168.8.223,192.168.8.130&SLAVE_PORT=54321,54321&HOSTLOADRATE=33&USECONNECT_POOL=false  
 
 2：连接串+配置文件,开启JDBC读写分离 一主两备：
   
 URL  
+
+.. code::
 
   jdbc:kingbase8://192.168.8.128:54321/TEST?ConfigurePath=jdbc.conf
   
@@ -414,9 +418,9 @@ sockettimeout是控制底层socket超时返回的最长时间，默认是0，即
 
 2. 其中 (不在线的需要10秒返回) 这个可以通过connectTimeout 参数控制connect超时时间，默认是10秒。
 
-其中 (sleep 5秒) 这个可以通过RETRYINTERVAL参数控制重建连接的间隔时间，默认是5秒。
+  其中 (sleep 5秒) 这个可以通过RETRYINTERVAL参数控制重建连接的间隔时间，默认是5秒。
 
-其中 (I/O Error 20秒) 这个可以通过socketTimeout参数控制receive的超时时间，默认是0无限等待。
+  其中 (I/O Error 20秒) 这个可以通过socketTimeout参数控制receive的超时时间，默认是0无限等待。
 
 3. 备机的连接不是马上断掉，而是在一段时间内都还可以使用，等到rewind时连接才会全部断掉。
 
@@ -429,17 +433,19 @@ JDBC打开日志方式
 
 JDBC驱动支持控制日志打印级别和日志输出到文件或者控制台。
 
-**日志级别：**loggerLevel = 日志级别
+**日志级别：** 
 
-指定日志记录级别。例如："OFF", "INFO", "DEBUG", "TRACE"，默认值是null即不输出日志。通常读写分离将日志开启到INFO，单机将日志开到TRACE。
+loggerLevel = 日志级别
+  指定日志记录级别。例如："OFF", "INFO", "DEBUG", "TRACE"，默认值是null即不输出日志。通常读写分离将日志开启到INFO，单机将日志开到TRACE。
 
-**日志输出：**loggerFile = 日志文件名字
+**日志输出：** 
 
-**指定日志信息保存文件或者console 输出：**
+loggerFile = 日志文件名字
+  **指定日志信息保存文件或者console 输出：**
 
-  - 如果没有指定loggerFile，表示不生成JDBC日志文件,日志信息全部打印到当前console输出。
+    - 如果没有指定loggerFile，表示不生成JDBC日志文件,日志信息全部打印到当前console输出。
 
-  - 如果loggerFile有指定路径，则只打印到文件。例如：loggerFile=e:\\logFile.txt，默认值是null。这个路径可以是相对路径，也可以是绝对路径。
+    - 如果loggerFile有指定路径，则只打印到文件。例如：loggerFile=e:\\logFile.txt，默认值是null。这个路径可以是相对路径，也可以是绝对路径。
 
 
 
