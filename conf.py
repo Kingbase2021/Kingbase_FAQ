@@ -7,9 +7,9 @@ import sys
 import os
 
 # readthedocs-sphinx-search扩展
-extensions = [
-    'sphinx_search.extension'
-]
+#extensions = [
+#    'sphinx_search.extension'
+#]
 
 # kirlent_sphinx扩展
 #extensions = ["kirlent_sphinx"]
