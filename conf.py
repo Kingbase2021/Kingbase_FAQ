@@ -141,7 +141,7 @@ latex_engine = 'xelatex'
 # latex_logo = "images/logo.png"
 
 # 文档名称列表，作为所有手册的附录。
-#latex_appendices = ['legalnotice']
+latex_appendices = ['legalnotice']
 
 
 
@@ -154,7 +154,7 @@ latex_engine = 'xelatex'
 # 元组列表 (source start file, target name, title, author, document class [howto/manual]).
 _stdauthor = r' '
 latex_documents = [
-    ('index', 'KES-FAQ.tex',
+    ('index-manual', 'KES-FAQ.tex',
      'KingbaseES常见问题手册', _stdauthor, 'manual'),
 ]
 
