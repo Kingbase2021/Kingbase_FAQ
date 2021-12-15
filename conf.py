@@ -141,47 +141,10 @@ latex_engine = 'xelatex'
 # latex_logo = "images/logo.png"
 
 # 文档名称列表，作为所有手册的附录。
-latex_appendices = ['legalnotice']
+#latex_appendices = ['legalnotice']
 
 
-latex_elements = {
-    'papersize':'a4',# 页面大小 ('letter' or 'a4').
-    'pointsize':'10pt',# 字体大小 ('10pt', '11pt' or '12pt').
-	'classoptions':',oneside',
-	'babel':'',
-    'figure_align':'H',
-    'inputenc': r'\usepackage[utf8]{inputenc}',
-    'utf8extra': '',
-    'fontenc': r'\usepackage[T1,T2A]{fontenc}',# 使用LaTeX正确地处理Unicode
-	'textgreek':'',
-	'preamble': r'''
-    \XeTeXlinebreaklocale "zh"
-    \XeTeXlinebreakskip = 0pt plus 1pt
-    \renewcommand\today{\number\year年\number\month月\number\day日}
-    \titleformat{\chapter}[display]
-                {\bfseries\Huge}
-                {\filleft \Huge 第 \hspace{2 mm} \thechapter \hspace{4 mm} 章}
-                {4ex}
-                {\titlerule
-                 \vspace{2ex}%
-                 \filright}
-                [\vspace{2ex}%
-                 \titlerule]
-    \authoraddress{
-      \sphinxstrong{北京人大金仓信息技术股份有限公司}\\
-       Email: \sphinxemail{support@kingbase.com.cn}
-    }
-	\let\Verbatim=\OriginalVerbatim
-    \let\endVerbatim=\endOriginalVerbatim
-''',
-    'tableofcontents': '''
-	\\renewcommand{\\contentsname}{目~~~~~~录}
-    \\tableofcontents
-	\\addcontentsline{toc}{section}{目录}
-    \\renewcommand{\\chaptermark}[1]{\\markboth{第 \\thechapter\\ 章 \\hspace{4mm} #1}{}}
-    \\renewcommand{\\figurename}{\\textsc{图}}
-'''
-}
+
 
 
 
@@ -191,7 +154,7 @@ latex_elements = {
 # 元组列表 (source start file, target name, title, author, document class [howto/manual]).
 _stdauthor = r' '
 latex_documents = [
-    ('index-manual', 'KES-FAQ.tex',
+    ('index', 'KES-FAQ.tex',
      'KingbaseES常见问题手册', _stdauthor, 'manual'),
 ]
 
