@@ -79,4 +79,6 @@ KES有什么办法，默认不读取sys_catalog下的系统视图？
 
 分析：如果禁用NetworkManager服务，发现网线拔插后，网卡IP自动恢复。
 
-注意：由于部分系统只有NetworkManager服务，而没有Network服务，如果禁用NetworkManager服务，将导致网络问题。
+.. note::
+
+   由于部分系统只有NetworkManager服务，而没有Network服务，如果禁用NetworkManager服务，将导致网络问题。

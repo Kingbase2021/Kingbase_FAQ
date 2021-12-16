@@ -598,9 +598,9 @@ JDBC使用SSL加密
 
 **服务器：**
 
-  1) 确保安装openssl
+  1)确保安装openssl
 
-  2) 在data目录下，创建自签名的证书
+  2)在data目录下，创建自签名的证书
 
     为服务器创建一个快速的自签名的证书，填充那些openssl要求的信息。确保把本地主机名当做"Common Name"输入；挑战密码可以留空。该程序将生成一个用口令保护的密钥，它不会接受小于四字符的口令。
 
@@ -633,26 +633,26 @@ JDBC使用SSL加密
 
       cp server.crt root.crt
 
-  3) 配置kingbase.conf文件
+  3)配置kingbase.conf文件
 
-  .. code::
+    .. code::
 
-    ssl = on                                 # (change requires restart)
-    #ssl_ciphers = 'HIGH:MEDIUM:+3DES:!aNULL' # allowed SSL ciphers
-                                                   # (change requires restart)
-    #ssl_prefer_server_ciphers = on              # (change requires restart)
-    #ssl_ecdh_curve = 'prime256v1'               # (change requires restart)
-    #ssl_cert_file = 'server.crt'               # (change requires restart)
-    #ssl_key_file = 'server.key'                # (change requires restart)
-    ssl_ca_file = ' root.crt '                       # (change requires restart)
-    #ssl_crl_file = ''                           # (change requires restart)
+      ssl = on                                 # (change requires restart)
+      #ssl_ciphers = 'HIGH:MEDIUM:+3DES:!aNULL' # allowed SSL ciphers
+                                                     # (change requires restart)
+      #ssl_prefer_server_ciphers = on              # (change requires restart)
+      #ssl_ecdh_curve = 'prime256v1'               # (change requires restart)
+      #ssl_cert_file = 'server.crt'               # (change requires restart)
+      #ssl_key_file = 'server.key'                # (change requires restart)
+      ssl_ca_file = ' root.crt '                       # (change requires restart)
+      #ssl_crl_file = ''                           # (change requires restart)
 
 
-  4) 配置sys_hba.conf文件
+  4)配置sys_hba.conf文件
 
-  .. code::
+    .. code::
 
-     hostssl    all             all             0.0.0.0/0               md5  clientcert=1
+       hostssl    all             all             0.0.0.0/0               md5  clientcert=1
 
   5)重启数据库服务器
 
@@ -706,7 +706,7 @@ JDBC使用SSL加密
 
   1)、2)、3)、4)、5)见上
 
-  6) 创建truststore，用于认证服务器端证书
+  6)创建truststore，用于认证服务器端证书
 
     把服务器证书转化为der格式
 
@@ -721,7 +721,7 @@ JDBC使用SSL加密
       keytool -keystore ./truststore -alias kingbase8server -import -file ./server.crt.der
 
 
-  7) 创建keystore，保存客户端证书
+  7)创建keystore，保存客户端证书
 
     生成客户端的keyPair
 
@@ -752,11 +752,11 @@ JDBC使用SSL加密
 
 **jdbc：**
 
-  1) 只需配置连接参数ssl=true；
+  1)只需配置连接参数ssl=true；
 
-  2) 将truststore和keystore拷贝到客户端；
+  2)将truststore和keystore拷贝到客户端；
 
-  3) 执行程序时指定java运行参数
+  3)执行程序时指定java运行参数
 
   .. code::
 
@@ -772,7 +772,7 @@ JDBC使用SSL加密
 
     3. 使用java命令执行应用程序时，可以通过-cp或-Djava.ext.dirs指定jar包路径。但通过后者指定时，会覆盖Java本身的ext设置，如果未指定该系统属性的原加载路径，将失去一些功能，如java自带的加解密算法实现，会报NOSuchAlgorithmException的错误。故需同时在该设置下指定路径$JAVA_HOME/jre/lib/ext，如-Djava.ext.dirs=./plugin: $JAVA_HOME/jre/lib/ex。
 
-  4) 如果openssl版本太高，使用其生成的证书服务器可能会报"unknown message digest algorithm"错误，此时需将openssl.cnf配置加密算法改为sha1，并且通过环境变量OPENSSL_CONF指定该文件的位置。
+  4)如果openssl版本太高，使用其生成的证书服务器可能会报"unknown message digest algorithm"错误，此时需将openssl.cnf配置加密算法改为sha1，并且通过环境变量OPENSSL_CONF指定该文件的位置。
 
     openssl version      查看openssl的版本
     openssl version -d   查看openssl.cnf所在目录
@@ -786,83 +786,83 @@ JDBC常见异常
 
 1. com.kingbase8.util.KSQLException:The column index is out of range: 1, number of columns: 0. 
 
-该异常报错原因是sql无需绑定参数（如空sql:””），然后进行了参数绑定，请客户自己排查原因。
+  该异常报错原因是sql无需绑定参数（如空sql:””），然后进行了参数绑定，请客户自己排查原因。
 
 2. Bad version number in .class file(unable to load class com.kingbase8.Driver)
 
-异常原因为jdk的版本小于jdbc驱动包编译的版本，提升jdk版本或使用与jdk版本对应的jar包。
+  异常原因为jdk的版本小于jdbc驱动包编译的版本，提升jdk版本或使用与jdk版本对应的jar包。
 
 3. java.lang.NoClassDefFoundError或java.lang.ClassNotFoundException
 
-这两个异常都是找不到类，通常是缺少jar包，百度下该类在什么包里，导入对应jar包即可。
+  这两个异常都是找不到类，通常是缺少jar包，百度下该类在什么包里，导入对应jar包即可。
 
-查看是否导入jar包：
+  查看是否导入jar包：
 
-**工具idea**：
+  **工具idea**：
 
-1）点击File –> Project Structure；
+  1）点击File –> Project Structure；
 
-2）找到Modules，选中项目，点击Dependencies；
+  2）找到Modules，选中项目，点击Dependencies；
 
-3）如果缺少，点击右侧+号即可导入。
+  3）如果缺少，点击右侧+号即可导入。
 
-.. figure:: images/jdbc-1.png
+  .. figure:: images/jdbc-1.png
 
-**工具eclipse：**
+  **工具eclipse：**
 
-1）点击项目，右键，选中Build Path，Configure Build Path，在Libraries中查看所有导入的包。缺少可通过Add JARs导入。
+  1）点击项目，右键，选中Build Path，Configure Build Path，在Libraries中查看所有导入的包。缺少可通过Add JARs导入。
 
-.. figure:: images/jdbc-2.png
+  .. figure:: images/jdbc-2.png
 
-2）直接展开项目，也可以查看，如未导入，直接选中未导入的jar包，右键，Build Path，Add to Build Path。
+  2）直接展开项目，也可以查看，如未导入，直接选中未导入的jar包，右键，Build Path，Add to Build Path。
 
-.. figure:: images/jdbc-3.png
+  .. figure:: images/jdbc-3.png
 
 4. This connection has been closed.
 
-该异常是因为使用了已关闭的连接，该连接可能由客户端关闭，也可能是jdbc遇到了I/O异常时，关闭当前连接。应用程序未处理I/O异常，直接使用该连接，就会导致该异常。
+  该异常是因为使用了已关闭的连接，该连接可能由客户端关闭，也可能是jdbc遇到了I/O异常时，关闭当前连接。应用程序未处理I/O异常，直接使用该连接，就会导致该异常。
 
 5. I/O异常( An I/O e rror occurred while sending to the backend.)
 
-通常是由网络原因导致的，也有可能是超时导致或者磁盘满了。如果是单条语句报I/O异常，通常是语句超时导致，语句超时指的就是语句执行时间超过了socketTimeout设置的时间。如果多条语句报错，那就是其他两个原因。
+  通常是由网络原因导致的，也有可能是超时导致或者磁盘满了。如果是单条语句报I/O异常，通常是语句超时导致，语句超时指的就是语句执行时间超过了socketTimeout设置的时间。如果多条语句报错，那就是其他两个原因。
 
-也有可能是绑定的从参数个数超过了SQL的参数限制（Short.MAX_VALUE:32767)。（java.io.IOException:Tried to send an out-of-range integer as a 2-byte value:）
+  也有可能是绑定的从参数个数超过了SQL的参数限制（Short.MAX_VALUE:32767)。（java.io.IOException:Tried to send an out-of-range integer as a 2-byte value:）
 
-如果是在流写入的过程中遇到该异常，也可能是创建临时文件失败。写入的流如果大于50k，就会在默认临时文件目录（java.io.tmpdir的值)中创建一个文件来缓存内容，中间出现IO异常，也会抛出该错误信息。
+  如果是在流写入的过程中遇到该异常，也可能是创建临时文件失败。写入的流如果大于50k，就会在默认临时文件目录（java.io.tmpdir的值)中创建一个文件来缓存内容，中间出现IO异常，也会抛出该错误信息。
 
-以上错误可以通过错误堆栈来区分。
+  以上错误可以通过错误堆栈来区分。
 
 
 6. 替换jar包未生效问题
 
-原因是之前的jar包未删除。排查方法：可以删除新导入的jar包，看项目是否可以正常运行，如果可以正常运行，说明还存在其他jar包，删掉之前的jar包，再导入新的jar包。找不到其他的jar包可能原因是用户修改了驱动包名称或者驱动包被打在了其他jar包里。
+  原因是之前的jar包未删除。排查方法：可以删除新导入的jar包，看项目是否可以正常运行，如果可以正常运行，说明还存在其他jar包，删掉之前的jar包，再导入新的jar包。找不到其他的jar包可能原因是用户修改了驱动包名称或者驱动包被打在了其他jar包里。
 
 7. 连接错误分析
 
-（1）java.net.SocketTimeoutException:connect time out
+  1）java.net.SocketTimeoutException:connect time out
 
-该错误表示底层的socket连接在10s内（connectTimeout默认值为10s）建立失败，此时客户端与服务器之间网络不通。
+  该错误表示底层的socket连接在10s内（connectTimeout默认值为10s）建立失败，此时客户端与服务器之间网络不通。
 
-（2）com.kingbase8.util.KSQLException: Connection to 192.168.19.128:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
-Caused by: java.net.ConnectException: Connection refused: connect
+  2）com.kingbase8.util.KSQLException: Connection to 192.168.19.128:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+  Caused by: java.net.ConnectException: Connection refused: connect
 
-该错误表示设置的端口无法连接，可能是数据库未开启或者端口填写错误。
+  该错误表示设置的端口无法连接，可能是数据库未开启或者端口填写错误。
 
-（3）The authentication type 10 is not supported. Check that you have configured the sys_hba.conf file to include the client's IP address or subnet, and that it is using an authentication scheme supported by the driver.
+  3）The authentication type 10 is not supported. Check that you have configured the sys_hba.conf file to include the client's IP address or subnet, and that it is using an authentication scheme supported by the driver.
 
-该错误是R3的驱动连接了R6的数据库。原因是R3的驱动不支持sha256验证，R6数据库默认就是sha256验证方式。
+  该错误是R3的驱动连接了R6的数据库。原因是R3的驱动不支持sha256验证，R6数据库默认就是sha256验证方式。
 
-（4）SCRAM authentication is not supported by this driver. You need JDK >= 8 and pgjdbc >= 42.2.0 (not \".jre\" versions)
+  4）SCRAM authentication is not supported by this driver. You need JDK >= 8 and pgjdbc >= 42.2.0 (not \".jre\" versions)
 
-R6 jdk1.6版本的驱动不支持sha256验证，需要使用md5验证方式。首先需要修改sys_hba.conf中的验证方式为md5，然后需要创建一个md5加密的用户。show password_encryption查看密码加密方式，不是md5的话需要修改加密方式为md5再创建用户。创建好后可以使用SELECT rolname,rolpassword FROM pg_authid;查看用户名和密码。
+  R6 jdk1.6版本的驱动不支持sha256验证，需要使用md5验证方式。首先需要修改sys_hba.conf中的验证方式为md5，然后需要创建一个md5加密的用户。show password_encryption查看密码加密方式，不是md5的话需要修改加密方式为md5再创建用户。创建好后可以使用SELECT rolname,rolpassword FROM pg_authid;查看用户名和密码。
 
-（5）FATAL:invalid value for parameter "client_encoding":XXX
+  5）FATAL:invalid value for parameter "client_encoding":XXX
 
-该错误是指服务器不支持XXX客户端编码。JDBC驱动连接数据库时默认设置的客户端编码是JVM的编码，如果该编码服务器不支持就会报上述错误。可以通过修改JVM编码或者通过设置JDBC连接参数clientEncoding来解决。
+  该错误是指服务器不支持XXX客户端编码。JDBC驱动连接数据库时默认设置的客户端编码是JVM的编码，如果该编码服务器不支持就会报上述错误。可以通过修改JVM编码或者通过设置JDBC连接参数clientEncoding来解决。
 
 8. 无法确定参数$1的类型
 
-使用$1::type或cast函数对参数进行类型强转。使用Hibernate通常用cast函数，否则无法通过hibernate的语句解析。
+  使用$1::type或cast函数对参数进行类型强转。使用Hibernate通常用cast函数，否则无法通过hibernate的语句解析。
 
 
 
@@ -873,7 +873,9 @@ JDBC读取BLOB乱码
 适用版本：V8R2
 
 BLOB存储的内容为二进制，不会出现乱码。
+
 1.如果打印内容为com.kingbase8.jdbc.KbBlob@14ae5a5，这个是Blob的对象名称，需要调用Blob的getBytes等方法，把Blob的存储内容拿出来，具体的参考手册示例。
+
 2.如果打印内容为\x开头的十六进制字符串，和ksql查询出的内容一样，或者转字符串的时候使用了其他编码，打印出来的也可能是乱码，此时可以直接比较byte数组的大小，如果取出来的结果的数组是写之前的2倍加2的大小，那么需要更换新驱动或者在连接串指定连接参数prepareThreshold=-1。
 如果不是以上两种情况，那就是写之前就已经转成了乱码，直接把待写入的byte数组转成字符串看是否是乱码。
 

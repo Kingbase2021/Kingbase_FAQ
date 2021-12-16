@@ -44,7 +44,6 @@ SSL认证常见问题
 
       cp server.crt root.crt
 
-
 3. 配置kingbase.conf文件
 
    打开文件 找到如下属性 放开注释并修改值

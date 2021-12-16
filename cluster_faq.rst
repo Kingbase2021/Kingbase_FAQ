@@ -217,7 +217,7 @@ esHAmodel.sh脚本错误
 
 故障现象：
 
-.. |image8| image:: images/cluster_FAQ2693.png
+.. figure:: images/cluster_FAQ2693.png
    :width: 363px
    :height: 400px
 
@@ -280,9 +280,9 @@ kingbasecluster服务启动失败
 
    备机kingbasecluster下面没有pid文件
 
-   2、主、备两端lsof:9999端口没有相关程序的进程；
+   2.主、备两端lsof:9999端口没有相关程序的进程；
 
-   3、注释备机定时任务里network_rewind.sh ，手工执行，没有报错
+   3.注释备机定时任务里network_rewind.sh ，手工执行，没有报错
 
 问题发生时间：2020/12/08
 
@@ -292,7 +292,7 @@ kingbasecluster服务启动失败
 
 故障现象：
 
-.. |image9| image:: images/cluster_FAQ3767.png
+.. figure:: images/cluster_FAQ3767.png
    :width:  554px
    :height: 229px
 
@@ -302,7 +302,7 @@ kingbasecluster服务启动失败
 
 解决方案：
 
-.. |image10| image:: images/cluster_FAQ3932.png
+.. figure:: images/cluster_FAQ3932.png
    :width:  554px
    :height: 476px
 

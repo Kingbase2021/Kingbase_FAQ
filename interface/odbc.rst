@@ -67,12 +67,19 @@ linux下odbc驱动接口连接数据库失败，如何排查？
 2. 查验上述图中路径下的配置文件odbc.ini和odbcinst.ini中的配置项，是否正确，强调的是请认真核实各配置项的名称是否正确无误，主要配置项如下：
 
   odbcinst.ini:
+
         Driver = 驱动所在路径
+
   odbc.ini:
+
         Database = TEST(备注：数据库名)
+
         Servername = 127.0.0.1 (备注：数据库服务器IP地址)
+
         Username = SYSTEM(备注：用户名)
+
         Password = 123456(备注：密码)
+        
         Port=54321(备注：端口号)
 
 3. 查看驱动是否缺少依赖，如果缺少libunixodbcinst.so.2，可以添加unixodbc相关库至环境变量中，export LD_LIBRARY_PATH=/usr/local/lib(备注：该路径为unixodbc相关库的路)。
@@ -90,16 +97,22 @@ linux下odbc驱动开启日志？
 v8 ODBC一般有两种日志一种是Debug日志，一种是Commlog日志，给开发人员看的一般是Debug，设置方式有两种，一种是在odbc.ini中添加：
 
   odbc.ini:
-        Database = TEST(备注：数据库名)
-        Servername = 127.0.0.1 (备注：数据库服务器IP地址)
-        Username = SYSTEM(备注：用户名)
-        Password = 123456(备注：密码)
-               Port=54321(备注：端口号)
-               Debug=1(备注:Debug日志)
 
-           在连接串中添加：
-            "Driver={kdbodbc test driver};Server=192.168.28.152;Database=TEST;Uid=SYSTEM;
-              Password=123456;Port=54384;Debug=1"
+        Database = TEST(备注：数据库名)
+
+        Servername = 127.0.0.1 (备注：数据库服务器IP地址)
+
+        Username = SYSTEM(备注：用户名)
+
+        Password = 123456(备注：密码)
+
+            Port=54321(备注：端口号)
+
+            Debug=1(备注:Debug日志)
+
+        在连接串中添加：
+
+            "Driver={kdbodbc test driver};Server=192.168.28.152;Database=TEST;Uid=SYSTEM;Password=123456;Port=54384;Debug=1"
 
 
 SQLFreeStmt()函数与SQLCloseCursor()有什么不同？
